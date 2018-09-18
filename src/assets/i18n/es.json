@@ -1,0 +1,79 @@
+{
+  "APP": {
+    "ERROR": "ERROR",
+    "WAIT": "Por favor, espera...",
+    "OK": "OK"
+  },
+  "MENU": {
+    "TITLE": "Menu",
+    "PROFILE": "Mi Perfil",
+    "LOGOUT": "Logout"
+  },
+  "POPOVER": {
+    "PROFILE": "Mi Perfil",
+    "LOGOUT": "Logout"
+  },
+  "ROLE-SELECT": {
+    "TEACHER": "Docente",
+    "STUDENT": "Estudiante",
+    "SCHOOL-LEADER": "Director de Escuela"
+  },
+  "LOGIN": {
+    "TITLE": "Classpip",
+    "USERNAME": "Nombre de Usuario",
+    "PASSWORD": "Contraseña",
+    "LOGIN": "ENTRAR",
+    "FORGOT": "Olvidé mi contraseña",
+    "REGISTER": "Necesito crear una nueva cuenta"
+  },
+  "HOME": {
+    "TITLE": "Home",
+    "TEACHERS": "Profesores",
+    "STUDENTS": "Estudiantes",
+    "FACEBOOK": "Facebook",
+    "TWITTER": "Twitter",
+    "WEBSITE": "Web"
+  },
+  "SCHOOL": {
+    "TITLE": "Mi Escuela"
+  },
+  "PROFILE": {
+    "TITLE": "Mi Perfil",
+    "ACCOUNT": "Cuenta",
+    "NAME": "Nombre",
+    "USERNAME": "Nombre de Usuario",
+    "EMAIL": "Correo Electrónico",
+    "CHANGEPASS": "Cambiar Contraseña",
+    "RESOURCES": "Recursos",
+    "HELP": "Ayuda",
+    "TERMS": "Privacidad y Términos",
+    "VERSION": "Versión de la app"
+  },
+  "TERMS": {
+    "TITLE": "Privacidad y Términos"
+  },
+  "HELP": {
+    "TITLE": "Ayuda"
+  },
+  "TEACHERS": {
+    "TITLE": "Profesores"
+  },
+  "TEACHER": {
+    "NAME": "Nombre",
+    "USERNAME": "Nombre de Usuario",
+    "EMAIL": "Correo Electrónico"
+  },
+  "STUDENTS": {
+    "TITLE": "Estudiantes"
+  },
+  "STUDENT": {
+    "NAME": "Nombre",
+    "USERNAME": "Nombre de Usuario",
+    "EMAIL": "Correo Electrónico"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "El nombre de usuario y/o la contraseña son inválidas.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "Tu correo no ha sido verificado aún, por favor, revisa tu correo.",
+    "INTERNAL_ERROR": "Ha ocurrido un error interno en el servidor. Por favor contacta con tu administrador. "
+  }
+}

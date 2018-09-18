@@ -1,0 +1,42 @@
+page-role-select {
+  $border-gray: #c8c7cc;
+
+  .logo-row {
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+
+  .item-ios ion-avatar img,
+  .item-md ion-avatar img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .list-ios>.item-block {
+    border-top: .55px solid $border-gray;
+  }
+
+  .list-md>.item-block {
+    border-top: .55px solid $border-gray;
+
+    &:last-child {
+      border-bottom: .55px solid $border-gray;
+    }
+  }
+
+  .list-ios .item-block .item-inner,
+  .list-md .item-block .item-inner {
+    border-bottom: 0;
+  }
+
+  .item-ios,
+  .item-md {
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+}

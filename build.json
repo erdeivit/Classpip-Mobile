@@ -1,0 +1,13 @@
+{
+  "ios": {
+    "debug": {
+      "developmentTeam": "8K44JB9NHB",
+      "codeSignIdentity": "iPhone Developer: Ferran Vila (CNXKPVES9X)"
+    },
+
+    "release": {
+      "developmentTeam": "8K44JB9NHB",
+      "codeSignIdentity": "iPhone Developer: Ferran Vila (CNXKPVES9X)"
+    }
+  }
+}

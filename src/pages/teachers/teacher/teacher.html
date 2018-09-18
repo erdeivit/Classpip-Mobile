@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ teacher.name }} {{teacher.surname}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img [src]="teacher.avatar.image" width="200px" height="200px" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-item>
+      {{ 'TEACHER.NAME' | translate }}
+      <ion-note item-right>{{ teacher.name }} {{ teacher.surname }}</ion-note>
+    </ion-item>
+    <ion-item>
+      {{ 'TEACHER.USERNAME' | translate }}
+      <ion-note item-right>{{ teacher.username }}</ion-note>
+    </ion-item>
+    <ion-item>
+      {{ 'TEACHER.EMAIL' | translate }}
+      <ion-note item-right>{{ teacher.email }}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

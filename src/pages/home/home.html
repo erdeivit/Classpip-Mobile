@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'HOME.TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="getHomeInfo($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- STUDENTS  -->
+  <ion-list no-lines *ngIf="myRole == role.STUDENT">
+    <ion-item *ngIf="school" (click)="goToSchool()">
+      <ion-thumbnail item-left>
+        <img [src]="school.imageBig">
+      </ion-thumbnail>
+      <h2>{{school.name}}</h2>
+      <h3>{{school.address}}</h3>
+      <p>{{school.city}} {{school.zipCode}}</p>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <!-- TEACHERS  -->
+  <ion-list no-lines *ngIf="myRole == role.TEACHER">
+    <ion-item *ngIf="school" (click)="goToSchool()">
+      <ion-thumbnail item-left>
+        <img [src]="school.imageBig">
+      </ion-thumbnail>
+      <h2>{{school.name}}</h2>
+      <h3>{{school.address}}</h3>
+      <p>{{school.city}} {{school.zipCode}}</p>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let group of groups | orderByIdPipe" (click)="goToGroup(group)">
+      <h2 text-uppercase>{{ group.name }}</h2>
+      <h3>{{ group.grade.name }} - {{ group.matter.name }}</h3>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <!-- school (schooladministrators) -->
+  <ion-card *ngIf="myRole == role.SCHOOLADMIN && school">
+    <ion-item>
+      <ion-avatar item-left (click)="goToSchool()">
+        <img [src]="school.image">
+      </ion-avatar>
+      <h2>{{school.name}}</h2>
+      <p>{{school.address}}</p>
+      <ion-avatar item-right ion-button (click)="callNumber(school.phone)">
+        <ion-icon name="call"></ion-icon>
+      </ion-avatar>
+    </ion-item>
+    <div class="with-bg-image" [ngStyle]="{'background-image': 'url(' + school.imageBig + ')'}" (click)="goToSchool()"></div>
+    <ion-card-content (click)="goToSchool()">
+      <p>{{school.description}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="openWebsite(school.facebook)">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <div>{{ 'HOME.FACEBOOK' | translate }}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="openWebsite(school.twitter)">
+          <ion-icon name="logo-twitter"></ion-icon>
+          <div>{{ 'HOME.TWITTER' | translate }}</div>
+       </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="openWebsite(school.website)">
+         <ion-icon name="ios-cloud"></ion-icon>
+         <div>{{ 'HOME.WEBSITE' | translate }}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-list *ngIf="myRole == role.SCHOOLADMIN">
+    <!-- teachers -->
+    <ion-item *ngIf="teachersCount" (click)="goToTeachers()">
+      {{ 'HOME.TEACHERS' | translate }} ({{ teachersCount }})
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    <!-- students -->
+    <ion-item *ngIf="studentsCount" (click)="goToStudents()">
+      {{ 'HOME.STUDENTS' | translate }} ({{ studentsCount }})
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

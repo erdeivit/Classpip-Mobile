@@ -1,0 +1,24 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>{{ 'MENU.TITLE' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item (click)="openPage(homePage)">
+        {{homePage.title}}
+      </button>
+      <button menuClose ion-item (click)="showProfile()">
+        {{ 'MENU.PROFILE' | translate }}
+      </button>
+      <button menuClose ion-item (click)="goToSchool()">
+        {{schoolPage.title}}
+      </button>
+      <button menuClose ion-item (click)="logout()">
+        {{ 'MENU.LOGOUT' | translate }}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

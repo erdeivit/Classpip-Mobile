@@ -1,0 +1,26 @@
+<ion-header no-border>
+  <ion-navbar color="primary">
+    <ion-title>{{ 'LOGIN.TITLE' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label stacked>{{ 'LOGIN.USERNAME' | translate }}</ion-label>
+        <ion-input type="text" name="username" [(ngModel)]="credentials.username" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{ 'LOGIN.PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="credentials.password" required></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button full type="submit" [disabled]="!loginForm.form.valid">{{ 'LOGIN.LOGIN' | translate }}</button>
+  </form>
+  <ion-row>
+    <ion-col>
+      <button ion-button clear>{{ 'LOGIN.FORGOT' | translate }}</button>
+      <button ion-button clear>{{ 'LOGIN.REGISTER' | translate }}</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

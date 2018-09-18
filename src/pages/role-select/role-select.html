@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/classpip-icon-portrait.svg" width="200px" height="200px" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-list>
+    <ion-item (click)="openPage(loginPage, role.TEACHER)">
+      <ion-avatar item-left>
+        <img src="assets/icon-teacher.svg">
+      </ion-avatar>
+      <h2>{{ 'ROLE-SELECT.TEACHER' | translate }}</h2>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    <!-- TODO: add link to token page -->
+    <ion-item (click)="openPage(loginPage, role.STUDENT)">
+      <ion-avatar item-left>
+        <img src="assets/icon-student.svg">
+      </ion-avatar>
+      <h2>{{ 'ROLE-SELECT.STUDENT' | translate }}</h2>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item (click)="openPage(loginPage, role.SCHOOLADMIN)">
+      <ion-avatar item-left>
+        <img src="assets/icon-school-leader.svg">
+      </ion-avatar>
+      <h2>{{ 'ROLE-SELECT.SCHOOL-LEADER' | translate }}</h2>
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

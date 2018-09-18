@@ -1,0 +1,6 @@
+*.xcarchive
+*.ipa
+*.apk
+*.keystore
+*.cer
+*.mobileprovision

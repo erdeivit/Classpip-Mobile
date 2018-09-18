@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ group.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="getStudents($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row *ngFor="let row of grid">
+      <ion-col width-33 *ngFor="let student of row">
+        <ion-card *ngIf="student" no-margin>
+          <img [src]="student.avatar.image" />
+          <ion-card-content>
+            <ion-card-title no-padding no-margin>{{student.name}}</ion-card-title>
+            <p>{{student.surname}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

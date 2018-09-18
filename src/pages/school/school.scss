@@ -1,0 +1,25 @@
+.ios {
+  page-school {
+    .scroll-content {
+      height: 100%;
+    }
+
+    .map {
+      height: calc(100% - 44px);
+      width: 100%;
+    }
+  }
+}
+
+.md {
+  page-school {
+    .scroll-content {
+      height: 100%;
+    }
+
+    .map {
+      height: calc(100% - 56px);
+      width: 100%;
+    }
+  }
+}
