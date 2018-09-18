@@ -6,12 +6,25 @@ import { IonicService } from '../../providers/ionic.service';
 import { UtilsService } from '../../providers/utils.service';
 import { LoginService } from '../../providers/login.service';
 import { SchoolService } from '../../providers/school.service';
+import { GetQuestionnaireService } from '../../providers/getQuestionnaire.service';
 import { RoleSelectPage } from '../../pages/role-select/role-select';
 import { HomePage } from '../../pages/home/home';
 import { SchoolPage } from '../../pages/school/school';
 import { ProfilePage } from '../../pages/profile/profile';
 import { Page } from '../../model/page';
 import { School } from '../../model/school';
+import { GetQuestionnairePage } from '../../pages/getQuestionnaire/getQuestionnaire';
+import { LoginPage } from '../../pages/login/login';
+import {Group} from "../../model/group";
+import {GroupService} from "../../providers/group.service";
+import {CollectionSpage} from "../collection/collection-student/collection-student";
+import {CollectionTpage} from "../collection/collection-teacher/collection-teacher";
+import {Role} from "../../model/role";
+import {PointsAndBadgesPage} from "../pointsAndBadges/pointsAndBadges";
+import {Point} from "../../model/point";
+import {PointsPage} from "../points/points";
+import {Badge} from "../../model/badge";
+import {BadgesPage} from "../badges/badges";
 
 @Component({
   selector: 'page-menu',
@@ -24,6 +37,8 @@ export class MenuPage {
   public rootPage: Component;
   public homePage: Page;
   public schoolPage: Page;
+  public pointsAndBadges: Page;
+  public loginPage: Page = new Page(LoginPage);
 
   constructor(
     public navController: NavController,
@@ -31,12 +46,15 @@ export class MenuPage {
     public utilsService: UtilsService,
     public ionicService: IonicService,
     public schoolService: SchoolService,
-    private loginService: LoginService) {
+    private loginService: LoginService,
+    public groupServices: GroupService){
 
     this.rootPage = HomePage;
     this.homePage = new Page(HomePage, this.translateService.instant('HOME.TITLE'));
     this.schoolPage = new Page(SchoolPage, this.translateService.instant('SCHOOL.TITLE'));
+    this.pointsAndBadges = new Page(PointsAndBadgesPage, this.translateService.instant('POINTSANDBADGES.TITLE'));
   }
+
   /**
    * Method for opening a page
    * @param {Page} page Page to open
@@ -78,4 +96,64 @@ export class MenuPage {
       });
   }
 
+  /**
+   * Method for displaying the GetQuestionnairePage page
+   */
+  public goToGetQuestionnaire(): void {
+
+    this.groupServices.getGroups2().subscribe(
+      ((value: Array<Group>) => this.navController.push(GetQuestionnairePage, { groups: value})),
+      error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+
+
+    //this.navController.push(GetQuestionnairePage);
+  }
+
+  /**
+   * Method for displaying the collection page
+   */
+  public showCollection(): void {
+    this.ionicService.showLoading(this.translateService.instant('APP.WAIT'));
+    //var regexp = /teachers/gi;
+    //if(this.utilsService.getMyUrl().search(regexp) >= 0) {
+    if(this.utilsService.role === Role.TEACHER) {
+      this.navController.push(CollectionTpage).catch(error => {
+        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
+      });
+    } else {
+      this.navController.push(CollectionSpage).catch(error => {
+        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
+      });
+
+    }
+
+    this.ionicService.removeLoading();
+  }
+
+  /**
+   * Method called from the home page to open the details of the
+   * points and badges
+   * @param {School} school to open
+   */
+  public goToPointsAndBadges(): void {
+
+    this.ionicService.showLoading(this.translateService.instant('APP.WAIT'));
+
+    this.schoolService.getMySchoolPoints().subscribe(
+      ((value1: Array<Point>) => {
+        this.schoolService.getMySchoolBadges().subscribe(
+          ((value2: Array<Badge>)=> {
+            this.navController.push(PointsAndBadgesPage, { badges: value1, points: value2})
+          }),
+          error => {
+          this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
+          this.ionicService.removeLoading();
+        });
+      }),
+      error => {
+        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
+        this.ionicService.removeLoading();
+      });
+
+  }
 }

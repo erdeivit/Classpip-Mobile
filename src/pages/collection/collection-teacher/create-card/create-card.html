@@ -1,0 +1,51 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{"CREATE-CARD.TITLE" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <form (ngSubmit)="createCard()" #createCardForm="ngForm">
+
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label stacked>{{ 'CREATE-CARD.NAME' | translate }}</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="card.name" placeholder="{{ 'CREATE-CARD.NAME' | translate }}" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{ 'CREATE-CARD.RATIO' | translate }}</ion-label>
+        <ion-select [(ngModel)]="card.ratio" name="ratio" placeholder="{{ 'CREATE-CARD.RATIO' | translate }}" required>
+          <ion-option value="alto">{{ 'LEVEL.HIGH' | translate }}</ion-option>
+          <ion-option value="medio">{{ 'LEVEL.MED' | translate }}</ion-option>
+          <ion-option value="bajo">{{ 'LEVEL.LOW' | translate }}</ion-option>
+          <ion-option value="raro">{{ 'LEVEL.STR' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{ 'CREATE-CARD.RANK' | translate }}</ion-label>
+        <ion-select [(ngModel)]="card.rank" name="rank" placeholder="{{ 'CREATE-CARD.RANK' | translate }}" required>
+          <ion-option value="bronce">{{ 'LEVEL.BRO' | translate }}</ion-option>
+          <ion-option value="plata">{{ 'LEVEL.SIL' | translate }}</ion-option>
+          <ion-option value="oro">{{ 'LEVEL.GOL' | translate }}</ion-option>
+          <ion-option value="diamante">{{ 'LEVEL.DIA' | translate }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{ 'IMAGE.IMGSOURCE' | translate }}</ion-label>
+        <ion-select full [(ngModel)]="imageType" name="image" placeholder="{{ 'IMAGE.IMGSOURCE' | translate }}" required (ionChange)="imageTypeSelected(imageType)">
+          <ion-option value="camara">{{ 'IMAGE.CAMERA' | translate }}</ion-option>
+          <ion-option value="libreria">{{ 'IMAGE.LOADFROM' | translate }}</ion-option>
+          <ion-option value="url">URL</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>{{ 'CREATE-CARD.IMAGE' | translate }}</ion-label>
+        <ion-input type="text" name="image" [(ngModel)]="card.image" placeholder="{{ 'CREATE-CARD.IMAGE' | translate }}" required ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button full type="submit" [disabled]="!createCardForm.form.valid">{{ 'CREATE-CARD.CREATE' | translate }}</button>
+  </form>
+</ion-content>

@@ -7,6 +7,7 @@
     "ionic:serve": "ionic-app-scripts serve",
     "tslint": "tslint src/**/*.ts",
     "sasslint": "gulp --gulpfile sass-lint.js",
+    "test": "ng test --watch=false --code-coverage",
     "coveralls": "gulp --gulpfile coveralls.js"
   },
   "repository": {
@@ -36,17 +37,30 @@
     "ionicons": "3.0.0",
     "ng2-translate": "4.2.0",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "0.6.26"
+    "zone.js": "0.6.26",
+    "@ionic-native/core": "^4.2.0",
+    "@ionic-native/camera": "^4.2.1",
+    "@ionic-native/file": "^4.2.1",
+    "@ionic-native/file-path": "^4.2.1",
+    "@ionic-native/transfer": "^3.14.0"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "1.0.0",
-    "@types/jasmine": "2.5.41",
+    "@ionic/app-scripts": "1.1.4",
+    "@ionic/cli-plugin-ionic-angular": "1.3.2",
+    "@types/jasmine": "^2.5.41",
     "@types/node": "7.0.4",
+    "angular-cli": "1.0.0-beta.28.3",
     "codelyzer": "2.0.0-beta.3",
     "gulp": "3.9.1",
     "gulp-coveralls": "0.1.4",
     "gulp-sass-lint": "1.3.2",
     "jasmine-core": "2.5.2",
+    "karma": "1.4.1",
+    "karma-cli": "1.0.1",
+    "karma-jasmine": "1.1.0",
+    "karma-mocha-reporter": "2.2.2",
+    "karma-phantomjs-launcher": "1.0.2",
+    "karma-remap-istanbul": "0.5.0",
     "sw-toolbox": "3.4.0",
     "tslint": "4.0.2",
     "typescript": "2.0.9"

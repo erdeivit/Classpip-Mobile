@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{collectionCard.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-item *ngIf="hayBadges == true && badgeItem">
+    <ion-note stacked>{{ 'COLLECTION.AWORD' | translate}}:</ion-note>
+    <ion-avatar item-left>
+      <img [src]="badgeItem.image">
+    </ion-avatar>
+    <h2>{{ badgeItem.name }}</h2>
+  </ion-item>
+
+  <ion-item *ngIf="numCardsBlack == 0">
+    <ion-icon item-left name="ribbon"></ion-icon>
+    <h2>{{ 'COLLECTION.COMPLETED' | translate }}</h2>
+  </ion-item>
+  <ion-item>
+    <ion-icon item-left name="albums"></ion-icon>
+    <h2>{{ 'COLLECTION.TOTAL' | translate }} {{ numCards }} / {{ collectionCard.num }}</h2>
+
+  </ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let row of grid">
+      <ion-col width-50 *ngFor="let card of row">
+        <ion-card *ngIf="card" no-margin>
+          <img [src]="card.image" />
+          <ion-card-content>
+            <ion-card-title class="tittle">{{card.name}}</ion-card-title>
+            <p class="level">{{ 'COMMON.LEVEL' | translate }}: {{card.rank}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

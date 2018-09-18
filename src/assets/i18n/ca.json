@@ -1,0 +1,293 @@
+{
+  "APP": {
+    "ERROR": "ERROR",
+    "WAIT": "Si us plau, espera...",
+    "OK": "OK"
+  },
+  "MENU": {
+    "TITLE": "Menú",
+    "PROFILE": "El meu perfil",
+    "QUESTIONNAIRE": "Els meus Qüestionaris",
+    "LOGOUT": "Tancar sessió"
+  },
+  "POPOVER": {
+    "PROFILE": "El meu perfil",
+    "QUESTIONNAIRE": "Els meus Qüestionaris",
+    "LOGOUT": "Tancar sessió"
+  },
+  "ROLE-SELECT": {
+    "TEACHER": "Docent",
+    "STUDENT": "Estudiant",
+    "SCHOOL-LEADER": "Director de l'Escola"
+  },
+  "LOGIN": {
+    "TITLE": "Classpip",
+    "USERNAME": "Nom d'Usuari",
+    "PASSWORD": "Contrasenya",
+    "LOGIN": "ENTRAR",
+    "FORGOT": "He oblidat la contrasenya",
+    "REGISTER": "Necessito crear un nou compte"
+  },
+    "GETQUESTIONNAIRE": {
+    "TITLE": "Els meus Qüestionaris",
+      "SHORTTITLE": "Qüestionaris",
+    "USERNAME": "Nom d'Usuari",
+    "CODE": "Codi del Qüestionari",
+    "LOGIN": "ACCEDIR",
+      "MAKE": "Fer qüestionari",
+      "WONCARDS": "Cromos guanyats:"
+  },
+    "QUESTIONNAIRES": {
+    "TITLE": "Els meus Qüestionaris",
+    "RESULTS": "Els meus Resultats"
+  },
+    "QUESTIONNAIRE": {
+    "TITLE": "El meu Qüestionari",
+    "USERNAME": "Creat per",
+    "CODE": "Codi del Qüestionari",
+    "SUBMIT": "Guardar i continuar",
+    "RESULT": "Consultar els resultats",
+    "FINISH": "Has acabat de realitzar el qüestionari. Consulta la solució i els teus resultats.",
+    "FINISH1": "Has acabat de realitzar el qüestionari. Els teus resultats es publicaran en breu.",
+    "LOGIN": "ACCEDIR",
+    "LOGOUT": "Tancar Qüestionari",
+    "TEXT1": "Solució del",
+    "TEXT2": "Resposta correcta:",
+    "TEXT3": "Resultats obtinguts per",
+    "TEXT4": "Les teves respostes:",
+    "TEXT5": "Resultats:",
+    "TEXT6": "Total preguntes:",
+    "TEXT7": "Total respostes correctes:",
+    "TEXT8": "Total respostes incorrectes:",
+    "TEXT9": "Resultat:",
+    "TEXT10": "Nota sobre 10",
+    "TEXT11": "Punts aconseguits",
+      "CLOSED": "Aquest qüestionari està tancat",
+      "NOTACCESS": "No tens accés a aquest qüestionari"
+  },
+  "HOME": {
+    "TITLE": "Inici",
+    "TEACHERS": "Professors",
+    "STUDENTS": "Estudiants",
+    "FACEBOOK": "Facebook",
+    "TWITTER": "Twitter",
+    "WEBSITE": "Web",
+    "LANGUAGE": "Escull l'idioma"
+  },
+  "GROUP": {
+    "TITLE": "Grup"
+  },
+  "SCHOOL": {
+    "TITLE": "La meva Escola"
+  },
+  "PROFILE": {
+    "TITLE": "El meu perfil",
+    "ACCOUNT": "Compte",
+    "NAME": "Nom",
+    "USERNAME": "Nom d'Usuari",
+    "EMAIL": "Correu Electrònic",
+    "CHANGEPASS": "Cambiar Contrasenya",
+    "RESOURCES": "Recursos",
+    "HELP": "Ajuda",
+    "TERMS": "Privacitat i Termes",
+    "VERSION": "Versió de la app"
+  },
+  "TERMS": {
+    "TITLE": "Privacitat i Termes"
+  },
+  "HELP": {
+    "TITLE": "Ajuda"
+  },
+  "TEACHERS": {
+    "TITLE": "Professors"
+  },
+  "TEACHER": {
+    "NAME": "Nom",
+    "USERNAME": "Nom d'Usuari",
+    "EMAIL": "Correu Electrònic"
+  },
+  "STUDENTS": {
+    "TITLE": "Estudiants"
+  },
+  "STUDENT": {
+    "NAME": "Nom",
+    "USERNAME": "Nom d'Usuari",
+    "EMAIL": "Correu Electrònic"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "El nom d'usuari i / o contrasenya invàlides.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "El teu correu no ha estat verificat encara, si us plau, revisa el teu correu.",
+    "INTERNAL_ERROR": "Hi ha hagut un error intern al servidor. Si us plau contacta amb el teu administrador."
+  },
+  "COLLECTION": {
+    "TITLE": "Les meves Col·leccions",
+    "COMPLETED": "Col·lecció completada",
+    "TOTAL": "Cromos totals: ",
+    "NOTASSIGNED": "Aquesta col·lecció no té ningun grup assignat encara",
+    "REMOVEDOK": "Col·lecció borrada correctament",
+    "NOTYOU": "No es pot eliminar una col·lecció que no has creat tu",
+    "REMQUEST": "Estàs segura de que vols borrar-la de les teves col·leccions?",
+    "AWORD": "Premi per acabar la col·lecció"
+  },
+  "CREATE-COLLECTION": {
+    "TITLE": "Crear col·lecció",
+    "NAME": "Nom de la nova colecció",
+    "NUM": "Número de cromos de la nova col·lecció",
+    "IMAGE": "Imatge de portada per la col·lecció",
+    "CREATE": "CREAR",
+    "OK": "Col·lecció creada correctament",
+    "YOU": "Aquesta col·lecció l'has creada tu"
+  },
+  "COLLECTION-ASSIGN": {
+    "TITLE": "Asignar a un grup"
+  },
+  "EDIT-COLLECTION": {
+    "TITLE": "Editar colecció",
+    "NAME": "Nom de la nova colecció",
+    "NUM": "Número de cartes de la nova colecció",
+    "IMAGE": "Imatge de portada per la colecció",
+    "EDIT": "EDITAR",
+    "OK": "Col·leció guardada correctament",
+    "CANT": "No pots editar aquest col·lecció perquè no l'has creada tu"
+  },
+  "COLLECTIONS-ASSIGNED": {
+    "TITLE": "Grups asignats",
+    "OK": "Colecció assignada correctament",
+    "CANCEL": "Cancelar l'assignació",
+    "SURE": "Si acceptes, cancel·les l'assignació de la col·lecció a aquest grupo, estas d'acord?",
+    "DELETEOK": "Assignació eliminada",
+    "GES": "Gestionar grups assignats"
+  },
+  "CARDS": {
+    "TITLE": "cromos",
+    "ADD": "Afegir cromo",
+    "DELETEOK": "Cromo eliminat correctament",
+    "CANT": "No pots borrar cromos en aquesta col·lecció perquè no és teva",
+    "DELQUEST":  "Si ho borres s'eliminara completament, estas d'acord?"
+  },
+  "CREATE-CARD": {
+    "TITLE": "Crear cromo",
+    "NAME": "Nom del nou cromo",
+    "RATIO": "Ratio d'aparició del cromo",
+    "RANK": "Qualitat del cromo (rareza)",
+    "IMAGE": "Imatge del cromo",
+    "CREATE": "CREAR",
+    "CANT": "No pots crear cromos en aquesta col·lecció perquè no és teva",
+    "YOU": "Aquest cromo l'has creat tu"
+  },
+  "EDIT-CARD": {
+    "TITLE": "Editar cromo",
+    "NAME": "Nom del cromo",
+    "RATIO": "Ratio d'aparició del cromo",
+    "RANK": "Qualitat del cromo (rareza)",
+    "IMAGE": "Imatge del cromo",
+    "EDIT": "EDITAR",
+    "OK": "Cromo guardat correctament",
+    "CANT": "No pots editar el cromo ja que no l'has creat tu"
+  },
+  "CARD-ASSIGN": {
+    "TITLE": "Selecciona un grup",
+    "RANDOM": "A un estudiant a l'atzar",
+    "OK": "Cromo asignat correctament",
+    "ASS1": "Assignar 1 cromo aleatori",
+    "ASS3": "Assignar 3 cromos aleatoris",
+    "ASS5": "Assignar 5 cromos aleatoris",
+    "ASSX": "Assignar X cromos a diversos estudiants",
+    "ASS": "Assignar un cromo a un estudiant",
+    "RANDOK": "Cromo assignat a un estudiant al atzar ("
+  },
+  "CARD-ASSIGN-STUDENT": {
+    "TITLE": "Asignar un cromo a un estudiant",
+    "RANDOM": "A un estudiant l'atzar",
+    "OK": "Cromo assignat correctament",
+    "MULT": "Assignar cromos"
+  },
+  "POINTSBADGES": {
+    "TITLE": "Punts i insígnies",
+    "TOTAL": "Totals"
+  },
+  "POINTS": {
+    "TITLE": "Punts",
+    "CREATE": "Crear punt",
+    "NAMEOF": "Nom del punt",
+    "IMAGEOF": "Imatge del punt",
+    "VALUEOF": "Valor del punt",
+    "NUM": "Número de punts",
+    "TOTAL": "Punts totals",
+    "ASSIGN": "Asignar punts",
+    "OBTAINED": "Punts obtinguts",
+    "DESCOP": "Sumatori dels punts obtinguts per el valor del punt",
+    "SINGULAR": "Punt",
+    "CORASSIGN": "Punts assignats correctament",
+    "NOTDELETE": "No es pot eliminar el punt Qüestionari"
+  },
+  "BADGES": {
+    "TITLE": "Insígnies",
+    "CREATE": "Crear insígnia",
+    "NAMEOF": "Nom de l'insígnia",
+    "IMAGEOF": "Imatge de l'insígnia",
+    "VALUEOF": "Valor de l'insígnia",
+    "NUM": "Número d'insígnies",
+    "TOTAL": "Insígnies totals",
+    "ASSIGN": "Assignar insígnies",
+    "SINGULAR": "Insígnia",
+    "CORASSIGN": "Insígnies asignades correctament",
+    "OBTAINED":"Insígnia guanyada"
+  },
+  "COMMON": {
+    "CREATE": "Crear",
+    "EDIT": "Editar",
+    "DELETE": "Eliminar",
+    "NAME": "Nom",
+    "VALUE": "Valor",
+    "TOTAL": "Total",
+    "ASSIGN": "Assignar",
+    "ESTIRAR": "Estirar la pantalla cap a baix per carregar els estudiants",
+    "PENDING": "Pendents",
+    "COMPLETED": "Completats",
+    "DATE": "Data",
+    "CREATEDBY": "Creat per",
+    "QTY": "Quantitat",
+    "LEVEL": "Nivell",
+    "UNKNOWN": "Desconegut",
+    "CANCEL": "Cancelar",
+    "ACCEPT": "Acceptar",
+    "ACTION": "Selecciona l'acció",
+    "RANDOM": "A l'atzar"
+  },
+  "IMAGE": {
+    "LOADFROM": "Carregar de la llibreria",
+    "CAMERA": "Càmera",
+    "IMGSOURCE": "Origen de la imatge"
+  },
+  "VALIDATION": {
+    "STUDENTSELECTED": "No s'ha seleccionat ningun estudiant",
+    "QTY": "No s'ha indicat la quantitat",
+    "POINT": "No s'ha indicat el punt",
+    "BADGE": "No s'ha indicat la insígnia",
+    "COMPL": "No es pot assignar aquesta col·lecció perquè no està finalitzada"
+  },
+  "LEVEL": {
+  "HIGH": "Alt",
+  "MED": "Mig",
+  "LOW": "Baix",
+  "STR": "Extrany",
+  "BRO": "Bronce",
+  "SIL": "Plata",
+  "GOL": "Or",
+  "DIA": "Diamant"
+  },
+  "RANK": {
+    "910": "De 9 a 10:",
+    "7899": "De 7 a 8.99:",
+    "5699": "De 5 a 6.99:",
+    "0499": "De 0 a 4.99:",
+    "5599": "De 5 a 5.99:",
+    "6699": "De 6 a 6.99:",
+    "7799": "De 7 a 7.99:",
+    "8899": "De 8 a 8.99:",
+    "AWO": "Possibles premis: "
+  }
+
+
+}

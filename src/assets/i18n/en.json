@@ -1,0 +1,291 @@
+{
+  "APP": {
+    "ERROR": "ERROR",
+    "WAIT": "Please wait ...",
+    "OK": "OK"
+  },
+  "MENU": {
+    "TITLE": "Menu",
+    "PROFILE": "My profile",
+    "QUESTIONNAIRE": "My Questionnaires",
+    "LOGOUT": "Logout"
+  },
+  "POPOVER": {
+    "PROFILE": "My profile",
+    "QUESTIONNAIRE": "My Questionnaires",
+    "LOGOUT": "Logout"
+  },
+  "ROLE-SELECT": {
+    "TEACHER": "Teacher",
+    "STUDENT": "Student",
+    "SCHOOL-LEADER": "School Principal"
+  },
+  "LOGIN": {
+    "TITLE": "Classpip",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN": "GET IN",
+    "FORGOT": "I forgot my password",
+    "REGISTER": "I need to create a new account"
+  },
+    "GETQUESTIONNAIRE": {
+    "TITLE": "My Questionnaires",
+      "SHORTTITLE": "Questionnaires",
+    "USERNAME": "Username",
+    "CODE": "Code of the Questionnaire",
+    "LOGIN": "GET IN",
+      "MAKE": "Hacer cuestionario",
+      "WONCARDS": "Cartas ganadas:"
+  },
+    "QUESTIONNAIRES": {
+    "TITLE": "My Questionnaires",
+    "RESULTS": "My Results"
+  },
+    "QUESTIONNAIRE": {
+    "TITLE": "My Questionnaire",
+    "USERNAME": "Created by",
+    "CODE": "Code of Questionnaire",
+    "SUBMIT": "Save and continue",
+    "RESULT": "Consult results",
+    "FINISH": "You have completed the questionnaire. Check the solution and your results.",
+    "FINISH1": "You have completed the questionnaire. Your results will be posted shortly.",
+    "LOGIN": "GET IN",
+    "LOGOUT": "Close questionnaire",
+    "TEXT1": "Solution of",
+    "TEXT2": "Correct answer:",
+    "TEXT3": "Results obtained by",
+    "TEXT4": "Your answers:",
+    "TEXT5": "Results:",
+    "TEXT6": "Total questions:",
+    "TEXT7": "Total answers right:",
+    "TEXT8": "Total unanswered answers:",
+    "TEXT9": "Result:",
+    "TEXT10": "Grade out of 10",
+    "TEXT11": "Achieved points",
+    "CLOSED": "This questionnaire is closed",
+      "NOTACCESS": "You don't have access to this questionnaire"
+    },
+  "HOME": {
+    "TITLE": "Home",
+    "TEACHERS": "Teachers",
+    "STUDENTS": "Students",
+    "FACEBOOK": "Facebook",
+    "TWITTER": "Twitter",
+    "WEBSITE": "Web",
+    "LANGUAGE": "Choose the language"
+  },
+  "GROUP": {
+    "TITLE": "Group"
+  },
+  "SCHOOL": {
+    "TITLE": "My school"
+  },
+  "PROFILE": {
+    "TITLE": "My profile",
+    "ACCOUNT": "Account",
+    "NAME": "Name",
+    "USERNAME": "Username",
+    "EMAIL": "Email",
+    "CHANGEPASS": "Change Password",
+    "RESOURCES": "Means",
+    "HELP": "Help",
+    "TERMS": "Privacy and Terms",
+    "VERSION": "Version of the app"
+  },
+  "TERMS": {
+    "TITLE": "Privacy and Terms"
+  },
+  "HELP": {
+    "TITLE": "Help"
+  },
+  "TEACHERS": {
+    "TITLE": "Teachers"
+  },
+  "TEACHER": {
+    "NAME": "Name",
+    "USERNAME": "Username",
+    "EMAIL": "Email"
+  },
+  "STUDENTS": {
+    "TITLE": "Students"
+  },
+  "STUDENT": {
+    "NAME": "Name",
+    "USERNAME": "Username",
+    "EMAIL": "Email"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "The username and / or password are invalid.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "Your email has not been verified yet, please check your email.",
+    "INTERNAL_ERROR": "An internal error has occurred on the server. Please contact your administrator. "
+  },
+  "COLLECTION": {
+    "TITLE": "My Collections",
+    "COMPLETED": "Collection completed",
+    "TOTAL": "Total cards: ",
+    "NOTASSIGNED": "This collection does not have a group assigned yet",
+    "REMOVEDOK": "You cannot delete a collection that has not been created by you",
+    "NOTYOU": "This collection has not been created by you",
+    "REMQUEST": "Are you sure that you want to delete it from your collections?",
+    "AWORD": "Reward for completing the collection"
+  },
+  "CREATE-COLLECTION": {
+    "TITLE": "Create collection",
+    "NAME": "Name",
+    "NUM": "Number of cards",
+    "IMAGE": "Image",
+    "CREATE": "CREATE",
+    "OK": "Collection created successfully"
+  },
+  "COLLECTION-ASSIGN": {
+    "TITLE": "Assign to a group"
+  },
+  "EDIT-COLLECTION": {
+    "TITLE": "Edit collection",
+    "NAME": "Name",
+    "NUM": "Number of cards",
+    "IMAGE": "Image",
+    "EDIT": "EDIT",
+    "OK": "Collection saved successfully",
+    "CANT": "You can't edit this collection as it has not been created by you"
+  },
+  "COLLECTIONS-ASSIGNED": {
+    "TITLE": "Assigned groups",
+    "OK": "Collection assigned to group successfuly",
+    "CANCEL": "Cancel the assignation",
+    "SURE": "If you accept, you are going to cancel the assignation to this grup, are you sure?",
+    "DELETEOK": "Assignation deleted",
+    "GES": "Manage assigned groups"
+  },
+  "CARDS": {
+    "TITLE": "cards",
+    "ADD": "Add a card",
+    "DELETEOK": "Card deleted successfuly",
+    "CANT": "You can't delete this card as it has not been created by you",
+    "DELQUEST":  "If you delete it, it is going to be deleted completely, ara you sure?"
+  },
+  "CREATE-CARD": {
+    "TITLE": "Create Card",
+    "NAME": "Name",
+    "RATIO": "Ratio de aparición de la carta",
+    "RANK": "Calidad de la carta (rareza)",
+    "IMAGE": "Image",
+    "CREATE": "CRETE",
+    "CANT": "You can't create cards as this collection is not yours",
+    "YOU": "This card has been created by you"
+  },
+  "EDIT-CARD": {
+    "TITLE": "Edit card",
+    "NAME": "Name",
+    "RATIO": "Ratio de aparición de la carta",
+    "RANK": "Calidad de la carta (rareza)",
+    "IMAGE": "Image",
+    "EDIT": "EDIT",
+    "OK": "Card saved correctly",
+    "CANT": "You can't edit this card as it has not been created by you"
+  },
+  "CARD-ASSIGN": {
+    "TITLE": "Select a group",
+    "RANDOM": "To a random student",
+    "OK": "Card assigned successfuly",
+    "ASS1": "Assign 1 random card",
+    "ASS3": "Assign 3 random cards",
+    "ASS5": "Assign 4 random cards",
+    "ASSX": "Assign X cards to some students",
+    "ASS": "Assign a card to a student",
+    "RANDOK": "Card assigned to random student successfully ("
+  },
+  "CARD-ASSIGN-STUDENT": {
+    "TITLE": "Assign card to a student",
+    "RANDOM": "To a random student",
+    "OK": "Card assigned successfuly",
+    "MULT": "Assign cards"
+  },
+  "POINTSBADGES": {
+    "TITLE": "Points and badges",
+    "TOTAL": "Totals"
+  },
+  "POINTS": {
+    "TITLE": "Points",
+    "CREATE": "Create point",
+    "NAMEOF": "Name",
+    "IMAGEOF": "Image",
+    "VALUEOF": "Value",
+    "NUM": "Number of points",
+    "TOTAL": "Total points",
+    "ASSIGN": "Assign points",
+    "OBTAINED": "Points earned",
+    "DESCOP": "Sum of points earned per the point's value",
+    "SINGULAR": "Point",
+    "CORASSIGN": "Points assigned",
+    "NOTDELETE": "The point 'Qüestionari' cannot be deleted"
+  },
+  "BADGES": {
+    "TITLE": "Badges",
+    "CREATE": "Create badge",
+    "NAMEOF": "Name",
+    "IMAGEOF": "Image",
+    "VALUEOF": "Value",
+    "NUM": "Number of badges",
+    "TOTAL": "Total badges",
+    "ASSIGN": "Assign badges",
+    "SINGULAR": "Badge",
+    "CORASSIGN": "Badge assigned",
+    "OBTAINED":"Badge earned"
+  },
+  "COMMON": {
+    "CREATE": "Create",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "NAME": "Name",
+    "VALUE": "Value",
+    "TOTAL": "Total",
+    "ASSIGN": "Assign",
+    "ESTIRAR": "Refresh the window to see the students of the group",
+    "PENDING": "Pending",
+    "COMPLETED": "Completed",
+    "DATE": "Date",
+    "CREATEDBY": "Created by",
+    "QTY": "Quantity",
+    "LEVEL": "Nivell",
+    "UNKNOWN": "Unknown",
+    "CANCEL": "Cancel",
+    "ACCEPT": "Accept",
+    "ACTION": "Select the action",
+    "RANDOM": "Random"
+  },
+
+  "IMAGE": {
+    "LOADFROM": "Load from Library",
+    "CAMERA": "Use camera",
+    "IMGSOURCE": "Image source"
+  },
+  "VALIDATION": {
+    "STUDENTSELECTED": "Any student has been selected",
+    "QTY": "The number of cards has not been selected",
+    "POINT": "The point has not been selected",
+    "BADGE": "The badge has not been selected",
+    "COMPL": "You cannot assign this collection because is not finished"
+  },
+  "LEVEL": {
+    "HIGH": "High",
+    "MED": "Medium",
+    "LOW": "Low",
+    "STR": "Strange",
+    "BRO": "Bronze",
+    "SIL": "Silver",
+    "GOL": "Gold",
+    "DIA": "Diamond"
+  },
+  "RANK": {
+    "910": "From 9 to 10:",
+    "7899": "From 7 to 8.99:",
+    "5699": "From 5 to 6.99:",
+    "0499": "From 0 to 4.99:",
+    "5599": "From 5 to 5.99:",
+    "6699": "From 6 to 6.99:",
+    "7799": "From 7 to 7.99:",
+    "8899": "From 8 to 8.99:",
+    "AWO": "Possible awards: "
+  }
+}

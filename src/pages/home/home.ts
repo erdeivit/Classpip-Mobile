@@ -17,6 +17,14 @@ import { PopoverPage } from '../../pages/home/popover/popover';
 import { TeachersPage } from '../../pages/teachers/teachers';
 import { StudentsPage } from '../../pages/students/students';
 import { GroupPage } from '../../pages/group/group';
+import {PointRelation} from "../../model/pointRelation";
+import {BadgeRelation} from "../../model/badgeRelation";
+import {PointService} from "../../providers/point.service";
+import {BadgeService} from "../../providers/badge.service";
+import {BadgeRelationService} from "../../providers/badgeRelation.service";
+import {PointRelationService} from "../../providers/pointRelation.service";
+import {Point} from "../../model/point";
+import {Badge} from "../../model/badge";
 
 @Component({
   selector: 'page-home',
@@ -29,8 +37,15 @@ export class HomePage {
   public studentsCount: number;
   public groups: Array<Group>;
 
+  public studentsPoint = false;
+  public groupCheckbox = false;
+  public studentsBadge = false;
+  public groupCheckbox2 = false;
+
   public myRole: Role;
   public role = Role;
+
+  idioms: any[] = [];
 
   constructor(
     public ionicService: IonicService,
@@ -42,6 +57,27 @@ export class HomePage {
     public popoverController: PopoverController,
     public menuController: MenuController,
     public navController: NavController) {
+
+    // Definició dels idiomes disponibles
+      this.idioms = [
+      {
+        value: 'ca',
+        label: 'Català'
+      },
+      {
+        value: 'es',
+        label: 'Español'
+      },
+      {
+        value: 'en',
+        label: 'English'
+      }
+    ];
+  }
+
+  choose(lang) {
+    this.translateService.use(lang);
+
   }
 
   /**
@@ -70,7 +106,10 @@ export class HomePage {
     // and the members
     if (this.myRole === Role.SCHOOLADMIN) {
 
-      this.schoolService.getMySchool().subscribe(
+      this.schoolService.getMySchool().finally(() => {
+        refresher ? refresher.complete() : null;
+        this.ionicService.removeLoading();
+      }).subscribe(
         ((value: School) => {
           this.school = value;
 
@@ -78,10 +117,7 @@ export class HomePage {
             ((value: number) => {
               this.teachersCount = value;
 
-              this.schoolService.getMySchoolStudentsCount().finally(() => {
-                refresher ? refresher.complete() : null;
-                this.ionicService.removeLoading();
-              }).subscribe(
+              this.schoolService.getMySchoolStudentsCount().subscribe(
                 ((value: number) => this.studentsCount = value),
                 error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
             }),
@@ -90,6 +126,24 @@ export class HomePage {
         error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
 
     } else if (this.myRole === Role.TEACHER) {
+      // Carrego els grups associats al TEACHER
+
+      this.schoolService.getMySchool().finally(() => {
+        refresher ? refresher.complete() : null;
+        this.ionicService.removeLoading();
+      }).subscribe(
+        ((value: School) => {
+          this.school = value;
+
+          this.groupService.getMyGroups().subscribe(
+            ((value: Array<Group>) => this.groups = value),
+            error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+
+        }),
+        error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+
+    } else if (this.myRole === Role.STUDENT) {
+    // Carrego els grups associats al STUDENT
 
       this.schoolService.getMySchool().finally(() => {
         refresher ? refresher.complete() : null;
@@ -104,14 +158,6 @@ export class HomePage {
         }),
         error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
 
-    } else if (this.myRole === Role.STUDENT) {
-
-      this.schoolService.getMySchool().finally(() => {
-        refresher ? refresher.complete() : null;
-        this.ionicService.removeLoading();
-      }).subscribe(
-        ((value: School) => this.school = value),
-        error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
     }
   }
 
@@ -204,6 +250,9 @@ export class HomePage {
         this.ionicService.removeLoading();
       });
   }
+
+
+
 
   /**
    * Thi method presents the more popover on the home

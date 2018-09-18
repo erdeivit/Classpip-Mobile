@@ -12,6 +12,17 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <!-- LANGUAGE SELECTOR -->
+  <ion-list>
+    <ion-item>
+      <ion-label>{{ 'HOME.LANGUAGE' | translate }}</ion-label>
+      <ion-select (ionChange)="choose($event)">
+        <ion-option *ngFor="let item of idioms" [value]="item.value">
+          {{ item.label }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
   <ion-refresher (ionRefresh)="getHomeInfo($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -100,6 +111,20 @@
     <!-- students -->
     <ion-item *ngIf="studentsCount" (click)="goToStudents()">
       {{ 'HOME.STUDENTS' | translate }} ({{ studentsCount }})
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    <!-- points -->
+    <ion-item *ngIf="pointsCount" (click)="goToPoints()">
+      Puntos({{ pointsCount }})
+      <button ion-button clear item-right icon-only>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+    <!-- badges -->
+    <ion-item *ngIf="badgesCount" (click)="goToBadges()">
+      Insignias({{ badgesCount }})
       <button ion-button clear item-right icon-only>
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </button>

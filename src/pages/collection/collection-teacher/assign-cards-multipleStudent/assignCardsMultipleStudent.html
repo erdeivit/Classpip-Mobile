@@ -1,0 +1,41 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{"CARD-ASSIGN-STUDENT.MULT" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-item>
+    <ion-label stacked>{{ 'COMMON.QTY' | translate }}</ion-label>
+    <ion-input type="id" name="id" [(ngModel)]="numCartas" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>{{ 'GROUP.TITLE' | translate }}</ion-label>
+    <ion-select [(ngModel)]="groupSelected" multiple="false">
+      <ion-option *ngFor="let g of groups | orderByIdPipe" value="{{g.id}}" selected="false" (ionChange)="showselected(groupSelected, $event)">
+        {{g.name}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item text-wrap>
+    <ion-note *ngIf="instruction == true"> {{'COMMON.ESTIRAR' | translate }}</ion-note>
+    <ion-list *ngIf="instruction == false">
+      <ion-item *ngFor="let stu of studentsSelectedArray">
+        <ion-checkbox [(ngModel)]=stu.selected (ionChange)="getSelectedStudents(studentsSelectedArray)"></ion-checkbox>
+        <ion-thumbnail item-left>
+          <img [src]="stu.student.avatar.image">
+        </ion-thumbnail>
+        <ion-label>{{ stu.student.name }} {{ stu.student.surname }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <div text-center="">
+  <button ion-button  (click)="postCardsToStudents(0)">{{ 'COMMON.ASSIGN' | translate }}</button>
+  <button ion-button  (click)="postCardsToStudents(1)">{{ 'COMMON.RANDOM' | translate }}</button>
+  </div>
+</ion-content>
