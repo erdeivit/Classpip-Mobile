@@ -15,9 +15,9 @@ import { Credentials } from '../../model/credentials';
 import { QuestionnaireService } from '../../providers/questionnaire.service';
 import { Questionnaire } from '../../model/questionnaire';
 import { Question } from '../../model/question';
+import { QuestionnaireGame } from '../../model/questionnaireGame';
 import { Answer } from '../../model/answer';
 import {Group} from "../../model/group";
-import {ResultQuestionnaire} from "../../model/resultQuestionnaire";
 //import { TimerComponent } from '../../components/timer/timer';
 
 @Component({
@@ -39,11 +39,9 @@ export class GetQuestionnairePage {
   public enableGetQuest: Boolean = false;
 
   listQuest:string;
-
+  public questGameStudent: Array<QuestionnaireGame> = new Array<QuestionnaireGame>();
   public questionnairesArrayDone: Array<Questionnaire> = new Array<Questionnaire>();
   public questionnairesArrayNOTDone: Array<Questionnaire> = new Array<Questionnaire>();
-
-  public result: ResultQuestionnaire = new ResultQuestionnaire();
 
   public myRole: Role;
   public role = Role;
@@ -58,17 +56,17 @@ export class GetQuestionnairePage {
     public navParms: NavParams,
     //private timer: TimerComponent,
     public menuController: MenuController) {
-
     // TODO: remove this
     switch (utilsService.role) {
+
       case Role.STUDENT:
         this.credentials.username = "student-1";
         this.credentials.id = this.credentials.id;
-        this.getQuestionnairesStudents();
+        this.getQuestionnairesGameStudents();
         break;
       case Role.TEACHER:
         this.credentials.id = this.credentials.id;
-        this.getQuestionnaireTeacher();
+        //this.getQuestionnaireTeacher();
         break;
       case Role.SCHOOLADMIN:
         this.credentials.username = 'school-admin-1';
@@ -81,7 +79,7 @@ export class GetQuestionnairePage {
     this.groups = this.navParms.data.groups;
   }
 
-  public getQuestionnaireTeacher():void {
+  public getQuestionnairesGameTeacher():void {
     this.questionnaireService.getTeacherQuestionnaires().subscribe(
       ((quest: Array<Questionnaire>) => {
         this.questionnairesArrayDone = quest;
@@ -90,7 +88,7 @@ export class GetQuestionnairePage {
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
   }
 
-  public getQuestionnairesStudents(): void {
+  public getQuestionnairesGameStudents(): void {
     /*this.questionnaireService.getResultQuestionnaires().subscribe(
       ((resultQuest: Array<ResultQuestionnaire>) => {
         for (let q of resultQuest) {
@@ -100,15 +98,27 @@ export class GetQuestionnairePage {
       error =>
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
 */
-    this.questionnaireService.getQuestionnaires().subscribe(
-      ((quest: Array<Questionnaire>) => {
-            for (let questi of quest) {
-              for (let gro of this.groups) {
-                if (questi.groupid == gro.id) {
-                  this.questionnairesArrayDone.push(questi);
-                }
-              }
-            }
+    this.questionnaireService.getQuestionnairesGame().subscribe(
+      ((quest: Array<QuestionnaireGame>) => {
+      //console.log(quest);
+      //console.log(this.utilsService.currentUser);
+      for (let questionnaireGame of quest)
+      {//console.log("DENTO FOR")
+        if (questionnaireGame.groupId =="1"){
+          //console.log("DENTO IF")
+          this.questGameStudent.push(questionnaireGame);
+          //console.log(this.questGameStudent);
+
+        }
+
+      }
+        //for (let questi of quest) {
+              //for (let gro of this.groups) {
+                //if (questi.groupid == gro.id) {
+                  //this.questionnairesArrayDone.push(questi);
+                //}
+              //}
+            //}
           }),
         error =>
           this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
@@ -125,13 +135,14 @@ export class GetQuestionnairePage {
     this.menuController.enable(true);
   }
 
+  //TODO: REMOVE IT
   private getEnableGetQuest(): void{
     this.enableGetQuest? this.enableGetQuest = false: this.enableGetQuest = true;
   }
 
   /**
    * Enable and disable the header of the questionaire
-   */
+
   private changeActive(quest: Questionnaire): void{
     quest.active? quest.active = false: quest.active = true;
     //this.ionicService.showAlert("", "HOLA");
@@ -143,7 +154,7 @@ export class GetQuestionnairePage {
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
       });
   }
-
+*/
   /**
    * This method manages the call to the service for performing a getQuestionnaire
    * against the public services
@@ -154,21 +165,24 @@ export class GetQuestionnairePage {
     this.questionnaireService.getMyQuestionnaire(this.credentials).subscribe(
       ((value: Questionnaire) => {
         this.myQuestionnaire = value;
-        if(this.myQuestionnaire.active == true) {
+        /*if(this.myQuestionnaire.active == true) {
           for (let gro of this.groups) {
             if (gro.id == this.myQuestionnaire.groupid) {
               this.found = true;
             }
           }
         }
-        else
-        {
+        */
+        //else
+        //{
           active = false;
           this.ionicService.showAlert("", this.translateService.instant('QUESTIONNAIRE.CLOSED'))
-        }
+        //}
         if (this.found) {
           this.questionnaireService.getMyQuestionnaireQuestions(this.credentials).subscribe(
             ((value: Array<Question>) => {
+              //console.log(value);
+              /*
               switch (value[0].type) {
                 case 'test':
                   this.navController.setRoot(QuestionnairePage, {
@@ -207,6 +221,7 @@ export class GetQuestionnairePage {
                 default:
                   break;
               }
+              */
             }),
             error =>
               this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));

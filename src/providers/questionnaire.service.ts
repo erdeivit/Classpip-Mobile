@@ -8,6 +8,7 @@ import { Role } from '../model/role';
 import { Login } from '../model/login';
 import { Question } from '../model/question';
 import { Questionnaire } from '../model/questionnaire';
+import { QuestionnaireGame } from '../model/questionnaireGame';
 import { Answer } from '../model/answer';
 import { Student } from '../model/student';
 import { CorrectAnswer } from '../model/correctAnswer';
@@ -30,20 +31,20 @@ export class QuestionnaireService {
 
   /**
    * This method returns all questionnaires.
-   * @return {Observable<Array<Questionnaire>>} returns an observable with the result
+   * @return {Observable<Array<QuestionnaireGame>>} returns an observable with the result
    * of the operation
    */
-  public getQuestionnaires(): Observable<Array<Questionnaire>> {
+  public getQuestionnairesGame(): Observable<Array<QuestionnaireGame>> {
 
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    var url: string = AppConfig.QUESTIONNAIRE_URL;
+    var url: string = AppConfig.QUESTIONNAIREGAME_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => {
-        return Questionnaire.toObjectArray(response.json())
+        return QuestionnaireGame.toObjectArray(response.json())
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
@@ -59,7 +60,7 @@ export class QuestionnaireService {
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    var url: string = AppConfig.TEACHER_URL + "/" +this.utilsService.currentUser.userId  + AppConfig.QUESTIONNAIRES_URL;
+    var url: string = AppConfig.TEACHER_URL + "/" +this.utilsService.currentUser.userId  + AppConfig.QUESTIONNAIRE_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => {
@@ -73,7 +74,7 @@ export class QuestionnaireService {
    * @return {Observable<Array<Questionnaire>>} returns an observable with the result
    * of the operation
    */
-  public getResultQuestionnaires(): Observable<Array<ResultQuestionnaire>> {
+  /*public getResultQuestionnaires(): Observable<Array<ResultQuestionnaire>> {
 
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
@@ -88,6 +89,7 @@ export class QuestionnaireService {
       .catch((error: Response) => this.utilsService.handleAPIError(error));
 
   }
+  */
 
   /**
    * This method returns the current questionnaire of the logged
@@ -127,7 +129,7 @@ export class QuestionnaireService {
           questions.forEach(question => {
             this.getQuestionAnswers(question.id).subscribe(
               answers => {
-                question.answer = answers;
+                //question.answer1 = answers;
                  // this.getQuestionCorrectAnswers(question.id).subscribe(
                    // correctAnswer => {
                      // question.correctAnswer = correctAnswer;
@@ -223,7 +225,7 @@ export class QuestionnaireService {
   /**
   * Method that saves the results of the questionnaire
   */
-  public saveResults(student: Student, myQuestionnaire: Questionnaire,questionnaireName: string, questionnaireId: string, numTotalQuestions: number, numAnswerCorrect: number, numAnswerNoCorrect: number, finalNote: number, dataAnswers: Array<string>): Observable<ResultQuestionnaire> {
+  /* public saveResults(student: Student, myQuestionnaire: Questionnaire,questionnaireName: string, questionnaireId: string, numTotalQuestions: number, numAnswerCorrect: number, numAnswerNoCorrect: number, finalNote: number, dataAnswers: Array<string>): Observable<ResultQuestionnaire> {
 
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
@@ -261,6 +263,7 @@ export class QuestionnaireService {
       .map((response: Response, index: number) => ResultQuestionnaire.toObject(response.json()))
 
   }
+  */
 
   /*public saveResultsNoteFinale(questionnaireId: string, numAnswerCorrect: number, numAnswerNoCorrect: number, finalNote: number): Observable<ResultQuestionnaire> {
 
@@ -329,10 +332,10 @@ export class QuestionnaireService {
           questions.forEach(question => {
             this.getQuestionAnswers(question.id).subscribe(
               answers => {
-                question.answer = answers;
+                //question.answer = answers;
                   this.getQuestionCorrectAnswers(question.id).subscribe(
                     correctAnswer => {
-                      question.correctAnswer = correctAnswer;
+                      //question.correctAnswer = correctAnswer;
                       ret.push(question);
                       if (ret.length === questions.length) {
                         observer.next(ret);

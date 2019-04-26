@@ -1,21 +1,20 @@
+import { Question } from './question';
+
 export class Questionnaire {
 
   private _id: string;
   private _name: string;
-  private _date: string;
-  private _points: number [];
-  private _badges: string [];
-  private _groupid: string;
-  private _active: boolean;
-  private _packCards: number [];
+  private _description: string;
+  private _image: string;
+  private _question: Question[];
+  private _teacherId: string;
 
-  constructor(id?: string, name?: string, date?: string, points?: number[], active?: boolean, packCards?: number[]) {
-      this._id = id;
-      this._name = name;
-      this._date = date;
-      this._points = points;
-      this._active = active;
-      this._packCards = packCards;
+  constructor(id?: string, name?: string, description?: string, image?: string, teacherId?: string) {
+    this._id = id;
+    this._name = name;
+    this._description = description;
+    this._image = image;
+    this._teacherId = teacherId;
   }
 
   /* tslint:disable */
@@ -25,12 +24,10 @@ export class Questionnaire {
     if (object != null) {
       result.id = object.id;
       result.name = object.name;
-      result.date = object.date;
-      result.points = object.points;
-      result.groupid = object.groupid;
-      result.badges = object.badges;
-      result.active = object.active;
-      result.packCards = object.packCards;
+      result.description = object.description; // el campo object.DESCRIPTION tiene que ser el mismo que en  la BBDD
+      result.image = object.image;
+      result.question = object.questionId;
+      result.teacherId = object.teacherId;
     }
     return result;
   }
@@ -62,49 +59,30 @@ export class Questionnaire {
   public set name(value: string) {
     this._name = value;
   }
-  public get date(): string {
-    return this._date;
+  public get description(): string {
+    return this._description;
   }
 
-  public set date(value: string) {
-    this._date = value;
+  public set description(value: string) {
+    this._description = value;
   }
-  public get points(): number[] {
-    return this._points;
-  }
-
-  public set points(value: number[]) {
-    this._points = value;
+  public get image(): string {
+    return this._image;
   }
 
-  public get packCards(): number[] {
-    return this._packCards
+  public set image(value: string) {
+    this._image = value;
   }
-
-  public set packCards(value: number[]) {
-    this._packCards = value;
+  public get question(): Question[] {
+    return this._question;
   }
-
-  public get groupid(): string {
-    return this._groupid;
+  public set question(value: Question[]) {
+    this._question = value;
   }
-
-  public set groupid(value: string) {
-    this._groupid = value;
+  public get teacherId(): string {
+    return this._teacherId;
   }
-  public get badges(): string[] {
-    return this._badges;
-  }
-
-  public set badges(value: string[]) {
-    this._badges = value;
-  }
-
-  public get active(): boolean {
-    return this._active;
-  }
-
-  public set active(value: boolean) {
-    this._active = value;
+  public set teacherId(value: string) {
+    this._teacherId = value;
   }
 }

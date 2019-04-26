@@ -24,7 +24,7 @@ import { StudentsPage } from '../pages/students/students';
 import { StudentPage } from '../pages/students/student/student';
 import { GroupPage } from '../pages/group/group';
 import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';
-import { QuestionnairePage } from '../pages/questionnaire/questionnaire';
+/*import { QuestionnairePage } from '../pages/questionnaire/questionnaire';
 import { Questionnaire1Page } from '../pages/questionnaire1/questionnaire1';
 import { QuestionnaireTextAreaPage } from '../pages/questionnaireTextArea/questionnaireTextArea';
 import { QuestionnaireTextArea1Page } from '../pages/questionnaireTextArea1/questionnaireTextArea1';
@@ -33,6 +33,7 @@ import { QuestionnaireImage1Page } from '../pages/questionnaireImage1/questionna
 import { ResultQuestionnairePage } from '../pages/resultQuestionnaire/resultQuestionnaire';
 import { CompletedQuestionnairePage } from '../pages/completedQuestionnaire/completedQuestionnaire';
 import { CompletedQuestionnaire1Page } from '../pages/completedQuestionnaire1/completedQuestionnaire1';
+*/
 import {CollectionTpage} from "../pages/collection/collection-teacher/collection-teacher";
 import {CollectionCreate} from "../pages/collection/collection-teacher/create-collection/create-collection";
 import {CollectionTeacherDetail} from "../pages/collection/collection-teacher/collection-teacher-detail/collection-teacher-detail";
@@ -120,7 +121,7 @@ export function exportTranslateStaticLoader(http: Http) {
     StudentPage,
     GroupPage,
     GetQuestionnairePage,
-    QuestionnairePage,
+    /*QuestionnairePage,
     Questionnaire1Page,
     QuestionnaireTextAreaPage,
     QuestionnaireTextArea1Page,
@@ -129,6 +130,7 @@ export function exportTranslateStaticLoader(http: Http) {
     ResultQuestionnairePage,
     CompletedQuestionnairePage,
     CompletedQuestionnaire1Page,
+    */
     TimerComponent,
     CollectionTpage,
     CollectionCreate,
@@ -185,7 +187,7 @@ export function exportTranslateStaticLoader(http: Http) {
     StudentsPage,
     StudentPage,
     GetQuestionnairePage,
-    QuestionnairePage,
+    /*QuestionnairePage,
     Questionnaire1Page,
     QuestionnaireTextAreaPage,
     QuestionnaireTextArea1Page,
@@ -194,6 +196,7 @@ export function exportTranslateStaticLoader(http: Http) {
     ResultQuestionnairePage,
     CompletedQuestionnairePage,
     CompletedQuestionnaire1Page,
+    */
     GroupPage,
     CollectionTpage,
     CollectionCreate,

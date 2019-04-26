@@ -104,6 +104,10 @@ export class HomePage {
 
     // if the user is the SCHOOLADMIN get more information abaout the school
     // and the members
+    console.log(this.utilsService.currentUser.id);
+
+
+
     if (this.myRole === Role.SCHOOLADMIN) {
 
       this.schoolService.getMySchool().finally(() => {

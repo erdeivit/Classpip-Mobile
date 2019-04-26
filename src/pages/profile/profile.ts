@@ -39,7 +39,6 @@ export class ProfilePage {
     this.ionicService.showLoading(this.translateService.instant('APP.WAIT'));
 
     this.getProfileInfo();
-
     this.platform.ready().then(() => {
 
       // Get the application version
