@@ -4,7 +4,24 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <!-- Escoger el questionario -->
+  <ion-list-header>
+      Questionarios Activos
+    </ion-list-header>
+<ion-card *ngIf="questGameStudent">
+  <ion-list>
+    <ion-item *ngFor="let quest of questGameStudent">
+      <label item-left>{{ quest.name }} <br></label>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+<ion-list-header>
+    Questionarios Finalizados
+</ion-list-header>
+</ion-content>
+<!--<ion-toggle [checked]="quest.active" (ionChange)="changeActive(quest)" *ngIf="myRole == role.TEACHER"></ion-toggle>
+<ion-content padding>
+ Escoger el questionario
   <form *ngIf="myRole == role.STUDENT" (ngSubmit)="getQuestionnaire()" #loginForm="ngForm">
     <ion-list no-lines>
       <ion-item>
@@ -18,15 +35,4 @@
     </ion-list>
     <button ion-button full type="submit" [disabled]="!loginForm.form.valid">{{ 'GETQUESTIONNAIRE.LOGIN' | translate }}</button>
   </form>
-</ion-content>
-<ion-card *ngIf="questGameStudent">
-  <ion-list>
-    <ion-item *ngFor="let quest of questGameStudent">
-      <label item-left>{{ quest.name }} <br></label>
-    </ion-item>
-  </ion-list>
-</ion-card>
-<ion-item *ngFor="let quest of questGameStudent">
-      <label item-left>{{ quest.name }} <br></label>
-    </ion-item>
-<!--<ion-toggle [checked]="quest.active" (ionChange)="changeActive(quest)" *ngIf="myRole == role.TEACHER"></ion-toggle>-->
+-->

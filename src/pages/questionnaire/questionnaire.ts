@@ -13,9 +13,6 @@ import { Questionnaire } from '../../model/questionnaire';
 import { StudentPage } from '../students/student/student';
 import { Questionnaire1Page } from '../../pages/questionnaire1/questionnaire1';
 import { GetQuestionnairePage } from '../../pages/getQuestionnaire/getQuestionnaire';
-import { ResultQuestionnairePage } from '../../pages/resultQuestionnaire/resultQuestionnaire';
-import { CompletedQuestionnairePage } from '../../pages/completedQuestionnaire/completedQuestionnaire';
-import { ResultQuestionnaire } from '../../model/resultQuestionnaire';
 import { Role } from '../../model/role';
 import { UtilsService } from '../../providers/utils.service';
 
@@ -50,7 +47,6 @@ export class QuestionnairePage {
   public numAnswerNoCorrect: number;
   public finalNote: number = 0;
   public questionsSend: Question;
-  public resultQuestionnaire: ResultQuestionnaire;
   public dataAnswers  = [];
 
   questionForm;
@@ -125,7 +121,8 @@ export class QuestionnairePage {
 
     if((this.indexNum) < this.numTotalQuestions){
         this.navController.setRoot(Questionnaire1Page, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
-    }else{
+    }
+    /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
 
     this.questionnaireService.getMyStudent(this.utilsService.currentUser.userId).subscribe(
@@ -133,7 +130,7 @@ export class QuestionnairePage {
       error =>
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
       }
-
+*/
       event.preventDefault();
     }
 
@@ -148,7 +145,8 @@ export class QuestionnairePage {
 
     if((this.indexNum) < this.numTotalQuestions){
         this.navController.setRoot(Questionnaire1Page, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
-    }else{
+    }
+    /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
 
     this.questionnaireService.getMyStudent(this.utilsService.currentUser.userId).subscribe(
@@ -156,6 +154,7 @@ export class QuestionnairePage {
       error =>
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
       }
+      */
     }
 
   /**
@@ -177,9 +176,9 @@ export class QuestionnairePage {
   }
 
   initTimer() {
-    if (!this.timeInSeconds){
+    /*if (!this.timeInSeconds){
       this.timeInSeconds = this.questionsSend.time;
-    }
+    }*/
 
     this.timer = <PTimer>{
       time: this.timeInSeconds,

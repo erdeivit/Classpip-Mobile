@@ -24,16 +24,8 @@ import { StudentsPage } from '../pages/students/students';
 import { StudentPage } from '../pages/students/student/student';
 import { GroupPage } from '../pages/group/group';
 import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';
-/*import { QuestionnairePage } from '../pages/questionnaire/questionnaire';
+import { QuestionnairePage } from '../pages/questionnaire/questionnaire';
 import { Questionnaire1Page } from '../pages/questionnaire1/questionnaire1';
-import { QuestionnaireTextAreaPage } from '../pages/questionnaireTextArea/questionnaireTextArea';
-import { QuestionnaireTextArea1Page } from '../pages/questionnaireTextArea1/questionnaireTextArea1';
-import { QuestionnaireImagePage } from '../pages/questionnaireImage/questionnaireImage';
-import { QuestionnaireImage1Page } from '../pages/questionnaireImage1/questionnaireImage1';
-import { ResultQuestionnairePage } from '../pages/resultQuestionnaire/resultQuestionnaire';
-import { CompletedQuestionnairePage } from '../pages/completedQuestionnaire/completedQuestionnaire';
-import { CompletedQuestionnaire1Page } from '../pages/completedQuestionnaire1/completedQuestionnaire1';
-*/
 import {CollectionTpage} from "../pages/collection/collection-teacher/collection-teacher";
 import {CollectionCreate} from "../pages/collection/collection-teacher/create-collection/create-collection";
 import {CollectionTeacherDetail} from "../pages/collection/collection-teacher/collection-teacher-detail/collection-teacher-detail";
@@ -96,7 +88,6 @@ import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { File } from "@ionic-native/file";
 import { FilePath } from "@ionic-native/file-path";
 import {AssignCardsMultipleStudent} from "../pages/collection/collection-teacher/assign-cards-multipleStudent/assignCardsMultipleStudent";
-import {ResultQuestionnaireOpenPage} from "../pages/completedQuestionnaire1/resultQuestionnaireOpen/resultQuestionnaireOpen";
 
 export function exportTranslateStaticLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
@@ -121,16 +112,8 @@ export function exportTranslateStaticLoader(http: Http) {
     StudentPage,
     GroupPage,
     GetQuestionnairePage,
-    /*QuestionnairePage,
+    QuestionnairePage,
     Questionnaire1Page,
-    QuestionnaireTextAreaPage,
-    QuestionnaireTextArea1Page,
-    QuestionnaireImagePage,
-    QuestionnaireImage1Page,
-    ResultQuestionnairePage,
-    CompletedQuestionnairePage,
-    CompletedQuestionnaire1Page,
-    */
     TimerComponent,
     CollectionTpage,
     CollectionCreate,
@@ -155,7 +138,6 @@ export function exportTranslateStaticLoader(http: Http) {
     AssignBadgesPage,
     listStudentTotalsPage,
     AssignCardsMultipleStudent,
-    ResultQuestionnaireOpenPage,
     // pipes
     OrderByIdPipe,
     OrderByNamePipe,
@@ -187,16 +169,6 @@ export function exportTranslateStaticLoader(http: Http) {
     StudentsPage,
     StudentPage,
     GetQuestionnairePage,
-    /*QuestionnairePage,
-    Questionnaire1Page,
-    QuestionnaireTextAreaPage,
-    QuestionnaireTextArea1Page,
-    QuestionnaireImagePage,
-    QuestionnaireImage1Page,
-    ResultQuestionnairePage,
-    CompletedQuestionnairePage,
-    CompletedQuestionnaire1Page,
-    */
     GroupPage,
     CollectionTpage,
     CollectionCreate,
@@ -222,7 +194,6 @@ export function exportTranslateStaticLoader(http: Http) {
     AssignBadgesPage,
     listStudentTotalsPage,
     AssignCardsMultipleStudent,
-    ResultQuestionnaireOpenPage
   ],
   providers: [
     IonicService,

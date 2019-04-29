@@ -14,8 +14,6 @@ import { StudentPage } from '../students/student/student';
 import { QuestionnairePage } from '../../pages/questionnaire/questionnaire';
 import { GetQuestionnairePage } from '../../pages/getQuestionnaire/getQuestionnaire';
 import { ResultQuestionnairePage } from '../../pages/resultQuestionnaire/resultQuestionnaire';
-import { CompletedQuestionnairePage } from '../../pages/completedQuestionnaire/completedQuestionnaire';
-import { ResultQuestionnaire } from '../../model/resultQuestionnaire';
 import { Role } from '../../model/role';
 import { UtilsService } from '../../providers/utils.service';
 
@@ -50,7 +48,6 @@ export class Questionnaire1Page {
   public numAnswerNoCorrect: number;
   public finalNote: number = 0;
   private questionsSend: Question;
-  private resultQuestionnaire: ResultQuestionnaire;
   public dataAnswers  = [];
 
   questionForm;
@@ -122,17 +119,19 @@ export class Questionnaire1Page {
 
     if((this.indexNum) < this.numTotalQuestions){
       this.navController.setRoot(QuestionnairePage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
-    }else{
+    }
+    /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
 
     this.questionnaireService.getMyStudent(this.utilsService.currentUser.userId).subscribe(
       ((value: Student) => this.navController.setRoot(CompletedQuestionnairePage, { student: value, myQuestionnaire: this.myQuestionnaire, numTotalQuestions: this.numTotalQuestions, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, finalNote: this.finalNote, dataAnswers: this.dataAnswers, myQuestions: this.questions, myCredentials: this.myCredentials })),
       error =>
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
-      }
+    }*/
 
       event.preventDefault();
     }
+
 
 
 /**
@@ -145,7 +144,8 @@ export class Questionnaire1Page {
 
     if((this.indexNum) < this.numTotalQuestions){
         this.navController.setRoot(QuestionnairePage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
-    }else{
+    }
+    /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
 
     this.questionnaireService.getMyStudent(this.utilsService.currentUser.userId).subscribe(
@@ -153,6 +153,7 @@ export class Questionnaire1Page {
       error =>
         this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
       }
+      */
     }
 
   /**
@@ -174,9 +175,10 @@ export class Questionnaire1Page {
   }
 
   initTimer() {
-    if (!this.timeInSeconds){
+    /*if (!this.timeInSeconds){
       this.timeInSeconds = this.questionsSend.time;
     }
+    */
 
     this.timer = <PTimer>{
       time: this.timeInSeconds,
