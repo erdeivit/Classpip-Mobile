@@ -25,7 +25,6 @@ import { StudentPage } from '../pages/students/student/student';
 import { GroupPage } from '../pages/group/group';
 import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';
 import { QuestionnairePage } from '../pages/questionnaire/questionnaire';
-import { Questionnaire1Page } from '../pages/questionnaire1/questionnaire1';
 import {CollectionTpage} from "../pages/collection/collection-teacher/collection-teacher";
 import {CollectionCreate} from "../pages/collection/collection-teacher/create-collection/create-collection";
 import {CollectionTeacherDetail} from "../pages/collection/collection-teacher/collection-teacher-detail/collection-teacher-detail";
@@ -112,9 +111,7 @@ export function exportTranslateStaticLoader(http: Http) {
     StudentPage,
     GroupPage,
     GetQuestionnairePage,
-    QuestionnairePage,
-    Questionnaire1Page,
-    TimerComponent,
+    QuestionnairePage,    TimerComponent,
     CollectionTpage,
     CollectionCreate,
     CollectionTeacherDetail,

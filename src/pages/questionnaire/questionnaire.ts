@@ -11,7 +11,6 @@ import { Student } from '../../model/student';
 import { CorrectAnswer } from '../../model/correctAnswer';
 import { Questionnaire } from '../../model/questionnaire';
 import { StudentPage } from '../students/student/student';
-import { Questionnaire1Page } from '../../pages/questionnaire1/questionnaire1';
 import { GetQuestionnairePage } from '../../pages/getQuestionnaire/getQuestionnaire';
 import { Role } from '../../model/role';
 import { UtilsService } from '../../providers/utils.service';
@@ -86,21 +85,7 @@ export class QuestionnairePage {
    */
   public ionViewDidEnter(): void {
 
-    this.ionicService.removeLoading();
-  }
-
-  /**
-   * This method returns the questions list of the
-   * current questionnaire
-   * @param {Refresher} Refresher element
-   */
-  private getQuestions(refresher?: Refresher): void {
-
-    this.questionnaireService.getMyQuestionnaireQuestions(this.myCredentials).finally(() => {
-      refresher ? refresher.complete() : null;
-    }).subscribe(
-      ((value: Array<Question>) => this.questions = value),
-      error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+    this.ionicService.removeLoading()
   }
 
 
@@ -120,7 +105,7 @@ export class QuestionnairePage {
     this.indexNum += 1;
 
     if((this.indexNum) < this.numTotalQuestions){
-        this.navController.setRoot(Questionnaire1Page, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
+        this.navController.setRoot(QuestionnairePage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
     }
     /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
@@ -144,7 +129,7 @@ export class QuestionnairePage {
     this.indexNum += 1;
 
     if((this.indexNum) < this.numTotalQuestions){
-        this.navController.setRoot(Questionnaire1Page, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
+        this.navController.setRoot(QuestionnairePage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
     }
     /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;

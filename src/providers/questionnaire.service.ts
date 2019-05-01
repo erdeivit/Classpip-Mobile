@@ -14,8 +14,7 @@ import { Student } from '../model/student';
 import { CorrectAnswer } from '../model/correctAnswer';
 import { IonicService } from '../providers/ionic.service';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';
-import { ResultQuestionnaire } from '../model/resultQuestionnaire';
+import { GetQuestionnairePage } from '../pages/getQuestiogetMyQuestionnairennaire/getQuestionnaire';
 import {Point} from "../model/point";
 
 @Injectable()
@@ -97,13 +96,13 @@ export class QuestionnaireService {
    * @return {Observable<Questionnaire>} returns an observable with the result
    * of the operation
    */
-  public getMyQuestionnaire(credentials: Credentials): Observable<Questionnaire> {
+  public getMyQuestionnaire(id:string): Observable<Questionnaire> {
 
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    var url: string = AppConfig.QUESTIONNAIRE_URL + '/' + credentials.id;
+    var url: string = AppConfig.QUESTIONNAIRE_URL + '/'+id;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => {
@@ -118,7 +117,7 @@ export class QuestionnaireService {
    * Returns the list of questions by a questionnaire id.
    * @return Observable{Array<Question>} returns the list of questions
    * that include the four possible answers and the correct answer
-   */
+
   public getMyQuestionnaireQuestions(credentials: Credentials): Observable<Array<Question>> {
 
     var ret: Array<Question> = new Array<Question>();
@@ -145,22 +144,23 @@ export class QuestionnaireService {
       )
     });
   }
-
+ */
   /**
    * Returns the list of questions by a questionnaire id.
    * @return Observable{Array<Question>} returns the list of questions
    */
-  private getQuestionnaireQuestions(credentials: Credentials): Observable<Array<Question>> {
+  public getQuestion(id: Question): Observable<Question> {
 
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
-
-    var count: number = 0;
-    var url: string = AppConfig.QUESTIONNAIRE_URL + '/' + credentials.id + AppConfig.QUESTIONS_URL;
-
+    var url: string = AppConfig.QUESTION_URL + '/' + id;
     return this.http.get(url, options)
-      .map((response: Response, index: number) =>  Question.toObjectArray(response.json()))
+    .map((response: Response, index: number) => {
+      let question: Question = Question.toObject(response.json())
+      return question;
+    })
+    .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
   /**
    * Returns the list of answers by a questionnaire id.
@@ -315,38 +315,6 @@ export class QuestionnaireService {
     return this.http.get(url, options)
       .map((response: Response, index: number) => Student.toObject(response.json()))
 
-  }
-
-  /**
-   * Returns the list of questions by a questionnaire id.
-   * @return Observable{Array<Question>} returns the list of questions
-   * that include the four possible answers and the correct answer
-   */
-  public getQuestionsAnswersCorrectAnswers(credentials: Credentials): Observable<Array<Question>> {
-
-    var ret: Array<Question> = new Array<Question>();
-
-    return Observable.create(observer => {
-      this.getQuestionnaireQuestions(credentials).subscribe(
-        questions => {
-          questions.forEach(question => {
-            this.getQuestionAnswers(question.id).subscribe(
-              answers => {
-                //question.answer = answers;
-                  this.getQuestionCorrectAnswers(question.id).subscribe(
-                    correctAnswer => {
-                      //question.correctAnswer = correctAnswer;
-                      ret.push(question);
-                      if (ret.length === questions.length) {
-                        observer.next(ret);
-                        observer.complete();
-                      }
-                    }, error => observer.error(error))
-              }, error => observer.error(error))
-          });
-        }, error => observer.error(error)
-      )
-    });
   }
 
 

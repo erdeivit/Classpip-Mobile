@@ -92,15 +92,6 @@ export class Questionnaire1Page {
    * current questionnaire
    * @param {Refresher} Refresher element
    */
-  private getQuestions(refresher?: Refresher): void {
-
-    this.questionnaireService.getMyQuestionnaireQuestions(this.myCredentials).finally(() => {
-      refresher ? refresher.complete() : null;
-    }).subscribe(
-      ((value: Array<Question>) => this.questions = value),
-      error => this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
-  }
-
 
  /**
    * This method manages the call to the service for performing a doSubmitAnswer
