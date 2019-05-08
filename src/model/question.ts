@@ -16,10 +16,11 @@ export class Question {
   private _explanation: string;
   private _teacherId: string;
   private _questionnaireId: string;
+  private _type:string;
 
   // tslint:disable-next-line: max-line-length
   constructor(id?: string, statement?: string, answer1?: string, answer2?: string, answer3?: string, answer4?: string, answer5?: string, answer6?: string, correctanswer?: string, image?: string, difficulty?: string, category?: string,
-    explanation?: string, teacherId?: string, questionnaireId?: string) {
+    explanation?: string, teacherId?: string, questionnaireId?: string,type?:string) {
     this._id = id;
     this._statement = statement;
     this._answer1 = answer1;
@@ -35,6 +36,7 @@ export class Question {
     this._explanation = explanation;
     this._teacherId = teacherId;
     this._questionnaireId = questionnaireId;
+    this._type = type;
   }
 
   /* tslint:disable */
@@ -57,7 +59,7 @@ export class Question {
       result.explanation = object.explanation;
       result.questionnaireId = object.questionnaireId;
       result.teacherId = object.teacherId;
-
+      result.type = object.type;
     }
     return result;
   }
@@ -181,5 +183,12 @@ export class Question {
 
   public set teacherId(value: string) {
     this._teacherId = value;
+  }
+  public get type(): string {
+    return this._type;
+  }
+
+  public set type(value: string) {
+    this._type = value;
   }
 }

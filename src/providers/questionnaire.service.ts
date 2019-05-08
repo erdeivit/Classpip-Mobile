@@ -96,8 +96,32 @@ export class QuestionnaireService {
    * @return {Observable<Questionnaire>} returns an observable with the result
    * of the operation
    */
-  public getMyQuestionnaire(id:string): Observable<Questionnaire> {
+  public getQuestionsofQuestionnaire(id:string): Observable<Array<Question>> {
 
+    var ret: Array<Question> = new Array<Question>();
+    return Observable.create(observer => {
+      this.getQuestionnaire(id).subscribe(
+        questionnaire => {
+          questionnaire.question.forEach(id => {
+            this.getQuestion(id).subscribe(
+              question => {
+                 // this.getQuestionCorrectAnswers(question.id).subscribe(
+                   // correctAnswer => {
+                     // question.correctAnswer = correctAnswer;
+                      ret.push(question);
+                      observer.next(ret);
+                      observer.complete();
+                   // }, error => observer.error(error))
+              }, error => observer.error(error))
+          });
+        }, error => observer.error(error)
+      )
+    });
+
+
+  }
+
+  public getQuestionnaire(id:string): Observable<Questionnaire> {
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
@@ -111,6 +135,7 @@ export class QuestionnaireService {
         return questionnaire;
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
+
   }
 
   /**

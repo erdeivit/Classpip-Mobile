@@ -4,15 +4,8 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Credentials } from '../../model/credentials';
 import { IonicService } from '../../providers/ionic.service';
 import { QuestionnaireService } from '../../providers/questionnaire.service';
-import { Group } from '../../model/group';
 import { Question } from '../../model/question';
-import { Answer } from '../../model/answer';
-import { Student } from '../../model/student';
-import { CorrectAnswer } from '../../model/correctAnswer';
 import { Questionnaire } from '../../model/questionnaire';
-import { StudentPage } from '../students/student/student';
-import { GetQuestionnairePage } from '../../pages/getQuestionnaire/getQuestionnaire';
-import { Role } from '../../model/role';
 import { UtilsService } from '../../providers/utils.service';
 
 import {
@@ -30,10 +23,10 @@ export interface PTimer {
 }
 
 @Component({
-  selector: 'page-questionnaire',
-  templateUrl: './questionnaire.html'
+  selector: 'page-quizpippage',
+  templateUrl: './quizpip.html'
 })
-export class QuestionnairePage {
+export class QuizPipPage {
 
   public myQuestionnaire: Questionnaire;
   public questions: Array<Question>;
@@ -47,6 +40,10 @@ export class QuestionnairePage {
   public finalNote: number = 0;
   public questionsSend: Question;
   public dataAnswers  = [];
+  public dataAnswers2  = [];
+  public answercorrects = [];
+  public title: string;
+  public comprobacion:number=7;
 
   questionForm;
 
@@ -61,21 +58,50 @@ export class QuestionnairePage {
     public questionnaireService: QuestionnaireService,
     public translateService: TranslateService) {
 
-    this.questionForm = new FormGroup({
-      "questionsSend": new FormControl({value: this.questionsSend, disabled: false})
-    });
+    //this.myQuestionnaire = this.navParams.data.myQuestionnaire;
+    this.questions = this.navParams.data.question;
+    //this.title = this.navParams.data.title;
+    //this.indexNum = this.navParams.data.indexNum;
+    //this.numTotalQuestions = this.questions.length;
+    //this.questionsSend = this.questions[this.indexNum];
 
-    this.myQuestionnaire = this.navParams.data.myQuestionnaire;
-    this.questions = this.navParams.data.questions;
+    //this.numAnswerCorrect = this.navParams.data.numAnswerCorrect;
+    //this.numAnswerNoCorrect = this.navParams.data.numAnswerNoCorrect;
+    //this.dataAnswers = this.navParams.data.dataAnswers;
+    //this.myCredentials = this.navParams.data.myCredentials;
 
-    this.indexNum = this.navParams.data.indexNum;
-    this.numTotalQuestions = this.questions.length;
-    this.questionsSend = this.questions[this.indexNum];
+  }
 
-    this.numAnswerCorrect = this.navParams.data.numAnswerCorrect;
-    this.numAnswerNoCorrect = this.navParams.data.numAnswerNoCorrect;
-    this.dataAnswers = this.navParams.data.dataAnswers;
-    this.myCredentials = this.navParams.data.myCredentials;
+
+  public saveanswer(data:string,indice:number){
+    this.dataAnswers[indice] = data;
+    console.log(this.dataAnswers);
+  }
+
+  public saveanswer2(data:string,indice:number,indice2:number){
+    console.log("COMPROBACION" + this.comprobacion);
+    console.log("INDICE"+indice2)
+    if (this.comprobacion === indice2)
+    {
+      this.dataAnswers2.splice(indice2,1);
+      this.dataAnswers[indice] = this.dataAnswers2;
+      this.comprobacion=7;
+    }
+    else
+    {
+      this.dataAnswers2[indice2] = data;
+      this.dataAnswers[indice] = this.dataAnswers2;
+      this.comprobacion=indice2;
+    }
+
+
+    console.log(this.dataAnswers);
+  }
+
+  public textarea(data:string,indice:number)
+  {
+    this.dataAnswers[indice] = data;
+    console.log(this.dataAnswers);
 
   }
 
@@ -93,20 +119,43 @@ export class QuestionnairePage {
    * This method manages the call to the service for performing a doSubmitAnswer
    * against the public services
    */
-  public doSubmitAnswer(event) {
+  public doSubmitAnswer() {
+    for (let question of this.questions){
 
-    //this.ionicService.showLoading(JSON.stringify(this.questionForm.value.questionsSend));
-    this.timer.hasStarted = false;
-    this.timer.runTimer = false;
 
-    this.dataAnswers.push(this.questionForm.value.questionsSend);
 
-    //dataAnswers = JSON.stringify(this.questionForm.value.questionsSend).split('"');
-    this.indexNum += 1;
 
-    if((this.indexNum) < this.numTotalQuestions){
-        this.navController.setRoot(QuestionnairePage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
+      /*console.log("ITERACIOOOON!")
+      var i=0;
+      var acierto=0;
+      this.answercorrects = question.correctanswer.split(",",6);
+      var numberofanswercorrects = this.answercorrects.length;
+      console.log("NUMBEROFANSWERCORRECTS "+ numberofanswercorrects);
+      for (let answerid of this.answercorrects)
+      {
+        console.log("answerid "+answerid);
+        if (this.dataAnswers[i] = answerid){
+            acierto++;
+            console.log("acierto "+acierto);
+        }
+        i++;
+        }
+        if (numberofanswercorrects = acierto)
+        {
+          this.numAnswerCorrect++;
+        }
+        else
+        {
+          this.numAnswerNoCorrect++;
+        }
+      }
+      console.log("RESPUESTAS ACERTADAS "+ this.numAnswerCorrect);
+      console.log("RESPUESTAS FALLADAS "+ this.numAnswerNoCorrect)
+     */
     }
+    //if((this.indexNum) < this.numTotalQuestions){
+       // this.navController.setRoot(QuizPipPage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
+    //}
     /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
 
@@ -129,7 +178,7 @@ export class QuestionnairePage {
     this.indexNum += 1;
 
     if((this.indexNum) < this.numTotalQuestions){
-        this.navController.setRoot(QuestionnairePage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
+        this.navController.setRoot(QuizPipPage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
     }
     /*else{
       //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
@@ -142,11 +191,15 @@ export class QuestionnairePage {
       */
     }
 
+
+
+
+
   /**
    *  TIMER START
    */
   ngOnInit() {
-    this.initTimer();
+    //this.initTimer();
   }
 
   hasFinished() {

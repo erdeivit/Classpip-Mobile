@@ -5,7 +5,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { IonicService } from '../../providers/ionic.service';
 import { LoginService } from '../../providers/login.service';
 import { UtilsService } from '../../providers/utils.service';
-import { QuestionnaireTextAreaPage } from '../../pages/questionnaireTextArea/questionnaireTextArea';
+import { QuizPipPage } from '../../pages/quizpip/quizpip';
 import { QuestionnaireImagePage } from '../../pages/questionnaireImage/questionnaireImage';
 import { MenuPage } from '../../pages/menu/menu';
 import { Page } from '../../model/page';
@@ -17,6 +17,7 @@ import { Question } from '../../model/question';
 import { QuestionnaireGame } from '../../model/questionnaireGame';
 import { Answer } from '../../model/answer';
 import {Group} from "../../model/group";
+import { timeout } from 'rxjs/operator/timeout';
 //import { TimerComponent } from '../../components/timer/timer';
 
 @Component({
@@ -98,7 +99,7 @@ export class GetQuestionnairePage {
       //console.log(this.utilsService.currentUser);
       for (let questionnaireGame of quest)
       {
-        //TODO: COMPARAR CON EL ID DEL USUARIO, no con el "1" que asumo
+        //TODO: COMPARAR CON EL ID DEL GRUPO DEL  USUARIO, no con el "1" que asumo
         if (questionnaireGame.groupId =="1"){
 
           this.questGameStudent.push(questionnaireGame); //CONSEGUIMOS SOLO LOS CUESTIONARIOS DE NUESTRO USUARIO
@@ -146,44 +147,29 @@ export class GetQuestionnairePage {
    * This method manages the call to the service for performing a getQuestionnaire
    * against the public services
    */
-  public getQuestionnaire(id: string, gameMode:string): void {
-    console.log("GET QUESTIONNAIRE")
-    this.questionnaireService.getMyQuestionnaire(id).subscribe(
-      ((value: Questionnaire) => {
-        this.myQuestionnaire = value;
-        this.QuestId = this.myQuestionnaire.question;
-        console.log(this.QuestId)
-        for (let id of this.QuestId)
-        {
-          this.questionnaireService.getQuestion(id).subscribe(
-          ((value: Question) => {
-            this.Questions.push(value);
-          }),
-        error =>
-          this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
-        }
+  public getQuestionnaire(id: string, gameMode:string,name:string): void {
+    console.log("GET QUESTIONNAIRE");
+    this.questionnaireService.getQuestionsofQuestionnaire(id).subscribe(
+      ((value: Array<Question>) => {
         console.log(gameMode);
         console.log("THIS.QUESTIONS")
-        console.log(this.Questions);
-          for (let question of this.Questions){
-            console.log(question);
-            console.log("DENTRO DEL FOOOOOOR")
-            switch (gameMode)
+        console.log(value);
+        switch (gameMode)
             {
               case 'Quizpip':
-              //EDITAR QUESTIONNAIREPAGE
-                  /*this.navController.setRoot(QuestionnairePage),{
-                    question: question.statement,
-                    myCredentials: this.credentials,
+                console.log('QUIZPIP');
+                  this.navController.setRoot(QuizPipPage,{
+                    question: value,
+                    title:name
+                    /*myCredentials: this.credentials,
                     myQuestionnaire: this.myQuestionnaire,
                     indexNum: this.indexNum,
                     numAnswerCorrect: this.numAnswerCorrect,
                     numAnswerNoCorrect: this.numAnswerNoCorrect,
-                    userAnswers: this.userAnswers
-                  }
-                  */
+                    userAnswers: this.userAnswers*/
+                  });
+
             }
-          }
               /*switch (value[0].type) {
                 case 'test':
                   this.navController.setRoot(QuestionnairePage, {
@@ -224,7 +210,7 @@ export class GetQuestionnairePage {
 
               }
               */
-          this.ionicService.showAlert("", this.translateService.instant('QUESTIONNAIRE.CLOSED'));
+          //this.ionicService.showAlert("", this.translateService.instant('QUESTIONNAIRE.CLOSED'));
         }),
         error =>
           this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
