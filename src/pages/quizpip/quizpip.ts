@@ -7,6 +7,7 @@ import { QuestionnaireService } from '../../providers/questionnaire.service';
 import { Question } from '../../model/question';
 import { Questionnaire } from '../../model/questionnaire';
 import { UtilsService } from '../../providers/utils.service';
+import { ResultQuestionnairePage } from '../../pages/resultQuestionnaire/resultQuestionnaire'
 
 import {
   FormGroup,
@@ -93,8 +94,12 @@ export class QuizPipPage {
       this.dataAnswers[indice] = this.dataAnswers2;
       this.comprobacion=indice2;
     }
+    console.log(this.dataAnswers);
+  }
 
-
+  public saveanswer3(data:string,res,indice:number)
+  {
+    this.dataAnswers[indice] = res;
     console.log(this.dataAnswers);
   }
 
@@ -120,51 +125,9 @@ export class QuizPipPage {
    * against the public services
    */
   public doSubmitAnswer() {
-    for (let question of this.questions){
 
+    this.navController.setRoot(ResultQuestionnairePage, {questions: this.questions, answers: this.dataAnswers, myCredentials: this.myCredentials });
 
-
-
-      /*console.log("ITERACIOOOON!")
-      var i=0;
-      var acierto=0;
-      this.answercorrects = question.correctanswer.split(",",6);
-      var numberofanswercorrects = this.answercorrects.length;
-      console.log("NUMBEROFANSWERCORRECTS "+ numberofanswercorrects);
-      for (let answerid of this.answercorrects)
-      {
-        console.log("answerid "+answerid);
-        if (this.dataAnswers[i] = answerid){
-            acierto++;
-            console.log("acierto "+acierto);
-        }
-        i++;
-        }
-        if (numberofanswercorrects = acierto)
-        {
-          this.numAnswerCorrect++;
-        }
-        else
-        {
-          this.numAnswerNoCorrect++;
-        }
-      }
-      console.log("RESPUESTAS ACERTADAS "+ this.numAnswerCorrect);
-      console.log("RESPUESTAS FALLADAS "+ this.numAnswerNoCorrect)
-     */
-    }
-    //if((this.indexNum) < this.numTotalQuestions){
-       // this.navController.setRoot(QuizPipPage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
-    //}
-    /*else{
-      //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
-
-    this.questionnaireService.getMyStudent(this.utilsService.currentUser.userId).subscribe(
-      ((value: Student) => this.navController.setRoot(CompletedQuestionnairePage, { student: value, myQuestionnaire: this.myQuestionnaire, numTotalQuestions: this.numTotalQuestions, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, finalNote: this.finalNote, dataAnswers: this.dataAnswers, myQuestions: this.questions, myCredentials: this.myCredentials })),
-      error =>
-        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
-      }
-*/
       event.preventDefault();
     }
 

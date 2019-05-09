@@ -37,7 +37,7 @@
               <ion-radio  (click)="saveanswer(Quest.answer6,i)" checked="false"></ion-radio>
           </ion-item>
           <ion-item  *ngIf="(Quest.answer1 !== undefined) && (Quest.type === 'openAnswer')">
-            <ion-textarea value="textarea" text-wrap placeholder="Esccribe aquí la respuesta. Recuerda que los decimales van con '.'"></ion-textarea >
+            <ion-textarea (blur)="saveanswer3(Quest.answer1,$event.target.value,i)" text-wrap placeholder="Esccribe aquí la respuesta. Recuerda que los decimales van con '.'"></ion-textarea >
           </ion-item>
           <ion-item *ngIf="(Quest.answer1 !== undefined) && (Quest.type === 'multianswer') ">
             <ion-label>{{ Quest.answer1 }}</ion-label>
