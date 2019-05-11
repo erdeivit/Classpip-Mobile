@@ -7,10 +7,10 @@
   <ion-list-header>
       Questionarios Activos
     </ion-list-header>
-<ion-card *ngIf="questGameStudent">
-  <ion-list>
-    <ion-item *ngFor="let quest of questGameStudent" (click)="getQuestionnaire(quest.id,quest.gameMode,quest.name)">
-      <label item-left>{{ quest.name }} <br></label>
+<ion-card *ngFor="let quest of questGameStudent" >
+  <ion-list (click)="getQuestionnaire(quest.id,quest.gameMode,quest.name)">
+    <ion-item >
+      <label item-left>{{ quest.name }}</label>
     </ion-item>
   </ion-list>
 </ion-card>

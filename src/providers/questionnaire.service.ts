@@ -48,6 +48,34 @@ export class QuestionnaireService {
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
+  public SaveStudentResult(answers=[]): Observable<QuestionnaireGame> {
+
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    var url: string = AppConfig.QUESTIONNAIREGAME_URL;
+
+    let postParams = {
+      results: answers,
+      /*
+      questionnaire: myQuestionnaire,
+      questionnaireName: questionnaireName,
+      questionnaireId: questionnaireId,
+      numTotalQuestions: numTotalQuestions,
+      numAnswerCorrect: numAnswerCorrect,
+      numAnswerNoCorrect: numAnswerNoCorrect,
+      finalNote: finalNote,
+      studentId: this.utilsService.currentUser.userId,
+      dataAnswers: dataAnswers
+      */
+    }
+
+    return this.http.post(url, postParams, options)
+      .map((response: Response, index: number) => QuestionnaireGame.toObject(response.json()))
+
+  }
+
   /**
    * This method returns all questionnaires.
    * @return {Observable<Array<Questionnaire>>} returns an observable with the result
