@@ -6,6 +6,7 @@ import { IonicService } from '../../providers/ionic.service';
 import { LoginService } from '../../providers/login.service';
 import { UtilsService } from '../../providers/utils.service';
 import { QuizPipPage } from '../../pages/quizpip/quizpip';
+import {quest1by1Page} from '../../pages/quest1by1/quest1by1';
 import { QuestionnaireImagePage } from '../../pages/questionnaireImage/questionnaireImage';
 import { MenuPage } from '../../pages/menu/menu';
 import { Page } from '../../model/page';
@@ -168,6 +169,14 @@ export class GetQuestionnairePage {
                     numAnswerNoCorrect: this.numAnswerNoCorrect,
                     userAnswers: this.userAnswers*/
                   });
+              break;
+              case '1by1':
+                  console.log('1by1');
+                  this.navController.setRoot(quest1by1Page,{
+                    question: value,
+                    title:name
+                  });
+              break;
 
             }
               /*switch (value[0].type) {

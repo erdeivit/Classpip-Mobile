@@ -25,6 +25,7 @@ import { StudentPage } from '../pages/students/student/student';
 import { GroupPage } from '../pages/group/group';
 import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';
 import { QuizPipPage } from '../pages/quizpip/quizpip';
+import {quest1by1Page} from '../pages/quest1by1/quest1by1';
 import {ResultQuestionnairePage} from '../pages/resultQuestionnaire/resultQuestionnaire'
 import {CollectionTpage} from "../pages/collection/collection-teacher/collection-teacher";
 import {CollectionCreate} from "../pages/collection/collection-teacher/create-collection/create-collection";
@@ -113,6 +114,7 @@ export function exportTranslateStaticLoader(http: Http) {
     GroupPage,
     GetQuestionnairePage,
     QuizPipPage,
+    quest1by1Page,
     ResultQuestionnairePage,
     TimerComponent,
     CollectionTpage,
@@ -169,6 +171,7 @@ export function exportTranslateStaticLoader(http: Http) {
     StudentsPage,
     StudentPage,
     QuizPipPage,
+    quest1by1Page,
     GetQuestionnairePage,
     ResultQuestionnairePage,
     GroupPage,
