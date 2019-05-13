@@ -1,12 +1,9 @@
-page-questionnaire {
-  .card-ios,
-  .card-md {
-    width: 100%;
-  }
-
-  .card-content-md,
-  .card-content-ios {
-    padding: 3px 5px;
-  }
-
+ion-img img{
+  width: 100%;
+  height: 100%;
+  object-fit:fill;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
+

@@ -8,9 +8,9 @@
     <form (submit)="doSubmitAnswer()">
         <ion-list multiple="true" text-wrap radio-group *ngFor="let Quest of navParams.data.question; let i=index">
           <ion-list-header>
-            {{Quest.statement}}
+            <p style="font-size:30px">{{Quest.statement}}</p>
             <br>
-            <ion-img width="150" height="150" src="{{ Quest.image }}"></ion-img>
+            <ion-img width="100" height="100" src="{{ Quest.image }}"></ion-img>
           </ion-list-header>
           <ion-item *ngIf="(Quest.answer1 !== undefined) && (Quest.type === 'classic') ">
             <ion-label>{{ Quest.answer1 }}</ion-label>

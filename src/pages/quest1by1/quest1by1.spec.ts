@@ -7,14 +7,14 @@ let fixture: ComponentFixture<quest1by1Page> = null;
 let instance: any = null;
 /* tslint:enable */
 
-describe('Pages: QuizPipPage', () => {
+describe('Pages: quest1by1Page', () => {
 
   beforeEach(async(() => TestUtils.beforeEachCompiler([quest1by1Page]).then(compiled => {
     fixture = compiled.fixture;
     instance = compiled.instance;
   })));
 
-  it('should create the QuizPipPage', async(() => {
+  it('should create the quest1by1Page', async(() => {
     expect(instance).toBeTruthy();
   }));
 });

@@ -1,15 +1,16 @@
 <ion-header>
   <ion-navbar color="primary">
+
     <ion-title font-size="2" >{{ navParams.data.title }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
     <form (submit)="doSubmitAnswer()">
         <ion-list multiple="true" text-wrap radio-group>
-          <ion-list-header >
-            <p style="font-size:30px">{{actualQuestion.statement}}</p>
+          <ion-list-header>
+            {{actualQuestion.statement}}
             <br>
-            <ion-img width="100" height="100" src="{{actualQuestion.image}}"></ion-img>
+            <ion-img src="{{actualQuestion.image}}"></ion-img>
           </ion-list-header>
           <ion-item *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'classic') ">
               <ion-label>{{ actualQuestion.answer1 }}</ion-label>

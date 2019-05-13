@@ -7,9 +7,7 @@ import { LoginService } from '../../providers/login.service';
 import { UtilsService } from '../../providers/utils.service';
 import { QuizPipPage } from '../../pages/quizpip/quizpip';
 import {quest1by1Page} from '../../pages/quest1by1/quest1by1';
-import { QuestionnaireImagePage } from '../../pages/questionnaireImage/questionnaireImage';
-import { MenuPage } from '../../pages/menu/menu';
-import { Page } from '../../model/page';
+import {questflipcardspipPage} from '../../pages/questFlipCardsPip/questflipcardspip'
 import { Role } from '../../model/role';
 import { Credentials } from '../../model/credentials';
 import { QuestionnaireService } from '../../providers/questionnaire.service';
@@ -162,12 +160,6 @@ export class GetQuestionnairePage {
                   this.navController.setRoot(QuizPipPage,{
                     question: value,
                     title:name
-                    /*myCredentials: this.credentials,
-                    myQuestionnaire: this.myQuestionnaire,
-                    indexNum: this.indexNum,
-                    numAnswerCorrect: this.numAnswerCorrect,
-                    numAnswerNoCorrect: this.numAnswerNoCorrect,
-                    userAnswers: this.userAnswers*/
                   });
               break;
               case '1by1':
@@ -177,7 +169,13 @@ export class GetQuestionnairePage {
                     title:name
                   });
               break;
-
+              case 'FlipcardsPip':
+                  console.log('FlipcardsPip');
+                  this.navController.setRoot(questflipcardspipPage,{
+                    question: value,
+                    title:name
+                  });
+              break;
             }
               /*switch (value[0].type) {
                 case 'test':
