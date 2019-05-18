@@ -115,7 +115,7 @@ export class questflipcardspipPage {
    * Used to get all the data needed in page
    */
   public ionViewDidEnter(): void {
-    console.log("quest1by1")
+    console.log("FlipCardsPip")
 
     this.ionicService.removeLoading()
   }

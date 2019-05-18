@@ -1,75 +1,39 @@
 <ion-header>
   <ion-navbar color="primary">
-
-    <ion-title font-size="2" >{{ navParams.data.title }}</ion-title>
+    <ion-title>{{ navParams.data.title }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-    <form (submit)="doSubmitAnswer()">
-        <ion-list multiple="true" text-wrap radio-group>
-          <ion-list-header>
-            {{actualQuestion.statement}}
-            <br>
-            <ion-img src="{{actualQuestion.image}}"></ion-img>
-          </ion-list-header>
-          <ion-item *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'classic') ">
-              <ion-label>{{ actualQuestion.answer1 }}</ion-label>
-              <ion-radio (click)="saveanswer(actualQuestion.answer1,i)"checked="false"></ion-radio>
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer2 !== undefined) && (actualQuestion.type === 'classic')">
-                <ion-label >{{ actualQuestion.answer2 }}</ion-label>
-                <ion-radio (click)="saveanswer(actualQuestion.answer2,i)" checked="false"></ion-radio>
-              </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer3!== undefined) && (actualQuestion.type === 'classic')">
-              <ion-label >{{ actualQuestion.answer3 }}</ion-label >
-              <ion-radio (click)="saveanswer(actualQuestion.answer3,i)"checked="false"></ion-radio>
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer4 !== undefined) && (actualQuestion.type === 'classic')">
-                <ion-label >{{ actualQuestion.answer4 }}</ion-label >
-                <ion-radio  (click)="saveanswer(actualQuestion.answer4,i)"checked="false"></ion-radio>
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer5 !== undefined) && (actualQuestion.type === 'classic')">
-                <ion-label >{{ actualQuestion.answer5 }}</ion-label >
-                <ion-radio  (click)="saveanswer(actualQuestion.answer5,i)" checked="false"></ion-radio>
-            </ion-item>
-            <ion-item *ngIf="actualQuestion.answer6 !== undefined && (actualQuestion.type === 'classic')">
-                <ion-label >{{ actualQuestion.answer6 }}</ion-label >
-                <ion-radio  (click)="saveanswer(actualQuestion.answer6,i)" checked="false"></ion-radio>
-            </ion-item>
-            <ion-item  *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'openAnswer')">
-              <ion-textarea (blur)="saveanswer3(actualQuestion.answer1,$event.target.value,i)" text-wrap placeholder="Esccribe aquí la respuesta. Recuerda que los decimales van con '.'"></ion-textarea >
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'multianswer') ">
-              <ion-label>{{ actualQuestion.answer1 }}</ion-label>
-              <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer1,i,0)" checked="false"></ion-checkbox>
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer2 !== undefined) && (actualQuestion.type === 'multianswer')">
-                <ion-label >{{ actualQuestion.answer2 }}</ion-label>
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer2,i,1)" checked="false"></ion-checkbox>
-              </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer3!== undefined) && (actualQuestion.type === 'multianswer')">
-              <ion-label >{{ actualQuestion.answer3 }}</ion-label >
-              <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer3,i,2)"checked="false"></ion-checkbox>
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer4 !== undefined) && (actualQuestion.type === 'multianswer')">
-                <ion-label >{{ actualQuestion.answer4 }}</ion-label >
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer4,i,3)"checked="false"></ion-checkbox>
-            </ion-item>
-            <ion-item *ngIf="(actualQuestion.answer5 !== undefined) && (actualQuestion.type === 'multianswer')">
-                <ion-label >{{ actualQuestion.answer5 }}</ion-label >
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer5,i,4)" checked="false"></ion-checkbox>
-            </ion-item>
-            <ion-item *ngIf="actualQuestion.answer6 !== undefined && (actualQuestion.type === 'multianswer')">
-                <ion-label >{{ actualQuestion.answer6 }}</ion-label >
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer6,i,5)" checked="false"></ion-checkbox>
-            </ion-item>
-        </ion-list>
-        <button ion-button full type="submit" id="click">ENVIAR</button>
-      </form>
+  <form (submit)="doSubmitAnswer()">
+    <div class="flip-container">
+        <div class="flipper">
+          <div class="front">
+              <ion-card>
+                <ion-header>
+                  <h2>{{actualQuestion.statement}}</h2>
+                </ion-header>
+              </ion-card>
+          </div>
+          <div class="back">
+              <ion-card class="card-back card">
+                <ion-header>
+                  <ion-img width="300px" height="300px" src="{{actualQuestion.image}}"></ion-img>
+                  <br>
+                  <h2> {{actualQuestion.explanation}}</h2>
+                </ion-header>
+              </ion-card>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button ion-button full type="submit" id="click">ENVIAR</button>
+  </form>
 </ion-content>
 <!--
-
-
 
 
 

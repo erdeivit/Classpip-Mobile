@@ -155,7 +155,7 @@ export class GetQuestionnairePage {
         console.log(value);
         switch (gameMode)
             {
-              case 'Quizpip':
+              case 'QuizPip':
                 console.log('QUIZPIP');
                   this.navController.setRoot(QuizPipPage,{
                     question: value,
