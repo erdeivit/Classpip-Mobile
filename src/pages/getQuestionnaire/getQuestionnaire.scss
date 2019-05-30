@@ -31,3 +31,25 @@
     box-shadow: none;
   }
 }
+
+.alertDanger {
+  // TITLE COLOR
+
+  color: white;
+
+
+  button {
+      color: White !important; // button text color
+      background-color: #4C0B5F !important;
+          //button bg color
+  }
+
+  .alert-message {
+    overflow-y:hidden !important;
+    color: white; // text color for confirm alerts
+  }
+
+  .alert-wrapper {
+      background-color:  #8609b5 ; // bg color of alert content
+  }
+}

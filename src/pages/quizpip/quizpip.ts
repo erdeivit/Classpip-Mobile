@@ -126,7 +126,11 @@ export class QuizPipPage {
    */
   public doSubmitAnswer() {
 
-    this.navController.setRoot(ResultQuestionnairePage, {questions: this.questions, answers: this.dataAnswers, myCredentials: this.myCredentials });
+    this.navController.setRoot(ResultQuestionnairePage,
+      {questions: this.questions,
+        answers: this.dataAnswers,
+        myCredentials: this.myCredentials,
+        questionnaireGame: this.navParams.data.questionnaireGame });
 
       event.preventDefault();
     }

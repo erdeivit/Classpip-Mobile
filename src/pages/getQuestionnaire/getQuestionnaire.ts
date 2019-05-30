@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, MenuController, ToastController, NavParams} from 'ionic-angular';
+import {NavController, MenuController, ToastController, NavParams,AlertController} from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { IonicService } from '../../providers/ionic.service';
@@ -58,7 +58,8 @@ export class GetQuestionnairePage {
     public toastCtrl: ToastController,
     public navParms: NavParams,
     //private timer: TimerComponent,
-    public menuController: MenuController) {
+    public menuController: MenuController,
+    public alertController: AlertController) {
     // TODO: remove this
     switch (utilsService.role) {
 
@@ -80,6 +81,17 @@ export class GetQuestionnairePage {
     }
     this.myRole = this.utilsService.role;
     this.groups = this.navParms.data.groups;
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      title:"Información",
+      message: 'Para ver las respuestas, solo tienes que pasar el mouse sobre el enunciado.',
+      buttons: ['OK'],
+      cssClass: "alertDanger",
+    });
+
+    await alert.present();
   }
 
   public getQuestionnairesGameTeacher():void {
@@ -146,8 +158,9 @@ export class GetQuestionnairePage {
    * This method manages the call to the service for performing a getQuestionnaire
    * against the public services
    */
-  public getQuestionnaire(id: string, gameMode:string,name:string): void {
+  public getQuestionnaire(id: string, gameMode:string,name:string,index:number): void {
     console.log("GET QUESTIONNAIRE");
+    console.log(id);
     this.questionnaireService.getQuestionsofQuestionnaire(id).subscribe(
       ((value: Array<Question>) => {
         console.log(gameMode);
@@ -159,7 +172,8 @@ export class GetQuestionnairePage {
                 console.log('QUIZPIP');
                   this.navController.setRoot(QuizPipPage,{
                     question: value,
-                    title:name
+                    title:name,
+                    questionnaireGame:this.questGameStudent[index]
                   });
               break;
               case '1by1':
@@ -171,6 +185,7 @@ export class GetQuestionnairePage {
               break;
               case 'FlipcardsPip':
                   console.log('FlipcardsPip');
+                  this.presentAlert();
                   this.navController.setRoot(questflipcardspipPage,{
                     question: value,
                     title:name

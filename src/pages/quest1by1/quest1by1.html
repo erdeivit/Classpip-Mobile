@@ -35,7 +35,7 @@
                 <ion-label >{{ actualQuestion.answer6 }}</ion-label >
                 <ion-radio  (click)="saveanswer(actualQuestion.answer6,i)" checked="false"></ion-radio>
             </ion-item>
-            <ion-item  *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'openAnswer')">
+            <ion-item  *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'openQuestion')">
               <ion-textarea (blur)="saveanswer3(actualQuestion.answer1,$event.target.value,i)" text-wrap placeholder="Esccribe aquí la respuesta. Recuerda que los decimales van con '.'"></ion-textarea >
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'multianswer') ">
@@ -63,7 +63,7 @@
                 <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer6,i,5)" checked="false"></ion-checkbox>
             </ion-item>
         </ion-list>
-        <button ion-button full type="submit" id="click">ENVIAR</button>
+        <button ion-button full type="submit" id="click">SIGUIENTE</button>
       </form>
 </ion-content>
 <!--

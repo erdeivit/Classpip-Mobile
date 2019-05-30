@@ -11,7 +11,7 @@ import { Student } from '../../model/student';
 import { Answer } from '../../model/answer';
 import { CorrectAnswer } from '../../model/correctAnswer';
 import { Questionnaire } from '../../model/questionnaire';
-import { ResultQuestionnaire } from '../../model/resultQuestionnaire';
+import { resultQuestionnaire } from '../../model/resultQuestionnaire';
 import { StudentPage } from '../students/student/student';
 import { Questionnaire1Page } from '../../pages/questionnaire1/questionnaire1';
 import { MenuPage } from '../../pages/menu/menu';
@@ -92,6 +92,7 @@ export class ResultQuestionnairePage {
     this.menuController.enable(true);
     this.ionicService.removeLoading();
     this.calculatemark();
+    this.saveResult();
   }
 
   /**
@@ -109,7 +110,7 @@ export class ResultQuestionnairePage {
     for(let question of this.myQuestions){
       switch (question.type)
       {
-        case "openAnswer":
+        case "openQuestion":
         case"classic":
           if (question.correctanswer === this.userAnswers[i]){
             this.numAnswerCorrect++;
@@ -158,10 +159,6 @@ export class ResultQuestionnairePage {
 
     this.mark = (this.numAnswerCorrect/this.numTotalQuestions)*10;
     this.finalNote = this.mark.toFixed(2);
-    console.log(this.finalNote);
-
-
-
 
 
     /*this.result.push({
@@ -176,6 +173,19 @@ export class ResultQuestionnairePage {
 
     //this.questionnaireService.SaveStudentResult(this.result);
   }
+  public saveResult(){
+    //TODO: Ir a SaveResult y cambiar el id del usuario por uno cogido (actualmente estatico a 10000)
+    console.log(this.navParams.data.questionnaireGame);
+    this.questionnaireService.saveResult(this.navParams.data.questionnaireGame,this.numAnswerCorrect,this.numAnswerNoCorrect,this.finalNote,this.userAnswers).subscribe(
+      (() => {
+        console.log("Exito");
+
+      }),
+      error =>
+      this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+
+  }
+
 
   /**
   * Method to correct the results of the questionnaire

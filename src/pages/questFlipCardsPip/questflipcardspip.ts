@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Refresher, Platform, NavController, NavParams} from 'ionic-angular';
+import { Refresher, Platform, NavController, NavParams, AlertController} from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Credentials } from '../../model/credentials';
 import { IonicService } from '../../providers/ionic.service';
@@ -7,7 +7,7 @@ import { QuestionnaireService } from '../../providers/questionnaire.service';
 import { Question } from '../../model/question';
 import { Questionnaire } from '../../model/questionnaire';
 import { UtilsService } from '../../providers/utils.service';
-import { ResultQuestionnairePage } from '../resultQuestionnaire/resultQuestionnaire'
+import { MenuPage } from '../menu/menu';
 
 
 
@@ -56,7 +56,8 @@ export class questflipcardspipPage {
     public utilsService: UtilsService,
     public ionicService: IonicService,
     public questionnaireService: QuestionnaireService,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public alertController: AlertController) {
 
     //this.myQuestionnaire = this.navParams.data.myQuestionnaire;
     this.questions = this.navParams.data.question;
@@ -72,6 +73,16 @@ export class questflipcardspipPage {
     //this.dataAnswers = this.navParams.data.dataAnswers;
     //this.myCredentials = this.navParams.data.myCredentials;
 
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      title:"Final",
+      message: 'Hasta aquí el repaso con el cuestionario: ' +this.navParams.data.title,
+      buttons: ['OK'],
+      cssClass: "alertDanger",
+    });
+
+    await alert.present();
   }
 
   public saveanswer(data:string,indice:number){
@@ -130,7 +141,8 @@ export class questflipcardspipPage {
        console.log(this.actualQuestion);
        if (!this.questions[this.i+1])
        {
-        this.navController.setRoot(ResultQuestionnairePage, {questions: this.questions, answers: this.dataAnswers, myCredentials: this.myCredentials });
+        this.presentAlert();
+        this.navController.setRoot(MenuPage);
        }
        else
        {

@@ -20,10 +20,11 @@ export class QuestionnaireGame {
   private _student: Array<Student>;
   private _teacher: Teacher;
   private _questionnaire: Questionnaire;
+  private _questionnaireId: string;
 
   constructor(id?: string, name?: string, start_date?: Date, finish_date?: Date, question_time?: number, questionnaire_time?: number,
     results?: Array<string>, points?: Array<number>, prizes?: Array<string>, gameMode?: string, teamMode?: string, teacherId?: string,
-    groupId?: string) {
+    groupId?: string,questionnaireId?:string) {
     this._id = id;
     this._name = name;
     this._start_date = start_date;
@@ -37,6 +38,7 @@ export class QuestionnaireGame {
     this._teamMode = teamMode;
     this._teacherId = teacherId;
     this._groupId = groupId;
+    this._questionnaireId = questionnaireId;
   }
 
   /* tslint:disable */
@@ -60,6 +62,7 @@ export class QuestionnaireGame {
       result.teamMode = object.teamMode;
       result.teacherId = object.teacherId;
       result.groupId = object.groupId;
+      result.questionnaireId = object.questionnaireId;
     }
     return result;
   }
@@ -192,4 +195,11 @@ export class QuestionnaireGame {
   public set groupId(value: string) {
     this._groupId = value;
   }
+  public set questionnaireId(value: string) {
+    this._questionnaireId = value;
+  }
+  public get questionnaireId(): string {
+    return this._questionnaireId;
+  }
+
 }

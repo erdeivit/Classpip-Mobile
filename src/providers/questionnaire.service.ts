@@ -9,6 +9,7 @@ import { Login } from '../model/login';
 import { Question } from '../model/question';
 import { Questionnaire } from '../model/questionnaire';
 import { QuestionnaireGame } from '../model/questionnaireGame';
+import { resultQuestionnaire } from '../model/resultQuestionnaire';
 import { Answer } from '../model/answer';
 import { Student } from '../model/student';
 import { CorrectAnswer } from '../model/correctAnswer';
@@ -16,6 +17,7 @@ import { IonicService } from '../providers/ionic.service';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { GetQuestionnairePage } from '../pages/getQuestiogetMyQuestionnairennaire/getQuestionnaire';
 import {Point} from "../model/point";
+import { ResultQuestionnairePage } from '../pages/resultQuestionnaire/resultQuestionnaire';
 
 @Injectable()
 export class QuestionnaireService {
@@ -46,6 +48,41 @@ export class QuestionnaireService {
         return QuestionnaireGame.toObjectArray(response.json())
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+  public saveResult(questionnaireGame:QuestionnaireGame,numAnswerCorrect:number,numAnswerNoCorrect:number,finalNote:string,userAnswers=[]): Observable<resultQuestionnaire> {
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    let url: string;
+    url = AppConfig.RESULTQUESTIONNAIRE_URL;
+    console.log(url);
+    console.log(questionnaireGame);
+    questionnaireGame['']
+    const postParams = {
+      questionnaireGame: {
+        id:questionnaireGame['id'],
+        name:questionnaireGame['name'],
+        start_date:questionnaireGame['start_date'],
+        finish_date:questionnaireGame['finish_date'],
+        question_time:questionnaireGame['question_time'],
+        questionnaire_time:questionnaireGame['questionnaire_time'],
+        gameMode:questionnaireGame['gameMode'],
+        teamMode:questionnaireGame['teamMode'],
+        teacherId:questionnaireGame['teacherId'],
+        groupId:questionnaireGame['groupId'],
+        questionnaireId:questionnaireGame['questionnaireId']
+      },
+      numAnswerCorrect:numAnswerCorrect,
+      numAnswerNoCorrect:numAnswerNoCorrect,
+      finalNote:finalNote,
+      questionnaireGameId:questionnaireGame.id,
+      studentId:"10000",
+      userAnswers:userAnswers
+    }
+    console.log(postParams);
+    return this.http.post(url, postParams, options)
+    .map((response: Response, index: number) => resultQuestionnaire.toObject(response.json()))
   }
 
   public SaveStudentResult(answers=[]): Observable<QuestionnaireGame> {
