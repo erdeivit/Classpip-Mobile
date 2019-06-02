@@ -13,7 +13,6 @@ import { CorrectAnswer } from '../../model/correctAnswer';
 import { Questionnaire } from '../../model/questionnaire';
 import { resultQuestionnaire } from '../../model/resultQuestionnaire';
 import { StudentPage } from '../students/student/student';
-import { Questionnaire1Page } from '../../pages/questionnaire1/questionnaire1';
 import { MenuPage } from '../../pages/menu/menu';
 import { PointService} from '../../providers/point.service';
 import { GroupService} from '../../providers/group.service';
@@ -26,7 +25,6 @@ import {BadgeBadgeRelation} from "../../model/badgeBadgeRelation";
 import {Card} from "../../model/card";
 import {CardAssign} from "../collection/collection-teacher/assign-card/assign-card";
 import {CollectionService} from "../../providers/collection.service";
-import {GradeService} from "../../providers/grade.service";
 import {CollectionTeacherDetail} from "../collection/collection-teacher/collection-teacher-detail/collection-teacher-detail";
 import {CollectionTpage} from "../collection/collection-teacher/collection-teacher";
 
@@ -121,7 +119,7 @@ export class ResultQuestionnairePage {
           }
         break;
 
-        case "multianswer":
+        case "multiAnswer":
         var correct = question.correctanswer.split([','][0])
         console.log(this.userAnswers[i]);
         if (this.userAnswers[i] !== undefined)
@@ -130,13 +128,13 @@ export class ResultQuestionnairePage {
         for (let ans of correct){
           for (let userans of this.userAnswers[i])
           {
-            if (userans = ans)
+            if (userans === ans)
             {
               partialanswer++;
             }
           }
         }
-        if ((partialanswer = correct.length) && (correct.length === this.userAnswers[i].length))
+        if ((partialanswer === correct.length) && (correct.length === this.userAnswers[i].length))
         {
           this.numAnswerCorrect++;
         }
@@ -174,9 +172,10 @@ export class ResultQuestionnairePage {
     //this.questionnaireService.SaveStudentResult(this.result);
   }
   public saveResult(){
+    console.log("saveResult");
     //TODO: Ir a SaveResult y cambiar el id del usuario por uno cogido (actualmente estatico a 10000)
     console.log(this.navParams.data.questionnaireGame);
-    this.questionnaireService.saveResult(this.navParams.data.questionnaireGame,this.numAnswerCorrect,this.numAnswerNoCorrect,this.finalNote,this.userAnswers).subscribe(
+    this.questionnaireService.saveResult(this.navParams.data.questionnaireGame,this.numAnswerCorrect,this.numAnswerNoCorrect,this.finalNote,this.userAnswers,this.numTotalQuestions).subscribe(
       (() => {
         console.log("Exito");
 

@@ -14,14 +14,6 @@ import {
   FormControl
 } from '@angular/forms';
 
-export interface PTimer {
-  time: number;
-  timeRemaining: number;
-  runTimer: boolean;
-  hasStarted: boolean;
-  hasFinished: boolean;
-  displayTime: string;
-}
 
 @Component({
   selector: 'page-quizpippage',
@@ -38,18 +30,21 @@ export class QuizPipPage {
   public numQuestions: number;
   public numAnswerCorrect: number;
   public numAnswerNoCorrect: number;
+
   public finalNote: number = 0;
   public questionsSend: Question;
   public dataAnswers  = [];
   public dataAnswers2  = [];
   public answercorrects = [];
-  public title: string;
-  public comprobacion:number=7;
+  public comprobacion:number;
 
   questionForm;
 
+  public questionTime:number;
+  public questionnaireTime:number;
   public timeInSeconds: number;
-  public timer: PTimer;
+  public displayTime: string;
+
 
   constructor(
     public navParams: NavParams,
@@ -61,7 +56,12 @@ export class QuizPipPage {
 
     //this.myQuestionnaire = this.navParams.data.myQuestionnaire;
     this.questions = this.navParams.data.question;
-    //this.title = this.navParams.data.title;
+    this.questionTime = this.navParams.data.questiontime;
+    this.questionnaireTime = this.navParams.data.questionnairetime;
+
+    console.log(this.questionTime);
+    console.log(this.questionnaireTime);
+
     //this.indexNum = this.navParams.data.indexNum;
     //this.numTotalQuestions = this.questions.length;
     //this.questionsSend = this.questions[this.indexNum];
@@ -79,6 +79,8 @@ export class QuizPipPage {
     console.log(this.dataAnswers);
   }
 
+  //ERROR AL COMPROBAR SI ES MULTIRESPUESTA CON 6 RESPUESTAS!!!!
+  // NO FUNCIONA FLIPCARD
   public saveanswer2(data:string,indice:number,indice2:number){
     console.log("COMPROBACION" + this.comprobacion);
     console.log("INDICE"+indice2)
@@ -115,8 +117,8 @@ export class QuizPipPage {
    * Used to get all the data needed in page
    */
   public ionViewDidEnter(): void {
-
-    this.ionicService.removeLoading()
+    console.log(this.navParams.data.questionnaireGame);
+    this.ionicService.removeLoading();
   }
 
 
@@ -125,6 +127,7 @@ export class QuizPipPage {
    * against the public services
    */
   public doSubmitAnswer() {
+    console.log("SUBMITANSWER")
 
     this.navController.setRoot(ResultQuestionnairePage,
       {questions: this.questions,
@@ -132,72 +135,39 @@ export class QuizPipPage {
         myCredentials: this.myCredentials,
         questionnaireGame: this.navParams.data.questionnaireGame });
 
-      event.preventDefault();
     }
 
 
   /**
    * This method manages the call to the service for performing a doSubmitEmptyAnswer
    */
-    public doSubmitEmptyAnswer() {
-
-    this.dataAnswers.push('empty');
-    this.indexNum += 1;
-
-    if((this.indexNum) < this.numTotalQuestions){
-        this.navController.setRoot(QuizPipPage, { myQuestionnaire: this.myQuestionnaire, myCredentials: this.myCredentials, questions: this.questions, indexNum: this.indexNum, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, dataAnswers: this.dataAnswers });
-    }
-    /*else{
-      //this.finalNote = this.numAnswerCorrect - this.numAnswerNoCorrect;
-
-    this.questionnaireService.getMyStudent(this.utilsService.currentUser.userId).subscribe(
-      ((value: Student) => this.navController.setRoot(CompletedQuestionnairePage, { student: value, myQuestionnaire: this.myQuestionnaire, numTotalQuestions: this.numTotalQuestions, numAnswerCorrect: this.numAnswerCorrect, numAnswerNoCorrect: this.numAnswerNoCorrect, finalNote: this.finalNote, dataAnswers: this.dataAnswers, myQuestions: this.questions, myCredentials: this.myCredentials })),
-      error =>
-        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
-      }
-      */
-    }
-
-
-
-
 
   /**
    *  TIMER START
    */
   ngOnInit() {
-    //this.initTimer();
-  }
-
-  hasFinished() {
-    return this.timer.hasFinished;
-  }
-
-  pauseTimer() {
-    this.timer.runTimer = false;
-  }
-  resumeTimer() {
-    this.startTimer();
+    this.initTimer();
   }
 
   initTimer() {
-    /*if (!this.timeInSeconds){
-      this.timeInSeconds = this.questionsSend.time;
-    }*/
-
-    this.timer = <PTimer>{
-      time: this.timeInSeconds,
-      runTimer: false,
-      hasStarted: false,
-      hasFinished: false,
-      timeRemaining: this.timeInSeconds
-    };
-    this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.timeRemaining);
-    this.startTimer();
+    var time = 0;
+    if (this.questionTime){
+        time = this.questionTime;
+    }
+    else if (this.questionnaireTime)
+    {
+      time = this.questionnaireTime;
+    }
+    else {
+      return;
+    }
+    console.log(time);
+    this.displayTime = this.getSecondsAsDigitalClock(time);
+    this.timerTick(time);
   }
 
   getSecondsAsDigitalClock(inputSeconds: number) {
-    var sec_num = parseInt(inputSeconds.toString(), 10); // don't forget the second param
+    var sec_num = parseInt(inputSeconds.toString(), 10);
     var hours = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
@@ -210,28 +180,15 @@ export class QuizPipPage {
     return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
-  startTimer() {
-    this.timer.hasStarted = true;
-    this.timer.runTimer = true;
-    this.timerTick();
-  }
-
-  timerTick() {
+  timerTick(time:number) {
     setTimeout(() => {
-
-      if (!this.timer.runTimer){
-        return;
-      }
-      this.timer.timeRemaining--;
-      this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.timeRemaining);
-      if (this.timer.timeRemaining > 0) {
-        this.timerTick();
+      time--;
+      this.displayTime = this.getSecondsAsDigitalClock(time);
+      if (time > 0) {
+        this.timerTick(time);
       }
       else {
-        this.timer.hasFinished = true;
-        if (this.timer.timeRemaining === 0) {
-          this.doSubmitEmptyAnswer();
-        }
+          this.doSubmitAnswer();
       }
     }, 1000);
   }

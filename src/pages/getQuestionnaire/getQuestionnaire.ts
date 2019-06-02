@@ -30,6 +30,7 @@ export class GetQuestionnairePage {
   public answers: Array<Answer>;
   public myQuestionnaire: Questionnaire;
   public numAnswerCorrect: number = 0;
+  public title:string;
   public numAnswerNoCorrect: number = 0;
   public indexNum: number = 0;
   public userAnswers  = [];
@@ -37,10 +38,12 @@ export class GetQuestionnairePage {
   public found: Boolean;
   public enableGetQuest: Boolean = false;
 
+
   listQuest:string;
   public questGameStudent: Array<QuestionnaireGame> = new Array<QuestionnaireGame>();
-  public questionnairesArrayDone: Array<Questionnaire> = new Array<Questionnaire>();
-  public questionnairesArrayNOTDone: Array<Questionnaire> = new Array<Questionnaire>();
+  public activeQuestionnaireGame: Array<QuestionnaireGame>;
+  public deadQuestionnaireGame: Array<QuestionnaireGame>;
+  public programmedQuestionnaireGame: Array<QuestionnaireGame>;
 
   public myRole: Role;
   public role = Role;
@@ -66,15 +69,6 @@ export class GetQuestionnairePage {
       case Role.STUDENT:
         this.credentials.username = "student-1";
         this.credentials.id = this.credentials.id;
-        this.getQuestionnairesGameStudents();
-        break;
-      case Role.TEACHER:
-        this.credentials.id = this.credentials.id;
-        //this.getQuestionnaireTeacher();
-        break;
-      case Role.SCHOOLADMIN:
-        this.credentials.username = 'school-admin-1';
-        this.credentials.id = this.credentials.id;
         break;
       default:
         break;
@@ -83,7 +77,7 @@ export class GetQuestionnairePage {
     this.groups = this.navParms.data.groups;
   }
 
-  async presentAlert() {
+  async FlipCardsPipAlert() {
     const alert = await this.alertController.create({
       title:"Información",
       message: 'Para ver las respuestas, solo tienes que pasar el mouse sobre el enunciado.',
@@ -93,37 +87,43 @@ export class GetQuestionnairePage {
 
     await alert.present();
   }
+  async ProgrammedAlert(name:string,date:string) {
+    const alert = await this.alertController.create({
+      title:"Llegastes pronto",
+      message: 'El cuestionario: "' + name+'" empezará el: ' + date,
+      buttons: ['OK'],
+      cssClass: "alertDanger",
+    });
 
-  public getQuestionnairesGameTeacher():void {
-    this.questionnaireService.getTeacherQuestionnaires().subscribe(
-      ((quest: Array<Questionnaire>) => {
-        this.questionnairesArrayDone = quest;
-      }),
-      error =>
-        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
+    await alert.present();
+  }
+  async FinishAlert(name:string,date:string) {
+    const alert = await this.alertController.create({
+      title:"Llegastes tarde",
+      message: 'El cuestionario: "' + name+'" finalizó el: ' + date,
+      buttons: ['OK'],
+      cssClass: "alertDanger",
+    });
+
+    await alert.present();
   }
 
   public getQuestionnairesGameStudents(): void {
     this.questionnaireService.getQuestionnairesGame().subscribe(
       ((quest: Array<QuestionnaireGame>) => {
-      //console.log(quest);
-      //console.log(this.utilsService.currentUser);
       for (let questionnaireGame of quest)
       {
         //TODO: COMPARAR CON EL ID DEL GRUPO DEL  USUARIO, no con el "1" que asumo
         if (questionnaireGame.groupId =="1"){
-
           this.questGameStudent.push(questionnaireGame); //CONSEGUIMOS SOLO LOS CUESTIONARIOS DE NUESTRO USUARIO
-          console.log(this.questGameStudent);
+
         }
 
       }
+      this.getActivos();
           }),
         error =>
           this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
-      /*}),
-      error =>
-        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));*/
   }
 
     /**
@@ -132,38 +132,50 @@ export class GetQuestionnairePage {
    */
   public ionViewDidEnter(): void {
     this.menuController.enable(true);
+    this.activeQuestionnaireGame = [];
+    this.programmedQuestionnaireGame = [];
+    this.deadQuestionnaireGame = [];
+    this.getQuestionnairesGameStudents();
   }
 
-  //TODO: REMOVE IT
-  private getEnableGetQuest(): void{
-    this.enableGetQuest? this.enableGetQuest = false: this.enableGetQuest = true;
+  public getActivos() {
+    console.log(this.questGameStudent);
+    const date = new Date();
+    this.activeQuestionnaireGame = [];
+    this.deadQuestionnaireGame = [];
+    this.programmedQuestionnaireGame = [];
+    for (let QuestionarioGame of this.questGameStudent) {
+      var diff = new Date(QuestionarioGame.finish_date).getTime() - date.getTime();
+      var diff2 = new Date(QuestionarioGame.start_date).getTime() - date.getTime();
+      // tslint:disable-next-line: max-line-length
+      QuestionarioGame['str_date'] = new Date(QuestionarioGame.start_date).getDate() + '/' + (new Date(QuestionarioGame.start_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.start_date).getFullYear();
+      QuestionarioGame['fnsh_date'] = new Date(QuestionarioGame.finish_date).getDate() + '/' + (new Date(QuestionarioGame.finish_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.finish_date).getFullYear();
+      if (diff >= 0) {
+        if (diff2 >= 0) {
+          this.programmedQuestionnaireGame.push(QuestionarioGame);
+        }
+        else {
+          this.activeQuestionnaireGame.push(QuestionarioGame);
+        }
+      }
+      else {
+        this.deadQuestionnaireGame.push(QuestionarioGame);
+      }
+    }
+    console.log(this.activeQuestionnaireGame);
   }
 
-  /**
-   * Enable and disable the header of the questionaire
-
-  private changeActive(quest: Questionnaire): void{
-    quest.active? quest.active = false: quest.active = true;
-    //this.ionicService.showAlert("", "HOLA");
-    this.questionnaireService.patchQuestionnaire(quest.id, quest.name, quest.date, quest.points, quest.badges, quest.groupid, quest.active ).subscribe(
-      response => {
-        //this.ionicService.showAlert("",response.active.toString());
-      },
-      error => {
-        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error);
-      });
-  }
-*/
   /**
    * This method manages the call to the service for performing a getQuestionnaire
    * against the public services
    */
   public getQuestionnaire(id: string, gameMode:string,name:string,index:number): void {
     console.log("GET QUESTIONNAIRE");
-    console.log(id);
-    this.questionnaireService.getQuestionsofQuestionnaire(id).subscribe(
+    this.questionnaireService.getQuestionnaire(id).subscribe(
+      ((value: Questionnaire) => {
+        this.title = value.name;
+    this.questionnaireService.getQuestionsofQuestionnaireGame(id).subscribe(
       ((value: Array<Question>) => {
-        console.log(gameMode);
         console.log("THIS.QUESTIONS")
         console.log(value);
         switch (gameMode)
@@ -172,23 +184,29 @@ export class GetQuestionnairePage {
                 console.log('QUIZPIP');
                   this.navController.setRoot(QuizPipPage,{
                     question: value,
-                    title:name,
-                    questionnaireGame:this.questGameStudent[index]
+                    title: this.title,
+                    questionnaireGame:this.activeQuestionnaireGame[index],
+                    questiontime: this.activeQuestionnaireGame[index].question_time,
+                    questionnairetime: this.activeQuestionnaireGame[index].questionnaire_time
                   });
               break;
               case '1by1':
                   console.log('1by1');
                   this.navController.setRoot(quest1by1Page,{
                     question: value,
-                    title:name
+                    title: this.title,
+                    questionnaireGame:this.activeQuestionnaireGame[index],
+                    questiontime: this.activeQuestionnaireGame[index].question_time,
+                    questionnairetime: this.activeQuestionnaireGame[index].questionnaire_time
                   });
               break;
-              case 'FlipcardsPip':
+              case 'FlipCardsPip':
                   console.log('FlipcardsPip');
-                  this.presentAlert();
+                  this.FlipCardsPipAlert();
                   this.navController.setRoot(questflipcardspipPage,{
                     question: value,
-                    title:name
+                    title: this.title,
+                    questionnaireGame:this.activeQuestionnaireGame[index]
                   });
               break;
             }
@@ -233,6 +251,9 @@ export class GetQuestionnairePage {
               }
               */
           //this.ionicService.showAlert("", this.translateService.instant('QUESTIONNAIRE.CLOSED'));
+        }),
+        error =>
+          this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
         }),
         error =>
           this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));

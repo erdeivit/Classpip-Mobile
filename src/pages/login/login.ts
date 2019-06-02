@@ -55,7 +55,7 @@ export class LoginPage {
     this.ionicService.showLoading(this.translateService.instant('APP.WAIT'));
     this.loginService.login(this.credentials).subscribe(
       response => {
-        this.navController.setRoot(MenuPage)
+        this.navController.setRoot(MenuPage);
       },
       error => {
         this.ionicService.removeLoading();

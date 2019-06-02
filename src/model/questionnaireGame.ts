@@ -8,6 +8,8 @@ export class QuestionnaireGame {
   private _name: string;
   private _start_date: Date;
   private _finish_date: Date;
+  private _str_date: string;
+  private _fnsh_date:string;
   private _question_time: number;
   private _questionnaire_time: number;
   private _results: Array<string>;
@@ -22,13 +24,15 @@ export class QuestionnaireGame {
   private _questionnaire: Questionnaire;
   private _questionnaireId: string;
 
-  constructor(id?: string, name?: string, start_date?: Date, finish_date?: Date, question_time?: number, questionnaire_time?: number,
+  constructor(id?: string, name?: string, start_date?: Date, finish_date?: Date,str_date?:string,fnsh_date?:string, question_time?: number, questionnaire_time?: number,
     results?: Array<string>, points?: Array<number>, prizes?: Array<string>, gameMode?: string, teamMode?: string, teacherId?: string,
     groupId?: string,questionnaireId?:string) {
     this._id = id;
     this._name = name;
     this._start_date = start_date;
     this._finish_date = finish_date;
+    this._str_date= str_date;
+    this._fnsh_date= fnsh_date;
     this._question_time = question_time;
     this._questionnaire_time = questionnaire_time;
     this._results = results;
@@ -50,6 +54,8 @@ export class QuestionnaireGame {
       result.name = object.name;
       result.start_date = object.start_date;
       result.finish_date = object.finish_date;
+      result.str_date = object.str_date;
+      result.fnsh_date = object.fnsh_date;
       result.question_time = object.question_time;
       result.questionnaire_time = object.questionnaire_time;
       result.results = object.results;
@@ -108,6 +114,20 @@ export class QuestionnaireGame {
 
   public set finish_date(value: Date) {
     this._finish_date = value;
+  }
+  public get str_date(): string {
+    return this._str_date;
+  }
+
+  public set str_date(value: string) {
+    this._str_date = value;
+  }
+  public get fnsh_date(): string {
+    return this._fnsh_date;
+  }
+
+  public set fnsh_date(value: string) {
+    this._fnsh_date = value;
   }
   public get question_time(): number {
     return this._question_time;

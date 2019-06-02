@@ -7,17 +7,34 @@
   <ion-list-header>
       Questionarios Activos
     </ion-list-header>
-<ion-card *ngFor="let quest of questGameStudent;let i=index" >
-  <ion-list (click)="getQuestionnaire(quest.questionnaireId,quest.gameMode,quest.name,i)">
+  <ion-card  *ngFor="let quest of activeQuestionnaireGame;let i=index" >
+   <ion-list (click)="getQuestionnaire(quest.questionnaireId,quest.gameMode,quest.name,i)">
     <ion-item >
       <label item-left>{{ quest.name }}</label>
     </ion-item>
   </ion-list>
-</ion-card>
-
-<ion-list-header>
+  </ion-card>
+  <ion-list-header>
+    Questionarios Programados
+  </ion-list-header>
+    <ion-card  *ngFor="let quest of programmedQuestionnaireGame;let i=index" >
+      <ion-list (click)="ProgrammedAlert(quest.name,quest.str_date)">
+        <ion-item >
+          <label item-left>{{ quest.name }} PROGRAMADO:{{quest.str_date}}</label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  <ion-list-header>
     Questionarios Finalizados
-</ion-list-header>
+  </ion-list-header>
+    <ion-card  *ngFor="let quest of deadQuestionnaireGame;let i=index" >
+      <ion-list (click)="FinishAlert(quest.name,quest.fnsh_date)">
+        <ion-item >
+          <label item-left>{{ quest.name }} FINALIZADO:{{quest.fnsh_date}}</label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
 </ion-content>
 <!--<ion-toggle [checked]="quest.active" (ionChange)="changeActive(quest)" *ngIf="myRole == role.TEACHER"></ion-toggle>
 <ion-content padding>

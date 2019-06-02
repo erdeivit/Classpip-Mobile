@@ -49,7 +49,7 @@ export class QuestionnaireService {
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
-  public saveResult(questionnaireGame:QuestionnaireGame,numAnswerCorrect:number,numAnswerNoCorrect:number,finalNote:string,userAnswers=[]): Observable<resultQuestionnaire> {
+  public saveResult(questionnaireGame:QuestionnaireGame,numAnswerCorrect:number,numAnswerNoCorrect:number,finalNote:string,userAnswers=[],numofquestions:number): Observable<resultQuestionnaire> {
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
@@ -73,6 +73,7 @@ export class QuestionnaireService {
         groupId:questionnaireGame['groupId'],
         questionnaireId:questionnaireGame['questionnaireId']
       },
+      numTotalOfQuestions:numofquestions,
       numAnswerCorrect:numAnswerCorrect,
       numAnswerNoCorrect:numAnswerNoCorrect,
       finalNote:finalNote,
@@ -161,7 +162,8 @@ export class QuestionnaireService {
    * @return {Observable<Questionnaire>} returns an observable with the result
    * of the operation
    */
-  public getQuestionsofQuestionnaire(id:string): Observable<Array<Question>> {
+  public getQuestionsofQuestionnaireGame(id:string): Observable<Array<Question>> {
+
 
     var ret: Array<Question> = new Array<Question>();
     return Observable.create(observer => {
