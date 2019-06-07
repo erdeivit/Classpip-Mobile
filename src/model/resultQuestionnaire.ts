@@ -3,14 +3,11 @@ import { Student } from './student';
 import { Teacher } from './teacher';
 
 export class resultQuestionnaire {
-
   private _questionnaireGame: QuestionnaireGame;
   private _numAnswersCorrect: string;
   private _numAnswersNoCorrect: string;
   private _finalNote: string;
   private _dataAnswers: Array<string>;
-
-
   constructor(questionnaireGame?: QuestionnaireGame, numAnswersCorrect?: string, numAnswersNoCorrect?: string, finalNote?: string,dataAnswers?: Array<string>) {
     this._questionnaireGame = questionnaireGame;
     this._numAnswersCorrect = numAnswersCorrect;
@@ -32,10 +29,8 @@ export class resultQuestionnaire {
     }
     return result;
   }
-
-  /* tslint:disable */
+ /* tslint:disable */
   static toObjectArray(object: any): Array<resultQuestionnaire> {
-    /* tslint:enable */
     let resultArray: Array<resultQuestionnaire> = new Array<resultQuestionnaire>();
     if (object != null) {
       for (let i = 0; i < object.length; i++) {
@@ -52,6 +47,7 @@ export class resultQuestionnaire {
   public set questionnaireGame(value: QuestionnaireGame) {
     this._questionnaireGame = value;
   }
+
   public get numAnswersCorrect(): string {
     return this._numAnswersCorrect;
   }
@@ -59,6 +55,7 @@ export class resultQuestionnaire {
   public set numAnswersCorrect(value: string) {
     this._numAnswersCorrect = value;
   }
+
   public get numAnswersNoCorrect(): string {
     return this._numAnswersNoCorrect;
   }
@@ -66,6 +63,7 @@ export class resultQuestionnaire {
   public set numAnswersNoCorrect(value: string) {
     this._numAnswersNoCorrect = value;
   }
+
   public get finalNote(): string {
     return this._finalNote;
   }

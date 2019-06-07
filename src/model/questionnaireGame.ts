@@ -3,7 +3,6 @@ import { Student } from './student';
 import { Teacher } from './teacher';
 
 export class QuestionnaireGame {
-
   private _id: string;
   private _name: string;
   private _start_date: Date;
@@ -44,10 +43,8 @@ export class QuestionnaireGame {
     this._groupId = groupId;
     this._questionnaireId = questionnaireId;
   }
-
-  /* tslint:disable */
+ /* tslint:disable */
   static toObject(object: any): QuestionnaireGame {
-    /* tslint:enable */
     let result: QuestionnaireGame = new QuestionnaireGame();
     if (object != null) {
       result.id = object.id;
@@ -108,6 +105,7 @@ export class QuestionnaireGame {
   public set start_date(value: Date) {
     this._start_date = value;
   }
+
   public get finish_date(): Date {
     return this._finish_date;
   }
@@ -115,6 +113,7 @@ export class QuestionnaireGame {
   public set finish_date(value: Date) {
     this._finish_date = value;
   }
+
   public get str_date(): string {
     return this._str_date;
   }
@@ -122,6 +121,7 @@ export class QuestionnaireGame {
   public set str_date(value: string) {
     this._str_date = value;
   }
+
   public get fnsh_date(): string {
     return this._fnsh_date;
   }
@@ -129,6 +129,7 @@ export class QuestionnaireGame {
   public set fnsh_date(value: string) {
     this._fnsh_date = value;
   }
+
   public get question_time(): number {
     return this._question_time;
   }
@@ -136,6 +137,7 @@ export class QuestionnaireGame {
   public set question_time(value: number) {
     this._question_time = value;
   }
+
   public get questionnaire_time(): number {
     return this._questionnaire_time;
   }
@@ -143,6 +145,7 @@ export class QuestionnaireGame {
   public set questionnaire_time(value: number) {
     this._questionnaire_time = value;
   }
+
   public get results(): Array<string> {
     return this._results;
   }
@@ -150,9 +153,11 @@ export class QuestionnaireGame {
   public set results(value: Array<string>) {
     this._results = value;
   }
+
   public get points(): Array<number> {
     return this._points;
   }
+
   public set points(value: Array<number>) {
     this._points = value;
   }
@@ -164,6 +169,7 @@ export class QuestionnaireGame {
   public set prizes(value: Array<string>) {
     this._prizes = value;
   }
+
   public get student(): Student[] {
     return this._student;
   }
@@ -171,6 +177,7 @@ export class QuestionnaireGame {
   public set student(value: Student[]) {
     this._student = value;
   }
+
   public get teacher(): Teacher {
     return this._teacher;
   }
@@ -178,6 +185,7 @@ export class QuestionnaireGame {
   public set teacher(value: Teacher) {
     this._teacher = value;
   }
+
   public get questionnaire(): Questionnaire {
     return this._questionnaire;
   }
@@ -185,6 +193,7 @@ export class QuestionnaireGame {
   public set questionnaire(value: Questionnaire) {
     this._questionnaire = value;
   }
+
   public get gameMode(): string {
     return this._gameMode;
   }
@@ -200,6 +209,7 @@ export class QuestionnaireGame {
   public set teamMode(value: string) {
     this._teamMode = value;
   }
+
   public get teacherId(): string {
     return this._teacherId;
   }
@@ -215,9 +225,11 @@ export class QuestionnaireGame {
   public set groupId(value: string) {
     this._groupId = value;
   }
+
   public set questionnaireId(value: string) {
     this._questionnaireId = value;
   }
+
   public get questionnaireId(): string {
     return this._questionnaireId;
   }

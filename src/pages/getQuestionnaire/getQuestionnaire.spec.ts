@@ -8,7 +8,6 @@ let instance: any = null;
 /* tslint:enable */
 
 describe('Pages: GetQuestionnairePage', () => {
-
   beforeEach(async(() => TestUtils.beforeEachCompiler([GetQuestionnairePage]).then(compiled => {
     fixture = compiled.fixture;
     instance = compiled.instance;

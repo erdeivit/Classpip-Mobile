@@ -3,31 +3,22 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { UtilsService } from '../providers/utils.service';
 import { AppConfig } from '../app/app.config';
-import { Credentials } from '../model/credentials';
 import { Role } from '../model/role';
-import { Login } from '../model/login';
 import { Question } from '../model/question';
 import { Questionnaire } from '../model/questionnaire';
 import { QuestionnaireGame } from '../model/questionnaireGame';
 import { resultQuestionnaire } from '../model/resultQuestionnaire';
-import { Answer } from '../model/answer';
 import { Student } from '../model/student';
-import { CorrectAnswer } from '../model/correctAnswer';
 import { IonicService } from '../providers/ionic.service';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { GetQuestionnairePage } from '../pages/getQuestiogetMyQuestionnairennaire/getQuestionnaire';
-import {Point} from "../model/point";
-import { ResultQuestionnairePage } from '../pages/resultQuestionnaire/resultQuestionnaire';
 
 @Injectable()
 export class QuestionnaireService {
-
   constructor(
     public http: Http,
     public ionicService: IonicService,
     public translateService: TranslateService,
     public utilsService: UtilsService) {
-
     }
 
   /**
@@ -56,8 +47,6 @@ export class QuestionnaireService {
 
     let url: string;
     url = AppConfig.RESULTQUESTIONNAIRE_URL;
-    console.log(url);
-    console.log(questionnaireGame);
     questionnaireGame['']
     const postParams = {
       questionnaireGame: {
@@ -81,7 +70,6 @@ export class QuestionnaireService {
       studentId:"10000",
       userAnswers:userAnswers
     }
-    console.log(postParams);
     return this.http.post(url, postParams, options)
     .map((response: Response, index: number) => resultQuestionnaire.toObject(response.json()))
   }
@@ -96,17 +84,6 @@ export class QuestionnaireService {
 
     let postParams = {
       results: answers,
-      /*
-      questionnaire: myQuestionnaire,
-      questionnaireName: questionnaireName,
-      questionnaireId: questionnaireId,
-      numTotalQuestions: numTotalQuestions,
-      numAnswerCorrect: numAnswerCorrect,
-      numAnswerNoCorrect: numAnswerNoCorrect,
-      finalNote: finalNote,
-      studentId: this.utilsService.currentUser.userId,
-      dataAnswers: dataAnswers
-      */
     }
 
     return this.http.post(url, postParams, options)
@@ -135,36 +112,12 @@ export class QuestionnaireService {
   }
 
   /**
-   * This method returns all questionnaires.
-   * @return {Observable<Array<Questionnaire>>} returns an observable with the result
-   * of the operation
-   */
-  /*public getResultQuestionnaires(): Observable<Array<ResultQuestionnaire>> {
-
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    var url: string = AppConfig.RESULTQUESTIONNAIRE_URL;
-
-    return this.http.get(url, options)
-      .map((response: Response, index: number) =>
-        Questionnaire.toObjectArray(response.json())
-      )
-      .catch((error: Response) => this.utilsService.handleAPIError(error));
-
-  }
-  */
-
-  /**
    * This method returns the current questionnaire of the logged
    * in user.
    * @return {Observable<Questionnaire>} returns an observable with the result
    * of the operation
    */
   public getQuestionsofQuestionnaireGame(id:string): Observable<Array<Question>> {
-
-
     var ret: Array<Question> = new Array<Question>();
     return Observable.create(observer => {
       this.getQuestionnaire(id).subscribe(
@@ -172,20 +125,14 @@ export class QuestionnaireService {
           questionnaire.question.forEach(id => {
             this.getQuestion(id).subscribe(
               question => {
-                 // this.getQuestionCorrectAnswers(question.id).subscribe(
-                   // correctAnswer => {
-                     // question.correctAnswer = correctAnswer;
                       ret.push(question);
                       observer.next(ret);
                       observer.complete();
-                   // }, error => observer.error(error))
               }, error => observer.error(error))
           });
         }, error => observer.error(error)
       )
     });
-
-
   }
 
   public getQuestionnaire(id:string): Observable<Questionnaire> {
@@ -281,116 +228,9 @@ export class QuestionnaireService {
   }
 
   /**
-   * Returns the list of answers by a questionnaire id.
-   * @return Observable{Array<Answer>} returns the list of answers
-   */
-  public getQuestionAnswers(id: string): Observable<Array<Answer>> {
-
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    var count: number = 0;
-    var url: string = AppConfig.QUESTION_URL + '/' + id + AppConfig.ANSWERS_URL;
-
-    return this.http.get(url, options)
-      .map((response: Response, index: number) =>  Answer.toObjectArray(response.json()))
-  }
-
-  /**
    * Returns the list of correct answers by a questionnaire id.
    * @return Observable{Array<CorrectAnswer>} returns the list of correct answers
    */
-  public getQuestionCorrectAnswers(id: string): Observable<Array<CorrectAnswer>> {
-
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    var count: number = 0;
-    var url: string = AppConfig.QUESTION_URL + '/' + id + AppConfig.CORRECTANSWER_URL;
-
-    return this.http.get(url, options)
-      .map((response: Response, index: number) =>  CorrectAnswer.toObjectArray(response.json()))
-  }
-
-  /**
-  * Method that saves the results of the questionnaire
-  */
-  /* public saveResults(student: Student, myQuestionnaire: Questionnaire,questionnaireName: string, questionnaireId: string, numTotalQuestions: number, numAnswerCorrect: number, numAnswerNoCorrect: number, finalNote: number, dataAnswers: Array<string>): Observable<ResultQuestionnaire> {
-
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    var url: string;
-    switch (this.utilsService.role) {
-      case Role.STUDENT:
-        url = AppConfig.RESULTQUESTIONNAIRE_URL;
-        break;
-      case Role.TEACHER:
-        url = AppConfig.RESULTSQUESTIONNAIRE_URL;
-        break;
-      case Role.SCHOOLADMIN:
-        url = AppConfig.RESULTSQUESTIONNAIRE_URL;
-        break;
-      default:
-        break;
-    }
-
-    let postParams = {
-      student: student,
-      questionnaire: myQuestionnaire,
-      questionnaireName: questionnaireName,
-      questionnaireId: questionnaireId,
-      numTotalQuestions: numTotalQuestions,
-      numAnswerCorrect: numAnswerCorrect,
-      numAnswerNoCorrect: numAnswerNoCorrect,
-      finalNote: finalNote,
-      studentId: this.utilsService.currentUser.userId,
-      dataAnswers: dataAnswers
-    }
-
-    return this.http.post(url, postParams, options)
-      .map((response: Response, index: number) => ResultQuestionnaire.toObject(response.json()))
-
-  }
-  */
-
-  /*public saveResultsNoteFinale(questionnaireId: string, numAnswerCorrect: number, numAnswerNoCorrect: number, finalNote: number): Observable<ResultQuestionnaire> {
-
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    var url: string;
-    switch (this.utilsService.role) {
-      case Role.STUDENT:
-        url = AppConfig.RESULTQUESTIONNAIRE_URL;
-        break;
-      case Role.TEACHER:
-        url = AppConfig.RESULTSQUESTIONNAIRE_URL;
-        break;
-      case Role.SCHOOLADMIN:
-        url = AppConfig.RESULTSQUESTIONNAIRE_URL;
-        break;
-      default:
-        break;
-    }
-
-    let postParams = {
-      questionnaireId: questionnaireId,
-      numAnswerCorrect: numAnswerCorrect,
-      numAnswerNoCorrect: numAnswerNoCorrect,
-      finalNote: finalNote,
-      studentId: this.utilsService.currentUser.userId
-    }
-
-    return this.http.post(url, postParams, options)
-      .map((response: Response, index: number) => ResultQuestionnaire.toObject(response.json()))
-
-  }*/
-
   /**
    * Returns the student by a id.
    * @return {Stuent} returns the student

@@ -1,6 +1,4 @@
-
 export class Question {
-
   private _statement: string;
   private _id: string;
   private _answer1: string;
@@ -17,7 +15,6 @@ export class Question {
   private _teacherId: string;
   private _questionnaireId: string;
   private _type:string;
-
   // tslint:disable-next-line: max-line-length
   constructor(id?: string, statement?: string, answer1?: string, answer2?: string, answer3?: string, answer4?: string, answer5?: string, answer6?: string, correctanswer?: string, image?: string, difficulty?: string, category?: string,
     explanation?: string, teacherId?: string, questionnaireId?: string,type?:string) {
@@ -106,6 +103,7 @@ export class Question {
   public set answer2(value: string) {
     this._answer2 = value;
   }
+
   public get answer3(): (string) {
     return this._answer3;
   }
@@ -113,6 +111,7 @@ export class Question {
   public set answer3(value: string) {
     this._answer3 = value;
   }
+
   public get answer4(): (string) {
     return this._answer4;
   }
@@ -120,6 +119,7 @@ export class Question {
   public set answer4(value: string) {
     this._answer4 = value;
   }
+
   public get answer5(): (string) {
     return this._answer5;
   }
@@ -134,6 +134,7 @@ export class Question {
   public set answer6(value: string) {
     this._answer6 = value;
   }
+
   public get correctanswer(): (string) {
     return this._correctanswer;
   }
@@ -149,6 +150,7 @@ export class Question {
   public set image(value: string) {
     this._image = value;
   }
+
   public get difficulty(): string {
     return this._difficulty;
   }
@@ -156,6 +158,7 @@ export class Question {
   public set difficulty(value: string) {
     this._difficulty = value;
   }
+
   public get category(): string {
     return this._category;
   }
@@ -163,6 +166,7 @@ export class Question {
   public set category(value: string) {
     this._category = value;
   }
+
   public get explanation(): string {
     return this._explanation;
   }
@@ -170,6 +174,7 @@ export class Question {
   public set explanation(value: string) {
     this._explanation = value;
   }
+
   public get questionnaireId(): string {
     return this._questionnaireId;
   }
@@ -177,6 +182,7 @@ export class Question {
   public set questionnaireId(value: string) {
     this._questionnaireId = value;
   }
+
   public get teacherId(): string {
     return this._teacherId;
   }
@@ -184,6 +190,7 @@ export class Question {
   public set teacherId(value: string) {
     this._teacherId = value;
   }
+
   public get type(): string {
     return this._type;
   }

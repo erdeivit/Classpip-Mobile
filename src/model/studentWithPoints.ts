@@ -1,5 +1,4 @@
 import {Student} from "./student";
-
 export class StudentWithPoints {
   private _student: Student;
   private _totalPoints: number;
