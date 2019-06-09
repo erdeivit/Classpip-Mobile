@@ -15,23 +15,6 @@
   }
 }
 
-.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
-.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child,
-.item-md.item-input.input-has-focus .item-inner,
-.list-md .item-input.input-has-focus:last-child,
-.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
-  border-bottom: 0;
-  box-shadow: none;
-}
-
-.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus) {
-  &:last-child,
-  .item-inner .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
-    border-bottom: 0;
-    box-shadow: none;
-  }
-}
-
 .alertDanger {
   // TITLE COLOR
 

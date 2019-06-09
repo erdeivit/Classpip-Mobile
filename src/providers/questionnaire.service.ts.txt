@@ -1,0 +1,20 @@
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This file is the questionnaireService file. Here there are all the methods that you can use to
+get information related to questionnaire blocks of the BBDD.
+
+You can access to he models: Question.json, Questionnaire.json, QuestionnaireGame.json and
+ResultQuestionnaire.json
+
+This is a resume of all the methods you can call. You can easily identify what you get thanks
+to the name of the function, the parameters it needs and the observable that returns you.
+
+- public getQuestionnairesGame(): Observable<Array<QuestionnaireGame>>
+
+- public postResult(questionnaireGame:QuestionnaireGame,numAnswerCorrect:number,numAnswerNoCorrect:number,finalNote:string,userAnswers:Array<string>,numofquestions:number): Observable<resultQuestionnaire>
+
+- public getQuestionsofQuestionnaireGame(idQuestionnaire:string): Observable<Array<Question>>
+
+- public getQuestionnaire(idQuestionnaire:string): Observable<Questionnaire>
+
+- public getQuestion(idQuestion: Question): Observable<Question>

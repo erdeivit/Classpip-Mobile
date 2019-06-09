@@ -6,7 +6,6 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 // application
 import { MyApp } from './app.component';
 import { AppConfig } from './app.config';
-import { TimerComponent } from '../components/timer/timer';
 
 // pages
 import { LoginPage } from '../pages/login/login';
@@ -121,7 +120,6 @@ export function exportTranslateStaticLoader(http: Http) {
     quest1by1Page,
     questflipcardspipPage,
     ResultQuestionnairePage,
-    TimerComponent,
     CollectionTpage,
     CollectionCreate,
     CollectionTeacherDetail,
@@ -222,7 +220,6 @@ export function exportTranslateStaticLoader(http: Http) {
     PointRelationService,
     BadgeService,
     BadgeRelationService,
-    TimerComponent,
     CollectionService,
     UploadImageService,
     File,

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title font-size="2" ><p *ngIf="questionTime"> Tiempo de Pregunta {{ displayTime }}</p><p *ngIf="questionnaireTime"> Tiempo del cuestionario {{ displayTime }}</p><marquee font-size="2" behavior="scroll" direction="left">{{this.navParams.data.title }}</marquee></ion-title>
+        <ion-title font-size="2" ><p *ngIf="questionTime"> {{'QUESTIONNAIRE.QUESTIONTIME'|translate}} {{ displayTime }}</p><p *ngIf="questionnaireTime"> {{'QUESTIONNAIRE.QUESTIONNAIRETIME'|translate}} {{ displayTime }}</p><marquee font-size="2" behavior="scroll" direction="left">{{this.navParams.data.title }}</marquee></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content>
@@ -13,56 +13,56 @@
           </ion-list-header>
           <ion-item ng-model="filter.typeFilter" *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'classic') ">
               <ion-label>{{ actualQuestion.answer1 }}</ion-label>
-              <ion-radio (click)="saveanswer(actualQuestion.answer1)"checked="false"></ion-radio>
+              <ion-radio (click)="saveAnswer(actualQuestion.answer1)"checked="false"></ion-radio>
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer2 !== undefined) && (actualQuestion.type === 'classic')">
                 <ion-label >{{ actualQuestion.answer2 }}</ion-label>
-                <ion-radio (click)="saveanswer(actualQuestion.answer2)" checked="false"></ion-radio>
+                <ion-radio (click)="saveAnswer(actualQuestion.answer2)" checked="false"></ion-radio>
               </ion-item>
             <ion-item *ngIf="(actualQuestion.answer3!== undefined) && (actualQuestion.type === 'classic')">
               <ion-label >{{ actualQuestion.answer3 }}</ion-label >
-              <ion-radio (click)="saveanswer(actualQuestion.answer3)"checked="false"></ion-radio>
+              <ion-radio (click)="saveAnswer(actualQuestion.answer3)"checked="false"></ion-radio>
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer4 !== undefined) && (actualQuestion.type === 'classic')">
                 <ion-label >{{ actualQuestion.answer4 }}</ion-label >
-                <ion-radio  (click)="saveanswer(actualQuestion.answer4)"checked="false"></ion-radio>
+                <ion-radio  (click)="saveAnswer(actualQuestion.answer4)"checked="false"></ion-radio>
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer5 !== undefined) && (actualQuestion.type === 'classic')">
                 <ion-label >{{ actualQuestion.answer5 }}</ion-label >
-                <ion-radio  (click)="saveanswer(actualQuestion.answer5)" checked="false"></ion-radio>
+                <ion-radio  (click)="saveAnswer(actualQuestion.answer5)" checked="false"></ion-radio>
             </ion-item>
             <ion-item *ngIf="actualQuestion.answer6 !== undefined && (actualQuestion.type === 'classic')">
                 <ion-label >{{ actualQuestion.answer6 }}</ion-label >
-                <ion-radio  (click)="saveanswer(actualQuestion.answer6)" checked="false"></ion-radio>
+                <ion-radio  (click)="saveAnswer(actualQuestion.answer6)" checked="false"></ion-radio>
             </ion-item>
             <ion-item  *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'openQuestion')">
-              <ion-textarea (blur)="saveanswer3($event.target.value,i)" text-wrap placeholder="Esccribe aquí la respuesta. Recuerda que los decimales van con '.'"></ion-textarea >
+              <ion-textarea (blur)="saveAnswer($event.target.value)" text-wrap placeholder="{{'QUESTIONNAIRE.TEXTAREA'|translate}}"></ion-textarea >
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'multiAnswer') ">
               <ion-label>{{ actualQuestion.answer1 }}</ion-label>
-              <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer1,i,0)" checked="false"></ion-checkbox>
+              <ion-checkbox item-right (click)="saveMultipleAnswer(actualQuestion.answer1,i,0)" checked="false"></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer2 !== undefined) && (actualQuestion.type === 'multiAnswer')">
                 <ion-label >{{ actualQuestion.answer2 }}</ion-label>
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer2,i,1)" checked="false"></ion-checkbox>
+                <ion-checkbox item-right (click)="saveMultipleAnswer(actualQuestion.answer2,i,1)" checked="false"></ion-checkbox>
               </ion-item>
             <ion-item *ngIf="(actualQuestion.answer3!== undefined) && (actualQuestion.type === 'multiAnswer')">
               <ion-label >{{ actualQuestion.answer3 }}</ion-label >
-              <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer3,i,2)"checked="false"></ion-checkbox>
+              <ion-checkbox item-right (click)="saveMultipleAnswer(actualQuestion.answer3,i,2)"checked="false"></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer4 !== undefined) && (actualQuestion.type === 'multiAnswer')">
                 <ion-label >{{ actualQuestion.answer4 }}</ion-label >
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer4,i,3)"checked="false"></ion-checkbox>
+                <ion-checkbox item-right (click)="saveMultipleAnswer(actualQuestion.answer4,i,3)"checked="false"></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer5 !== undefined) && (actualQuestion.type === 'multiAnswer')">
                 <ion-label >{{ actualQuestion.answer5 }}</ion-label >
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer5,i,4)" checked="false"></ion-checkbox>
+                <ion-checkbox item-right (click)="saveMultipleAnswer(actualQuestion.answer5,i,4)" checked="false"></ion-checkbox>
             </ion-item>
             <ion-item *ngIf="actualQuestion.answer6 !== undefined && (actualQuestion.type === 'multiAnswer')">
                 <ion-label >{{ actualQuestion.answer6 }}</ion-label >
-                <ion-checkbox item-right (click)="saveanswer2(actualQuestion.answer6,i,5)" checked="false"></ion-checkbox>
+                <ion-checkbox item-right (click)="saveMultipleAnswer(actualQuestion.answer6,i,5)" checked="false"></ion-checkbox>
             </ion-item>
         </ion-list>
-        <button ion-button full id="click">SIGUIENTE</button>
+        <button ion-button full id="click">{{'QUESTIONNAIRE.NEXT'|translate}}</button>
       </form>
     </ion-content>

@@ -1,25 +1,25 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>{{ 'QUESTIONNAIRES.RESULTS' | translate }}</ion-title>
+    <ion-title>{{ 'QUESTIONNAIRE.RESULTS' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <div>
     <ion-item text-wrap>
-      <h1>NOTA</h1>
+      <h1>{{ 'QUESTIONNAIRE.SHORTMARK' | translate }}</h1>
       <h2 [ngClass]="{green: finalNote >4.999 , red: finalNote < 5}" item-right>{{ finalNote }}</h2>
-      <ion-note text-wrap>Puntiación final obtenida.</ion-note>
+      <ion-note text-wrap>{{ 'QUESTIONNAIRE.MARK' | translate }}.</ion-note>
     </ion-item>
     <ion-item text-wrap>
-      <h1>ACIERTOS</h1>
+      <h1>{{ 'QUESTIONNAIRE.SHORTCORRECTANSWERS' | translate }}</h1>
       <h2 class="green" item-right>{{ numAnswerCorrect }}</h2>
-      <ion-note text-wrap>Aciertos totales conseguidos</ion-note>
+      <ion-note text-wrap>{{ 'QUESTIONNAIRE.CORRECTANSWERS' | translate }}</ion-note>
     </ion-item>
       <ion-item text-wrap>
-      <h1>ERRORES</h1>
+      <h1>{{ 'QUESTIONNAIRE.SHORTWRONGANSWERS' | translate }}</h1>
       <h2 class="red" item-right>{{ numAnswerNoCorrect }}</h2>
-      <ion-note text-wrap>Errores cometidos en el questionario</ion-note>
+      <ion-note text-wrap>{{ 'QUESTIONNAIRE.WRONGANSWERS' | translate }}</ion-note>
     </ion-item>
   </div>
-  <button ion-button full type="button" on-click="outQuestionnaire($event)">{{ 'QUESTIONNAIRE.LOGOUT' | translate }}</button>
+  <button ion-button full type="button" on-click="outQuestionnaire()">{{ 'QUESTIONNAIRE.LOGOUT' | translate }}</button>
 </ion-content>

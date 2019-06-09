@@ -22,10 +22,10 @@ export class GetQuestionnairePage {
   public credentials: Credentials = new Credentials();
   public title:string;
   public groups: Array<Group>;
-  public questGameStudent: Array<QuestionnaireGame> = new Array<QuestionnaireGame>();
-  public activeQuestionnaireGame: Array<QuestionnaireGame> =[];
-  public deadQuestionnaireGame: Array<QuestionnaireGame> = [];
-  public programmedQuestionnaireGame: Array<QuestionnaireGame> = [];
+  public questGamesStudent: Array<QuestionnaireGame> = new Array<QuestionnaireGame>();
+  public activeQuestionnairesGame: Array<QuestionnaireGame>;
+  public deadQuestionnairesGame: Array<QuestionnaireGame>;
+  public programmedQuestionnairesGame: Array<QuestionnaireGame>;
   public myRole: Role;
   public role = Role;
   constructor(
@@ -36,7 +36,6 @@ export class GetQuestionnairePage {
     public translateService: TranslateService,
     public navParms: NavParams,
     public alertController: AlertController) {
-
     // TODO: remove this
     switch (utilsService.role) {
       case Role.STUDENT:
@@ -53,7 +52,7 @@ export class GetQuestionnairePage {
   async FlipCardsPipAlert() {
     const alert = await this.alertController.create({
       title:"Información",
-      message: 'Para ver las respuestas, solo tienes que pasar el mouse sobre el enunciado.',
+      message: "Para ver las respuestas, solo tienes que pasar el mouse sobre el enunciado.",
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -63,8 +62,8 @@ export class GetQuestionnairePage {
 
   async ProgrammedAlert(name:string,date:string) {
     const alert = await this.alertController.create({
-      title:"Llegastes pronto",
-      message: 'El cuestionario: "' + name+'" empezará el: ' + date,
+      title:'Información',
+      message: 'El cuestionario "' + name+ '" empezará el "' + date,
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -75,7 +74,7 @@ export class GetQuestionnairePage {
   async FinishAlert(name:string,date:string) {
     const alert = await this.alertController.create({
       title:"Llegastes tarde",
-      message: 'El cuestionario: "' + name+'" finalizó el: ' + date,
+      message: 'El cuestionario "' + name+'" finalizó el ' + date,
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -89,10 +88,10 @@ export class GetQuestionnairePage {
       for (let questionnaireGame of quest)
       { //TODO: COMPARE WITH THE ID OF THE USER GROUP, NOT THE "1" THAT I ASSUME
         if (questionnaireGame.groupId =="1"){
-          this.questGameStudent.push(questionnaireGame);
+          this.questGamesStudent.push(questionnaireGame);
         }
       }
-      this.getActivos();
+      this.getActiveQuestionnaireGames();
           }),
         error =>
           this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
@@ -106,12 +105,12 @@ export class GetQuestionnairePage {
     this.getQuestionnairesGameStudents();
   }
 
-  public getActivos() {
+  public getActiveQuestionnaireGames() {
     const date = new Date();
-    this.activeQuestionnaireGame = [];
-    this.deadQuestionnaireGame = [];
-    this.programmedQuestionnaireGame = [];
-    for (let QuestionarioGame of this.questGameStudent) {
+    this.activeQuestionnairesGame = [];
+    this.deadQuestionnairesGame = [];
+    this.programmedQuestionnairesGame = [];
+    for (let QuestionarioGame of this.questGamesStudent) {
       var diff = new Date(QuestionarioGame.finish_date).getTime() - date.getTime();
       var diff2 = new Date(QuestionarioGame.start_date).getTime() - date.getTime();
       // tslint:disable-next-line: max-line-length
@@ -119,26 +118,23 @@ export class GetQuestionnairePage {
       QuestionarioGame['fnsh_date'] = new Date(QuestionarioGame.finish_date).getDate() + '/' + (new Date(QuestionarioGame.finish_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.finish_date).getFullYear();
       if (diff >= 0) {
         if (diff2 >= 0) {
-          this.programmedQuestionnaireGame.push(QuestionarioGame);
+          this.programmedQuestionnairesGame.push(QuestionarioGame);
         }
         else {
-          this.activeQuestionnaireGame.push(QuestionarioGame);
+          this.activeQuestionnairesGame.push(QuestionarioGame);
         }
       }
       else {
-        this.deadQuestionnaireGame.push(QuestionarioGame);
+        this.deadQuestionnairesGame.push(QuestionarioGame);
       }
     }
   }
-  /**
-   * This method manages the call to the service for performing a getQuestionnaire
-   * against the public services
-   */
-  public getQuestionnaire(id: string, gameMode:string,name:string,index:number): void {
+
+  public getQuestionnaire(id: string, gameMode:string,index:number): void {
     this.questionnaireService.getQuestionnaire(id).subscribe(
       ((value: Questionnaire) => {
         this.title = value.name;
-    this.questionnaireService.getQuestionsofQuestionnaireGame(id).subscribe(
+    this.questionnaireService.getQuestionsofQuestionnaire(id).subscribe(
       ((value: Array<Question>) => {
         switch (gameMode)
             {
@@ -146,18 +142,18 @@ export class GetQuestionnairePage {
                   this.navController.setRoot(QuizPipPage,{
                     question: value,
                     title: this.title,
-                    questionnaireGame:this.activeQuestionnaireGame[index],
-                    questiontime: this.activeQuestionnaireGame[index].question_time,
-                    questionnairetime: this.activeQuestionnaireGame[index].questionnaire_time
+                    questionnaireGame:this.activeQuestionnairesGame[index],
+                    questiontime: this.activeQuestionnairesGame[index].question_time,
+                    questionnairetime: this.activeQuestionnairesGame[index].questionnaire_time
                   });
               break;
               case '1by1':
                   this.navController.setRoot(quest1by1Page,{
                     question: value,
                     title: this.title,
-                    questionnaireGame:this.activeQuestionnaireGame[index],
-                    questiontime: this.activeQuestionnaireGame[index].question_time,
-                    questionnairetime: this.activeQuestionnaireGame[index].questionnaire_time,
+                    questionnaireGame:this.activeQuestionnairesGame[index],
+                    questiontime: this.activeQuestionnairesGame[index].question_time,
+                    questionnairetime: this.activeQuestionnairesGame[index].questionnaire_time,
                     actualQuestion: value[0],
                     i:0
                   });
@@ -167,7 +163,7 @@ export class GetQuestionnairePage {
                   this.navController.setRoot(questflipcardspipPage,{
                     question: value,
                     title: this.title,
-                    questionnaireGame:this.activeQuestionnaireGame[index]
+                    questionnaireGame:this.activeQuestionnairesGame[index]
                   });
               break;
             }

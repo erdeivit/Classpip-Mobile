@@ -10,9 +10,8 @@ import { ResultQuestionnairePage } from '../../pages/resultQuestionnaire/resultQ
 })
 export class QuizPipPage {
   public questions: Array<Question>;
-  public questionsAnswers: Array<Question>
-  public dataAnswers  = [];
-  public dataAnswers2  = [];
+  public userAnswers  = [];
+  public userMultiAnswers  = [];
   public comprobacion:number;
   public questionTime:number;
   public questionnaireTime:number;
@@ -27,46 +26,33 @@ export class QuizPipPage {
     this.questionnaireTime = this.navParams.data.questionnairetime;
   }
 
-  public saveanswer(data:string,indice:number){
-    this.dataAnswers[indice] = data;
+  public saveAnswer(data:string,indice:number){
+    this.userAnswers[indice] = data;
   }
 
-  public saveanswer2(data:string,indice:number,indice2:number){
+  public saveMultiAnswer(data:string,indice:number,indice2:number){
     if (this.comprobacion === indice2)
     {
-      this.dataAnswers2.splice(indice2,1);
-      this.dataAnswers[indice] = this.dataAnswers2;
+      this.userMultiAnswers.splice(indice2,1);
+      this.userAnswers[indice] = this.userMultiAnswers;
       this.comprobacion=7;
     }
     else
     {
-      this.dataAnswers2[indice2] = data;
-      this.dataAnswers[indice] = this.dataAnswers2;
+      this.userMultiAnswers[indice2] = data;
+      this.userAnswers[indice] = this.userMultiAnswers;
       this.comprobacion=indice2;
     }
   }
 
-  public saveanswer3(res,indice:number)
-  {
-    this.dataAnswers[indice] = res;
-  }
-
-  /**
-   * Fires when the page appears on the screen.
-   * Used to get all the data needed in page
-   */
   public ionViewDidEnter(): void {
     this.ionicService.removeLoading();
   }
 
- /**
-   * This method manages the call to the service for performing a doSubmitAnswer
-   * against the public services
-   */
   public doSubmitAnswer() {
     this.navController.setRoot(ResultQuestionnairePage,
       {questions: this.questions,
-        answers: this.dataAnswers,
+        answers: this.userAnswers,
         questionnaireGame: this.navParams.data.questionnaireGame });
 
       }

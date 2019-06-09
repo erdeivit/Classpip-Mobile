@@ -35,13 +35,10 @@ export class ResultQuestionnairePage {
   public ionViewDidEnter(): void {
     this.ionicService.removeLoading();
     this.calculatemark();
-    this.saveResult();
+    this.postResult();
   }
 
-  /**
-   * Method for displaying the MenuPage page
-   */
-  public outQuestionnaire(event) {
+  public outQuestionnaire() {
     this.navController.setRoot(MenuPage);
   }
 
@@ -96,8 +93,8 @@ export class ResultQuestionnairePage {
   }
 
   //TODO: Go to questionnaireService.saveResult and change the id of the user by one caught (currently static to 10000)
-  public saveResult(){
-    this.questionnaireService.saveResult(this.navParams.data.questionnaireGame,this.numAnswerCorrect,this.numAnswerNoCorrect,this.finalNote,this.userAnswers,this.numTotalQuestions).subscribe(
+  public postResult(){
+    this.questionnaireService.postResult(this.navParams.data.questionnaireGame,this.numAnswerCorrect,this.numAnswerNoCorrect,this.finalNote,this.userAnswers,this.numTotalQuestions).subscribe(
       (() => {
       }),
       error =>

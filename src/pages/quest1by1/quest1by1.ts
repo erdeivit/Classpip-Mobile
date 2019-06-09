@@ -13,10 +13,9 @@ import { ResultQuestionnairePage } from '../resultQuestionnaire/resultQuestionna
 /* tslint:disable */
 export class quest1by1Page {
   public questions: Array<Question>;
-  public numQuestions: number;
   public actualQuestion: Question;
-  public dataAnswers  = [];
-  public dataAnswers2  = [];
+  public userAnswer  = [];
+  public userMultiAnswer  = [];
   public title: string;
   public comprobacion:number=7;
   public i: number;
@@ -24,7 +23,8 @@ export class quest1by1Page {
   public questionnaireTime:number;
   public displayTime: string;
   public timer;
-  public finish = false;
+  public time: number=0;
+  public findFinish = false;
   constructor(
     public navParams: NavParams,
     public navController: NavController,
@@ -36,32 +36,27 @@ export class quest1by1Page {
     this.questionnaireTime = this.navParams.data.questionnairetime;
     this.i = this.navParams.data.i;
     if(this.navParams.data.dataAnswers){
-      this.dataAnswers = this.navParams.data.dataAnswers;
+      this.userAnswer = this.navParams.data.dataAnswers;
     }
   }
 
-  public saveanswer(data:string){
-    this.dataAnswers[this.i] = data;
+  public saveAnswer(answer:string){
+    this.userAnswer[this.i] = answer;
   }
 
-  public saveanswer2(data:string,indice:number,indice2:number){
-    if (this.comprobacion === indice2)
+  public saveMultipleAnswer(answer:string,indexUserAnswer:number,indexMultipleAnswer:number){
+    if (this.comprobacion === indexMultipleAnswer)
     {
-      this.dataAnswers2.splice(indice2,1);
-      this.dataAnswers[indice] = this.dataAnswers2;
+      this.userMultiAnswer.splice(indexMultipleAnswer,1);
+      this.userAnswer[indexUserAnswer] = this.userMultiAnswer;
       this.comprobacion=7;
     }
     else
     {
-      this.dataAnswers2[indice2] = data;
-      this.dataAnswers[indice] = this.dataAnswers2;
-      this.comprobacion=indice2;
+      this.userMultiAnswer[indexMultipleAnswer] = answer;
+      this.userAnswer[indexUserAnswer] = this.userMultiAnswer;
+      this.comprobacion=indexMultipleAnswer;
     }
-  }
-
-  public saveanswer3(res,indice:number)
-  {
-    this.dataAnswers[indice] = res;
   }
 
   /**
@@ -72,18 +67,14 @@ export class quest1by1Page {
     this.ionicService.removeLoading()
   }
 
- /**
-   * This method manages the call to the service for performing a doSubmitAnswer
-   * against the public services
-   */
   public doSubmitAnswer() {
     this.actualQuestion = this.questions[this.i];
-    if ((!this.questions[this.i+1]) || (this.finish))
+    if ((!this.questions[this.i+1]) || (this.findFinish))
     {
       clearTimeout(this.timer);
       this.navController.setRoot(ResultQuestionnairePage,
         {questions: this.questions,
-          answers: this.dataAnswers,
+          answers: this.userAnswer,
           questionnaireGame: this.navParams.data.questionnaireGame
         });
         return;
@@ -95,12 +86,12 @@ export class quest1by1Page {
       this.navController.setRoot(quest1by1Page,
         {
           question: this.questions,
-          dataAnswers: this.dataAnswers,
+          dataAnswers: this.userAnswer,
           title: this.navParams.data.title,
           questionnaireGame: this.navParams.data.questionnaireGame,
           actualQuestion: this.questions[this.i],
           questiontime: this.questionTime,
-          questionnairetime: this.questionnaireTime,
+          questionnairetime: this.time,
           i:this.i
         });
     }
@@ -114,19 +105,19 @@ export class quest1by1Page {
   }
 
   initTimer() {
-    var time = 0;
     if (this.questionTime){
-      time = this.questionTime;
+      this.time = this.questionTime;
+      this.questionnaireTime=undefined;
     }
     else if (this.questionnaireTime)
     {
-      time = this.questionnaireTime;
+      this.time = this.questionnaireTime;
     }
     else {
       return;
     };
-    this.displayTime = this.getSecondsAsDigitalClock(time);
-    this.timerTick(time);
+    this.displayTime = this.getSecondsAsDigitalClock(this.time);
+    this.timerTick();
   }
 
   getSecondsAsDigitalClock(inputSeconds: number) {
@@ -140,16 +131,16 @@ export class quest1by1Page {
     return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
-  timerTick(time:number) {
+  timerTick() {
     this.timer = setTimeout(() => {
-      time--;
-      this.displayTime = this.getSecondsAsDigitalClock(time);
-      if (time > 0) {
-        this.timerTick(time);
+      this.time--;
+      this.displayTime = this.getSecondsAsDigitalClock(this.time);
+      if (this.time > 0) {
+        this.timerTick();
       }
       else {
         if(this.questionnaireTime){
-          this.finish = true;
+          this.findFinish = true;
           }
           this.doSubmitAnswer();
       }

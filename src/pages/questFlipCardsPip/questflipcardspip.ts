@@ -10,7 +10,6 @@ import { MenuPage } from '../menu/menu';
 })
 export class questflipcardspipPage {
   public questions: Array<Question>;
-  public questionsAnswers: Array<Question>
   public actualQuestion: Question;
   public title: string;
   public i:number=0;
@@ -25,8 +24,8 @@ export class questflipcardspipPage {
   }
   async presentAlert() {
     const alert = await this.alertController.create({
-      title:"Final",
-      message: 'Hasta aquí el repaso con el cuestionario: ' +this.navParams.data.title,
+      title:"Cuestionario finalizado",
+      message: "Has finalizado el cuestionario: " +this.navParams.data.title,
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -39,12 +38,6 @@ export class questflipcardspipPage {
   public ionViewDidEnter(): void {
     this.ionicService.removeLoading()
   }
-
- /**
-   * This method manages the call to the service for performing a doSubmitAnswer
-   * against the public services
-   */
-
   public nextQuestion() {
        if (!this.questions[this.i+1])
        {

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title font-size="2" ><p *ngIf="questionTime"> Tiempo de Pregunta {{ displayTime }}</p><p *ngIf="questionnaireTime"> Tiempo del cuestionario {{ displayTime }}</p><marquee font-size="2" behavior="scroll" direction="left">{{this.navParams.data.title }}</marquee></ion-title>
+        <ion-title font-size="2" ><p *ngIf="questionnaireTime"> {{'QUESTIONNAIRE.QUESTIONNAIRETIME'|translate}} {{ displayTime }}</p><marquee font-size="2" behavior="scroll" direction="left">{{this.navParams.data.title }}</marquee></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content>
@@ -13,56 +13,56 @@
           </ion-list-header>
           <ion-item *ngIf="(Quest.answer1 !== undefined) && (Quest.type === 'classic') ">
             <ion-label>{{ Quest.answer1 }}</ion-label>
-            <ion-radio (click)="saveanswer(Quest.answer1,i)"checked="false"></ion-radio>
+            <ion-radio (click)="saveAnswer(Quest.answer1,i)"checked="false"></ion-radio>
           </ion-item>
           <ion-item *ngIf="(Quest.answer2 !== undefined) && (Quest.type === 'classic')">
               <ion-label >{{ Quest.answer2 }}</ion-label>
-              <ion-radio (click)="saveanswer(Quest.answer2,i)" checked="false"></ion-radio>
+              <ion-radio (click)="saveAnswer(Quest.answer2,i)" checked="false"></ion-radio>
             </ion-item>
           <ion-item *ngIf="(Quest.answer3!== undefined) && (Quest.type === 'classic')">
             <ion-label >{{ Quest.answer3 }}</ion-label >
-            <ion-radio (click)="saveanswer(Quest.answer3,i)"checked="false"></ion-radio>
+            <ion-radio (click)="saveAnswer(Quest.answer3,i)"checked="false"></ion-radio>
           </ion-item>
           <ion-item *ngIf="(Quest.answer4 !== undefined) && (Quest.type === 'classic')">
               <ion-label >{{ Quest.answer4 }}</ion-label >
-              <ion-radio  (click)="saveanswer(Quest.answer4,i)"checked="false"></ion-radio>
+              <ion-radio  (click)="saveAnswer(Quest.answer4,i)"checked="false"></ion-radio>
           </ion-item>
           <ion-item *ngIf="(Quest.answer5 !== undefined) && (Quest.type === 'classic')">
               <ion-label >{{ Quest.answer5 }}</ion-label >
-              <ion-radio  (click)="saveanswer(Quest.answer5,i)" checked="false"></ion-radio>
+              <ion-radio  (click)="saveAnswer(Quest.answer5,i)" checked="false"></ion-radio>
           </ion-item>
           <ion-item *ngIf="Quest.answer6 !== undefined && (Quest.type === 'classic')">
               <ion-label >{{ Quest.answer6 }}</ion-label >
-              <ion-radio  (click)="saveanswer(Quest.answer6,i)" checked="false"></ion-radio>
+              <ion-radio  (click)="saveAnswer(Quest.answer6,i)" checked="false"></ion-radio>
           </ion-item>
           <ion-item  *ngIf="(Quest.answer1 !== undefined) && (Quest.type === 'openQuestion')">
-            <ion-textarea (blur)="saveanswer3($event.target.value,i)" text-wrap placeholder="Esccribe aquí la respuesta. Recuerda que los decimales van con '.'"></ion-textarea >
+            <ion-textarea (blur)="saveAnswer($event.target.value,i)" text-wrap placeholder="{{'QUESTIONNAIRE.TEXTAREA'|translate}}"></ion-textarea >
           </ion-item>
           <ion-item *ngIf="(Quest.answer1 !== undefined) && (Quest.type === 'multiAnswer') ">
             <ion-label>{{ Quest.answer1 }}</ion-label>
-            <ion-checkbox item-right (click)="saveanswer2(Quest.answer1,i,0)" checked="false"></ion-checkbox>
+            <ion-checkbox item-right (click)="saveMultiAnswer(Quest.answer1,i,0)" checked="false"></ion-checkbox>
           </ion-item>
           <ion-item *ngIf="(Quest.answer2 !== undefined) && (Quest.type === 'multiAnswer')">
               <ion-label >{{ Quest.answer2 }}</ion-label>
-              <ion-checkbox item-right (click)="saveanswer2(Quest.answer2,i,1)" checked="false"></ion-checkbox>
+              <ion-checkbox item-right (click)="saveMultiAnswer(Quest.answer2,i,1)" checked="false"></ion-checkbox>
             </ion-item>
           <ion-item *ngIf="(Quest.answer3!== undefined) && (Quest.type === 'multiAnswer')">
             <ion-label >{{ Quest.answer3 }}</ion-label >
-            <ion-checkbox item-right (click)="saveanswer2(Quest.answer3,i,2)"checked="false"></ion-checkbox>
+            <ion-checkbox item-right (click)="saveMultiAnswer(Quest.answer3,i,2)"checked="false"></ion-checkbox>
           </ion-item>
           <ion-item *ngIf="(Quest.answer4 !== undefined) && (Quest.type === 'multiAnswer')">
               <ion-label >{{ Quest.answer4 }}</ion-label >
-              <ion-checkbox item-right (click)="saveanswer2(Quest.answer4,i,3)"checked="false"></ion-checkbox>
+              <ion-checkbox item-right (click)="saveMultiAnswer(Quest.answer4,i,3)"checked="false"></ion-checkbox>
           </ion-item>
           <ion-item *ngIf="(Quest.answer5 !== undefined) && (Quest.type === 'multiAnswer')">
               <ion-label >{{ Quest.answer5 }}</ion-label >
-              <ion-checkbox item-right (click)="saveanswer2(Quest.answer5,i,4)" checked="false"></ion-checkbox>
+              <ion-checkbox item-right (click)="saveMultiAnswer(Quest.answer5,i,4)" checked="false"></ion-checkbox>
           </ion-item>
           <ion-item *ngIf="Quest.answer6 !== undefined && (Quest.type === 'multiAnswer')">
               <ion-label >{{ Quest.answer6 }}</ion-label >
-              <ion-checkbox item-right (click)="saveanswer2(Quest.answer6,i,5)" checked="false"></ion-checkbox>
+              <ion-checkbox item-right (click)="saveMultiAnswer(Quest.answer6,i,5)" checked="false"></ion-checkbox>
           </ion-item>
         </ion-list>
-        <button ion-button full type="submit" id="click">ENVIAR</button>
+        <button ion-button full type="submit" id="click">{{'QUESTIONNAIRE.SEND'|translate}}</button>
       </form>
 </ion-content>

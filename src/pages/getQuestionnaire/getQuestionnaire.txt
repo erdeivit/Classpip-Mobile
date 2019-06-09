@@ -1,1 +1,10 @@
 Module created by David Hernández. Contact: erdeivit@gmail.com
+
+On 07/06/2018 we have:
+- You can see what questionnaire games we have, and we can sort by:
+  - Active questionnaires (The finish date does not pass).
+  - Programmed questionnaires (The start date does not pass).
+  - Finish questionnaires (The finish date pass).
+
+You can acces only to the active questionnaires. The others one will show a alertDialog.
+

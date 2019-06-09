@@ -1,0 +1,12 @@
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This module is part of the questionnaires block.
+
+This modulle allows to get the information about the server.
+Thanks to the construct method, it can collect the data from the server (classpip-services) and assign it to local variables.
+
+Thanks to the getters and the setters that are created we can access to the data easily just creating a variable of the class.
+
+Ej:
+public questionnaire: Questionnaire;
+this.questionnaire.name;
