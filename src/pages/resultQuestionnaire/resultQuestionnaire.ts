@@ -62,17 +62,25 @@ export class ResultQuestionnairePage {
         var correct = question.correctanswer.split([','][0])
         if (this.userAnswers[i] !== undefined)
         {
-        var partialanswer = 0;
+        var numRights = 0;
+        var length = 0;
         for (let ans of correct){
           for (let userans of this.userAnswers[i])
           {
             if (userans === ans)
             {
-              partialanswer++;
+              numRights++;
             }
           }
         }
-        if ((partialanswer === correct.length) && (correct.length === this.userAnswers[i].length))
+        for (let userans of this.userAnswers[i])
+          {
+            if(userans !=="")
+            {
+              length++;
+            }
+          }
+        if ((numRights === correct.length) && (correct.length === length))
         {
           this.numAnswerCorrect++;
         }

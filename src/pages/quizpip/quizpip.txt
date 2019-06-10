@@ -1,1 +1,6 @@
-Module created by David Hernández. Contact: erdeivit@gmail.com
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This is the quizpip questionnaire game.
+This game is the classical questionaire. All the questions will appear on the screen, and you will answer
+all of them at the same time.
+You can have question time or questionnaire time, depending on the game configuration.

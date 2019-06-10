@@ -1,4 +1,4 @@
-Module created by David Hernández. Contact: erdeivit@gmail.com
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
 
 On 07/06/2018 we have:
 - You can see what questionnaire games we have, and we can sort by:

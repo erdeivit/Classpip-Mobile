@@ -1,1 +1,6 @@
-Module created by David Hernández. Contact: erdeivit@gmail.com
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This is the 1by1 questionnaire game.
+In this game, questions will appear 1 by 1, and you can never go back again.
+You can have question time or questionnaire time, depending on the configuration of the game.
+

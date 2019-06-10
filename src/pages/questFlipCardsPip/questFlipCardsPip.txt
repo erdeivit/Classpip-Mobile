@@ -1,1 +1,8 @@
-Module created by David Hernández. Contact: erdeivit@gmail.com
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This is the FlipCardsPip questionnaire game.
+This game is focused on learn.
+Question will appear on the screen, and when you think that you guess the answer, you will only need to
+"Flip" de "Cards" (passing the mouse over the question) and the answer will appear.
+
+

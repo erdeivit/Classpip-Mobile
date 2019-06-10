@@ -28,43 +28,26 @@
     "FORGOT": "Olvidé mi contraseña",
     "REGISTER": "Necesito crear una nueva cuenta"
   },
-    "GETQUESTIONNAIRE": {
-      "TITLE": "Mis Cuestionarios",
-      "SHORTTITLE": "Cuestionarios",
-      "USERNAME": "Nombre de Usuario",
-      "CODE": "Código del Cuestionario",
-      "LOGIN": "ACCEDER",
-      "MAKE": "Hacer cuestionario",
-      "WONCARDS": "Cromos ganados:"
-
-  },
-    "QUESTIONNAIRES": {
-    "TITLE": "Mis Cuestionarios",
-    "RESULTS": "Mis Resultados"
-  },
-    "QUESTIONNAIRE": {
-    "TITLE": "Mi Cuestionario",
-    "USERNAME": "Creado por",
-    "CODE": "Código del Cuestionario",
-    "SUBMIT": "Guardar y continuar",
-    "RESULT": "Consultar resultados",
-    "FINISH": "Has terminado de realizar el cuestionario. Consulta la solución y tus resultados.",
-    "FINISH1": "Has terminado de realizar el cuestionario. Tus resultados se publicarán en breve.",
-    "LOGIN": "ACCEDER",
-    "LOGOUT": "Cerrar Cuestionario",
-    "TEXT1": "Solución del",
-    "TEXT2": "Respuesta correcta:",
-    "TEXT3": "Resultados obtenidos por",
-    "TEXT4": "Tus respuestas:",
-    "TEXT5": "Resultados:",
-    "TEXT6": "Total preguntas:",
-    "TEXT7": "Total respuestas acertadas:",
-    "TEXT8": "Total respuestas no acertadas:",
-    "TEXT9": "Resultado:",
-      "TEXT10": "Nota sobre 10",
-      "TEXT11": "Puntos conseguidos",
-      "CLOSED": "Este cuestionario está cerrado",
-      "NOTACCESS": "No tienes acceso a este cuestionario"
+  "QUESTIONNAIRE": {
+    "SHORTTITLE":"Cuestionarios",
+    "ACTIVE":"CUESTIONARIOS ACTIVOS",
+    "PROGRAMMED":"CUESTIONARIOS PROGRAMADOS",
+    "ENDED":"CUESTIONARIOS FINALIZADOS",
+    "SHORTPROGRAMMED":"PROGRAMADO PARA: ",
+    "SHORTENDED":"FINALIZÓ EL: ",
+    "QUESTIONTIME":"Tiempo de pregunta: ",
+    "QUESTIONNAIRETIME":"Tiempo de cuestionario: ",
+    "TEXTAREA":"Recuerda que los decimales van con '.'",
+    "NEXT":"Siguiente",
+    "SEND":"Enviar",
+    "RESULTS":"Los resultados son: ",
+    "MARK":"Puntación final",
+    "SHORTMARK":"Nota",
+    "SHORTCORRECTANSWERS":"Aciertos",
+    "CORRECTANSWERS":"Respuestas correctas",
+    "SHORTWRONGANSWERS":"Errores",
+    "WRONGANSWERS":"Respuestas incorrectas",
+    "LOGOUT":"Finalizar"
   },
   "HOME": {
     "TITLE": "Inicio",

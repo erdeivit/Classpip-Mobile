@@ -16,6 +16,7 @@ export class QuizPipPage {
   public questionTime:number;
   public questionnaireTime:number;
   public displayTime: string;
+  public timer;
   constructor(
     public navParams: NavParams,
     public navController: NavController,
@@ -30,18 +31,25 @@ export class QuizPipPage {
     this.userAnswers[indice] = data;
   }
 
-  public saveMultiAnswer(data:string,indice:number,indice2:number){
-    if (this.comprobacion === indice2)
+  public saveMultiAnswer(answer:string,indexUserAnswer:number,indexMultipleAnswer:number){
+    if (this.userAnswers[indexUserAnswer])
     {
-      this.userMultiAnswers.splice(indice2,1);
-      this.userAnswers[indice] = this.userMultiAnswers;
-      this.comprobacion=7;
+      this.userMultiAnswers = this.userAnswers[indexUserAnswer];
     }
     else
     {
-      this.userMultiAnswers[indice2] = data;
-      this.userAnswers[indice] = this.userMultiAnswers;
-      this.comprobacion=indice2;
+      this.userMultiAnswers = [];
+    }
+    //TO DELETE THE INFORMATION OF THE POSITION
+    if ( this.userMultiAnswers[indexMultipleAnswer] === answer)
+    {
+      this.userMultiAnswers[indexMultipleAnswer] = "";
+      this.userAnswers[indexUserAnswer] = this.userMultiAnswers;
+    }
+    else
+    {
+      this.userMultiAnswers[indexMultipleAnswer] = answer;
+      this.userAnswers[indexUserAnswer] = this.userMultiAnswers;
     }
   }
 
@@ -50,6 +58,7 @@ export class QuizPipPage {
   }
 
   public doSubmitAnswer() {
+    clearTimeout(this.timer);
     this.navController.setRoot(ResultQuestionnairePage,
       {questions: this.questions,
         answers: this.userAnswers,
@@ -94,7 +103,7 @@ export class QuizPipPage {
   }
 
   timerTick(time:number) {
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       time--;
       this.displayTime = this.getSecondsAsDigitalClock(time);
       if (time > 0) {

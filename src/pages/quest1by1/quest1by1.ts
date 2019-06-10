@@ -14,8 +14,8 @@ import { ResultQuestionnairePage } from '../resultQuestionnaire/resultQuestionna
 export class quest1by1Page {
   public questions: Array<Question>;
   public actualQuestion: Question;
-  public userAnswer  = [];
-  public userMultiAnswer  = [];
+  public userAnswers  = [];
+  public userMultiAnswers  = [];
   public title: string;
   public comprobacion:number=7;
   public i: number;
@@ -36,26 +36,25 @@ export class quest1by1Page {
     this.questionnaireTime = this.navParams.data.questionnairetime;
     this.i = this.navParams.data.i;
     if(this.navParams.data.dataAnswers){
-      this.userAnswer = this.navParams.data.dataAnswers;
+      this.userAnswers = this.navParams.data.dataAnswers;
     }
   }
 
   public saveAnswer(answer:string){
-    this.userAnswer[this.i] = answer;
+    this.userAnswers[this.i] = answer;
   }
 
   public saveMultipleAnswer(answer:string,indexUserAnswer:number,indexMultipleAnswer:number){
-    if (this.comprobacion === indexMultipleAnswer)
+    //TO DELETE THE ANSWER
+    if ( this.userMultiAnswers[indexMultipleAnswer] === answer)
     {
-      this.userMultiAnswer.splice(indexMultipleAnswer,1);
-      this.userAnswer[indexUserAnswer] = this.userMultiAnswer;
-      this.comprobacion=7;
+      this.userMultiAnswers[indexMultipleAnswer] = "";
+      this.userAnswers[indexUserAnswer] = this.userMultiAnswers;
     }
     else
     {
-      this.userMultiAnswer[indexMultipleAnswer] = answer;
-      this.userAnswer[indexUserAnswer] = this.userMultiAnswer;
-      this.comprobacion=indexMultipleAnswer;
+      this.userMultiAnswers[indexMultipleAnswer] = answer;
+      this.userAnswers[indexUserAnswer] = this.userMultiAnswers;
     }
   }
 
@@ -74,7 +73,7 @@ export class quest1by1Page {
       clearTimeout(this.timer);
       this.navController.setRoot(ResultQuestionnairePage,
         {questions: this.questions,
-          answers: this.userAnswer,
+          answers: this.userAnswers,
           questionnaireGame: this.navParams.data.questionnaireGame
         });
         return;
@@ -86,7 +85,7 @@ export class quest1by1Page {
       this.navController.setRoot(quest1by1Page,
         {
           question: this.questions,
-          dataAnswers: this.userAnswer,
+          dataAnswers: this.userAnswers,
           title: this.navParams.data.title,
           questionnaireGame: this.navParams.data.questionnaireGame,
           actualQuestion: this.questions[this.i],

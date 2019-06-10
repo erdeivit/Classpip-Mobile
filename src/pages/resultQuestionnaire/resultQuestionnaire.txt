@@ -1,1 +1,6 @@
-Module created by David Hernández. Contact: erdeivit@gmail.com
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This is the part of the questionnaire games.
+In this page, will appear the results you get from the questionnaires.
+Also it will post it into the BBDD.
+
