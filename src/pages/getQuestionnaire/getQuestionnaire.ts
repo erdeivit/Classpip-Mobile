@@ -12,6 +12,7 @@ import { QuestionnaireService } from '../../providers/questionnaire.service';
 import { Questionnaire } from '../../model/questionnaire';
 import { Question } from '../../model/question';
 import { QuestionnaireGame } from '../../model/questionnaireGame';
+import {resultQuestionnaire} from '../../model/resultQuestionnaire';
 import {Group} from "../../model/group";
 
 @Component({
@@ -26,6 +27,7 @@ export class GetQuestionnairePage {
   public activeQuestionnairesGame: Array<QuestionnaireGame>;
   public deadQuestionnairesGame: Array<QuestionnaireGame>;
   public programmedQuestionnairesGame: Array<QuestionnaireGame>;
+  public answeredQuestionnairesGame: Array<QuestionnaireGame>;
   public myRole: Role;
   public role = Role;
   constructor(
@@ -51,8 +53,18 @@ export class GetQuestionnairePage {
 
   async FlipCardsPipAlert() {
     const alert = await this.alertController.create({
-      title:"Información",
-      message: "Para ver las respuestas, solo tienes que pasar el mouse sobre el enunciado.",
+      title: this.translateService.instant('ALERTS.FILPCARDSTITLE'),
+      message: this.translateService.instant('ALERTS.FLIPCARDSMESSAGE'),
+      buttons: ['OK'],
+      cssClass: "alertDanger",
+    });
+
+    await alert.present();
+  }
+  async doneAlert(name:string) {
+    const alert = await this.alertController.create({
+      title: this.translateService.instant('ALERTS.FILPCARDSTITLE'),
+      message: this.translateService.instant('ALERTS.PROGRAMMEDMESSAGE') + name + this.translateService.instant('ALERTS.DONEMESSAGE'),
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -62,8 +74,8 @@ export class GetQuestionnairePage {
 
   async ProgrammedAlert(name:string,date:string) {
     const alert = await this.alertController.create({
-      title:'Información',
-      message: 'El cuestionario "' + name+ '" empezará el "' + date,
+      title:this.translateService.instant('ALERTS.FILPCARDSTITLE'),
+      message: this.translateService.instant('ALERTS.PROGRAMMEDMESSAGE') +'" '+ name+' "'+ this.translateService.instant('ALERTS.PROGRAMMEDMESSAGE2') + date,
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -73,8 +85,8 @@ export class GetQuestionnairePage {
 
   async FinishAlert(name:string,date:string) {
     const alert = await this.alertController.create({
-      title:"Llegastes tarde",
-      message: 'El cuestionario "' + name+'" finalizó el ' + date,
+      title:this.translateService.instant('ALERTS.FINISHALERTITLE'),
+      message: this.translateService.instant('ALERTS.FINISHMESSAGE') + name+this.translateService.instant('ALERTS.FINISHMESSAGE2') + date,
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
@@ -92,6 +104,7 @@ export class GetQuestionnairePage {
         }
       }
       this.getActiveQuestionnaireGames();
+      this.getNonAnswerQuestionnaireGames();
           }),
         error =>
           this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
@@ -128,6 +141,43 @@ export class GetQuestionnairePage {
         this.deadQuestionnairesGame.push(QuestionarioGame);
       }
     }
+  }
+
+  public getNonAnswerQuestionnaireGames(){
+    this.answeredQuestionnairesGame = [];
+    var activestmp: Array<QuestionnaireGame> =  this.activeQuestionnairesGame;
+    console.log(activestmp);
+    var findquestionnaire =false;
+    this.activeQuestionnairesGame = [];
+    this.questionnaireService.getResults().subscribe(
+      ((resultQuestionnaire: resultQuestionnaire[]) => {
+        if (resultQuestionnaire.length > 0) {
+          for (const activeQuestionnaire of activestmp) {
+              for (const result of resultQuestionnaire) {
+              if((activeQuestionnaire.name === result.questionnaireGame.name) && (!findquestionnaire))
+                if (result.studentId == String(this.utilsService.currentUser.userId)) {
+                this.answeredQuestionnairesGame.push(activeQuestionnaire);
+                findquestionnaire = true;
+              }
+                else
+                {
+                  this.activeQuestionnairesGame.push(activeQuestionnaire)
+                }
+            }
+            if (!findquestionnaire) //DOSN'T FOUND ANY RESULT OF THIS QUESTIONNAIRE
+            {
+              this.activeQuestionnairesGame.push(activeQuestionnaire)
+            }
+            findquestionnaire=false;
+          }
+        }
+        else
+        {
+          this.activeQuestionnairesGame = activestmp;
+        }
+      }),
+      error =>
+        this.ionicService.showAlert(this.translateService.instant('APP.ERROR'), error));
   }
 
   public getQuestionnaire(id: string, gameMode:string,index:number): void {

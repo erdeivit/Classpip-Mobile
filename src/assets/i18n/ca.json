@@ -7,7 +7,7 @@
   "MENU": {
     "TITLE": "Menú",
     "PROFILE": "El meu perfil",
-    "QUESTIONNAIRE": "Els meus Qüestionaris",
+    "QUESTIONNAIRE": "Els meus jocs",
     "LOGOUT": "Tancar sessió"
   },
   "POPOVER": {
@@ -29,25 +29,39 @@
     "REGISTER": "Necessito crear un nou compte"
   },
     "QUESTIONNAIRE": {
-      "SHORTTITLE":"Qüestionaris",
+      "SHORTTITLE":"Jocs",
       "ACTIVE":"QÜESTIONARIS ACTIUS",
+      "DONE":"QÜESTIONARIS FETS",
       "PROGRAMMED":"QÜESTIONARIS PROGRAMATS",
       "ENDED":"QÜESTIONARIS FINALITZATS",
       "SHORTPROGRAMMED":"PROGRAMAT PER: ",
       "SHORTENDED":"FINALIZAT EL: ",
       "QUESTIONTIME":"Temps de la pregunta: ",
       "QUESTIONNAIRETIME":"Temps del qüestionnari: ",
-      "TEXTAREA":"Recorda que els nombres decimals porten '.'",
+      "QUESTION":"Pregunta ",
+      "TEXTAREA":"RESPOSTA AQUÍ. Recorda que els nombres decimals porten '.'",
       "NEXT":"Següent",
       "SEND":"Enviar",
-      "RESULTS":"Els resultats són: ",
       "MARK":"Puntuació final obtinguda ",
       "SHORTMARK":"Nota",
       "SHORTCORRECTANSWERS":"Encerts",
       "CORRECTANSWERS":"Respostes correctes",
       "SHORTWRONGANSWERS":"Errors",
       "WRONGANSWERS":"Respostes incorrectes",
-      "LOGOUT":"Finalitzar"
+      "LOGOUT":"Finalitzar",
+      "STATEMENT":"Enunciat",
+      "RESULTS":"Els meus resultats"
+  },
+  "ALERTS":
+  {
+    "FILPCARDSTITLE":"Informació",
+    "FLIPCARDSMESSAGE":"Per veure les respostes, només has de pasar el ratolí per sobre l'enunciat.",
+    "PROGRAMMEDMESSAGE":"El qüestionari ",
+    "PROGRAMMEDMESSAGE2":" començará el ",
+    "FINISHALERTITLE":"Has arribat tard",
+    "FINISHMESSAGE":"El qüestionari ",
+    "FINISHMESSAGE2":" va finaliztar el ",
+    "DONEMESSAGE":" ya l'has realitzat."
   },
   "HOME": {
     "TITLE": "Inici",

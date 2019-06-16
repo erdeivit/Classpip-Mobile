@@ -7,7 +7,7 @@
   "MENU": {
     "TITLE": "Menu",
     "PROFILE": "My profile",
-    "QUESTIONNAIRE": "My Questionnaires",
+    "QUESTIONNAIRE": "My games",
     "LOGOUT": "Logout"
   },
   "POPOVER": {
@@ -29,25 +29,39 @@
     "REGISTER": "I need to create a new account"
   },
   "QUESTIONNAIRE": {
-    "SHORTTITLE":"Questionnaire",
+    "SHORTTITLE":"Games",
     "ACTIVE":"ACTIVE QUESTIONNAIRES",
+    "DONE":"DONE QUESTIONNAIRES",
     "PROGRAMMED":"PROGRAMMED QUESTIONNAIRES",
     "ENDED":"FINISH QUESTIONNAIRES",
     "SHORTPROGRAMMED":"PROGRAMMED FOR:",
     "SHORTENDED":"FINISHED ON: ",
     "QUESTIONTIME":"Question time: ",
     "QUESTIONNAIRETIME":"Questionnaire time: ",
-    "TEXTAREA":"Remember that the decimal numbers carry '.'",
+    "QUESTION":"Question ",
+    "TEXTAREA":"ANSWER HERE. Remember that the decimal numbers carry '.'",
     "NEXT":"Next",
     "SEND":"Send",
-    "RESULTS":"Your results are: ",
+    "RESULTS":"Your results are",
     "MARK":"Final mark",
     "SHORTMARK":"Mark",
     "SHORTCORRECTANSWERS":"Correct",
     "CORRECTANSWERS":"Correct answers",
     "SHORTWRONGANSWERS":"Wrong",
     "WRONGANSWERS":"Wrong answers",
-    "LOGOUT":"End"
+    "LOGOUT":"End",
+    "STATEMENT":"Statement"
+  },
+  "ALERTS":
+  {
+    "FILPCARDSTITLE":"Information",
+    "FLIPCARDSMESSAGE":"To see the answers, you only have to move the mouse over the statement.",
+    "PROGRAMMEDMESSAGE":"The questionnaire ",
+    "PROGRAMMEDMESSAGE2":" will start on ",
+    "FINISHALERTITLE":"You arrive late",
+    "FINISHMESSAGE":"The questionnaire ",
+    "FINISHMESSAGE2":" finish on ",
+    "DONEMESSAGE":" you have already filled it."
   },
   "HOME": {
     "TITLE": "Home",

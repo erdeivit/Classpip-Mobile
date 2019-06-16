@@ -1,15 +1,17 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title font-size="2" ><p *ngIf="questionTime"> {{'QUESTIONNAIRE.QUESTIONTIME'|translate}} {{ displayTime }}</p><p *ngIf="questionnaireTime"> {{'QUESTIONNAIRE.QUESTIONNAIRETIME'|translate}} {{ displayTime }}</p><marquee font-size="2" behavior="scroll" direction="left">{{this.navParams.data.title }}</marquee></ion-title>
+        <ion-title font-size="2" ><p *ngIf="questionTime"> {{'QUESTIONNAIRE.QUESTIONTIME'|translate}} {{ displayTime }}</p><p *ngIf="questionnaireTime"> {{'QUESTIONNAIRE.QUESTIONNAIRETIME'|translate}} {{ displayTime }}</p>
+        {{i+1}}/{{questions.length}}
+        <marquee font-size="2" behavior="scroll" direction="left">{{this.navParams.data.title }}</marquee></ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content>
     <form (submit)="doSubmitAnswer()">
         <ion-list multiple="true" text-wrap radio-group>
           <ion-list-header >
-            <p style="font-size:30px">{{actualQuestion.statement}}</p>
+            <p style="font-size:20px">{{'QUESTIONNAIRE.STATEMENT'|translate}}: {{actualQuestion.statement}}</p>
             <br>
-            <ion-img width="100" height="100" src="{{actualQuestion.image}}"></ion-img>
+            <ion-img width="150" height="150" src="{{actualQuestion.image}}"></ion-img>
           </ion-list-header>
           <ion-item ng-model="filter.typeFilter" *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'classic') ">
               <ion-label>{{ actualQuestion.answer1 }}</ion-label>
@@ -36,7 +38,7 @@
                 <ion-radio  (click)="saveAnswer(actualQuestion.answer6)" checked="false"></ion-radio>
             </ion-item>
             <ion-item  *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'openQuestion')">
-              <ion-textarea (blur)="saveAnswer($event.target.value)" text-wrap placeholder="{{'QUESTIONNAIRE.TEXTAREA'|translate}}"></ion-textarea >
+              <ion-textarea auto-grow="true" colour="tetriary" (blur)="saveAnswer($event.target.value)" text-wrap placeholder="{{'QUESTIONNAIRE.TEXTAREA'|translate}}"></ion-textarea >
             </ion-item>
             <ion-item *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'multiAnswer') ">
               <ion-label>{{ actualQuestion.answer1 }}</ion-label>

@@ -15,22 +15,32 @@
   </ion-list>
   </ion-card>
   <ion-list-header>
+    {{ 'QUESTIONNAIRE.DONE' | translate }}
+    </ion-list-header>
+  <ion-card  *ngFor="let quest of answeredQuestionnairesGame" >
+   <ion-list (click)="doneAlert(quest.name)">
+    <ion-item >
+      <label item-left>{{ quest.name }}</label>
+    </ion-item>
+  </ion-list>
+  </ion-card>
+  <ion-list-header>
     {{ 'QUESTIONNAIRE.PROGRAMMED' | translate }}
   </ion-list-header>
-    <ion-card  *ngFor="let quest of programmedQuestionnairesGame;let i=index" >
+    <ion-card  *ngFor="let quest of programmedQuestionnairesGame" >
       <ion-list (click)="ProgrammedAlert(quest.name,quest.str_date)">
         <ion-item >
-          <label item-left>{{ quest.name }} {{ 'QUESTIONNAIRE.SHORTPROGRAMMED' | translate }} {{quest.str_date}}</label>
+          <label item-left>{{ quest.name }}</label>
         </ion-item>
       </ion-list>
     </ion-card>
   <ion-list-header>
     {{ 'QUESTIONNAIRE.ENDED' | translate }}
   </ion-list-header>
-    <ion-card  *ngFor="let quest of deadQuestionnairesGame;let i=index" >
+    <ion-card  *ngFor="let quest of deadQuestionnairesGame" >
       <ion-list (click)="FinishAlert(quest.name,quest.fnsh_date)">
         <ion-item >
-          <label item-left>{{ quest.name }} {{ 'QUESTIONNAIRE.SHORTENDED' | translate }}{{quest.fnsh_date}}</label>
+          <label item-left>{{ quest.name }}</label>
         </ion-item>
       </ion-list>
     </ion-card>

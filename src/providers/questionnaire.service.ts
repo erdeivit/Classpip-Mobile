@@ -70,6 +70,16 @@ export class QuestionnaireService {
     .map((response: Response, index: number) => resultQuestionnaire.toObject(response.json()))
   }
 
+  public getResults(): Observable<resultQuestionnaire[]> {
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+    const url: string = AppConfig.RESULTQUESTIONNAIRE_URL;
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => resultQuestionnaire.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
   public getQuestionsofQuestionnaire(idQuestionnaire:string): Observable<Array<Question>> {
     var ret: Array<Question> = new Array<Question>();
     return Observable.create(observer => {

@@ -8,12 +8,14 @@ export class resultQuestionnaire {
   private _numAnswersNoCorrect: string;
   private _finalNote: string;
   private _dataAnswers: Array<string>;
-  constructor(questionnaireGame?: QuestionnaireGame, numAnswersCorrect?: string, numAnswersNoCorrect?: string, finalNote?: string,dataAnswers?: Array<string>) {
+  private _studentId: string;
+  constructor(questionnaireGame?: QuestionnaireGame,  studentId?: string, numAnswersCorrect?: string, numAnswersNoCorrect?: string, finalNote?: string,dataAnswers?: Array<string>) {
     this._questionnaireGame = questionnaireGame;
     this._numAnswersCorrect = numAnswersCorrect;
     this._numAnswersNoCorrect = numAnswersNoCorrect;
     this._finalNote = finalNote;
     this._dataAnswers = dataAnswers;
+    this._studentId = studentId;
   }
 
   /* tslint:disable */
@@ -26,6 +28,7 @@ export class resultQuestionnaire {
       result.numAnswersNoCorrect = object.numAnswersNoCorrect;
       result.finalNote = object.finalNote;
       result.dataAnswers = object.dataAnswers;
+      result.studentId = object.studentId;
     }
     return result;
   }
@@ -79,5 +82,11 @@ export class resultQuestionnaire {
   public set dataAnswers(value: Array<string>) {
     this._dataAnswers = value;
   }
+  public get studentId(): string {
+    return this._studentId;
+  }
 
+  public set studentId(value: string) {
+    this._studentId = value;
+  }
 }

@@ -7,7 +7,7 @@
   "MENU": {
     "TITLE": "Menú",
     "PROFILE": "Mi Perfil",
-    "QUESTIONNAIRE": "Mis Cuestionarios",
+    "QUESTIONNAIRE": "Mis juegos",
     "LOGOUT": "Cerrar sessión"
   },
   "POPOVER": {
@@ -29,25 +29,39 @@
     "REGISTER": "Necesito crear una nueva cuenta"
   },
   "QUESTIONNAIRE": {
-    "SHORTTITLE":"Cuestionarios",
+    "SHORTTITLE":"Juegos",
     "ACTIVE":"CUESTIONARIOS ACTIVOS",
+    "DONE":"CUESTIONARIOS REALIZADOS",
     "PROGRAMMED":"CUESTIONARIOS PROGRAMADOS",
     "ENDED":"CUESTIONARIOS FINALIZADOS",
     "SHORTPROGRAMMED":"PROGRAMADO PARA: ",
     "SHORTENDED":"FINALIZÓ EL: ",
     "QUESTIONTIME":"Tiempo de pregunta: ",
     "QUESTIONNAIRETIME":"Tiempo de cuestionario: ",
-    "TEXTAREA":"Recuerda que los decimales van con '.'",
+    "QUESTION":"Pregunta ",
+    "TEXTAREA":"RESPUESTA AQUÍ.Recuerda que los decimales van con '.'",
     "NEXT":"Siguiente",
     "SEND":"Enviar",
-    "RESULTS":"Los resultados son: ",
+    "RESULTS":"Tus resultados ",
     "MARK":"Puntación final",
     "SHORTMARK":"Nota",
     "SHORTCORRECTANSWERS":"Aciertos",
     "CORRECTANSWERS":"Respuestas correctas",
     "SHORTWRONGANSWERS":"Errores",
     "WRONGANSWERS":"Respuestas incorrectas",
-    "LOGOUT":"Finalizar"
+    "LOGOUT":"Finalizar",
+    "STATEMENT":"Enunciado"
+  },
+  "ALERTS":
+  {
+    "FILPCARDSTITLE":"Información",
+    "FLIPCARDSMESSAGE":"Para ver las respuestas, solo tienes que pasar el mouse sobre el enunciado.",
+    "PROGRAMMEDMESSAGE":"El cuestionario ",
+    "PROGRAMMEDMESSAGE2":" empezará el ",
+    "FINISHALERTITLE":"Llegastes tarde",
+    "FINISHMESSAGE":"El cuestionario ",
+    "FINISHMESSAGE2":" finalizó el ",
+    "DONEMESSAGE":" ya lo has realizado."
   },
   "HOME": {
     "TITLE": "Inicio",

@@ -18,3 +18,5 @@ to the name of the function, the parameters it needs and the observable that ret
 - public getQuestionnaire(idQuestionnaire:string): Observable<Questionnaire>
 
 - public getQuestion(idQuestion: Question): Observable<Question>
+
+- public getResults(): Observable<ResultQuestionnaire[]>
