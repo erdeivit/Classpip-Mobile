@@ -64,7 +64,7 @@ export class GetQuestionnairePage {
   async doneAlert(name:string) {
     const alert = await this.alertController.create({
       title: this.translateService.instant('ALERTS.FILPCARDSTITLE'),
-      message: this.translateService.instant('ALERTS.PROGRAMMEDMESSAGE') + name + this.translateService.instant('ALERTS.DONEMESSAGE'),
+      message: this.translateService.instant('ALERTS.PROGRAMMEDMESSAGE')+'" ' + name +' "'+ this.translateService.instant('ALERTS.DONEMESSAGE'),
       buttons: ['OK'],
       cssClass: "alertDanger",
     });
