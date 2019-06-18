@@ -11,7 +11,7 @@
           <ion-list-header >
             <p style="font-size:20px">{{'QUESTIONNAIRE.STATEMENT'|translate}}: {{actualQuestion.statement}}</p>
             <br>
-            <ion-img width="85" height="85" src="{{actualQuestion.image}}"></ion-img>
+            <ion-img width="85c" height="85" src="{{actualQuestion.image}}"></ion-img>
           </ion-list-header>
           <ion-item ng-model="filter.typeFilter" *ngIf="(actualQuestion.answer1 !== undefined) && (actualQuestion.type === 'classic') ">
               <ion-label>{{ actualQuestion.answer1 }}</ion-label>
